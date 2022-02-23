@@ -1,4 +1,5 @@
 const { createUser } = require('../lib/auth/createUser');
+const { checkPassword } = require('../lib/auth/passwordUtils');
 const User = require('../models/User');
 
 module.exports.getSignUpPage = (req, res) => {
@@ -37,4 +38,35 @@ module.exports.postSignOut = async (req, res) => {
   req.session.destroy();
 
   res.redirect('/');
+};
+
+module.exports.getSignInPage = (req, res) => {
+  res.render('auth/sign-in');
+};
+
+module.exports.postSignIn = async (req, res) => {
+  const { email, password } = req.body;
+
+  const foundUser = await User.findOne({
+    where: {
+      email,
+    },
+  });
+
+  // user not found, redirect to signup
+  if (!foundUser) {
+    return res.send('User not found, please sign up');
+  }
+
+  const passwordMatches = await checkPassword(password, foundUser.password);
+
+  if (!passwordMatches) {
+    req.session.destroy();
+    return res.redirect('/auth/sign-in');
+  } else {
+    const userToShow = { ...foundUser, password: null };
+
+    req.session.user = userToShow;
+    return res.redirect('/');
+  }
 };

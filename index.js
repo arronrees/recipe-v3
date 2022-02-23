@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const path = require('path');
 const session = require('express-session');
 const methodOverride = require('method-override');
+const ExpressError = require('./utils/ExpressError');
 
 const { db } = require('./lib/db');
 
@@ -52,8 +53,8 @@ app.get('/', (req, res) => {
 app.use(authRoutes);
 
 // general 404 for all other routes
-app.use((req, res) => {
-  next(new ExpressError('Page Not Found', 404));
+app.all('*', (req, res, next) => {
+  next(new ExpressError('Not Found', 404));
 });
 
 // error handler

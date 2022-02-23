@@ -16,19 +16,13 @@
       <h1>no user</h1>
       <% } %>
 
-        <h2>Homepage</h2>
-
-        <form action="/auth/sign-out" method="post">
-          <button>Sign Out</button>
+        <form action="/auth/sign-in" method="post">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password">
+          <button type="submit">Submit</button>
         </form>
-
-        <a href="auth/sign-up">
-          Sign Up
-        </a>
-
-        <a href="auth/sign-in">
-          Sign In
-        </a>
 
 </body>
 
