@@ -3,10 +3,13 @@ const morgan = require('morgan');
 const path = require('path');
 const { db } = require('./utils/db');
 
+// routes
+const authRoutes = require('./routes/authRoutes');
+
 const app = express();
 
 // register view engine
-app.set('view-engine', 'ejs');
+app.set('view engine', 'ejs');
 
 // static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -15,6 +18,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('tiny'));
+
+// homepage route
+app.get('/', (req, res) => {
+  res.send('Homepage here');
+});
+
+// routes
+app.use(authRoutes);
 
 // general 404 for all other routes
 app.use((req, res) => {
@@ -30,4 +41,4 @@ db.authenticate()
       console.log('Server running on port 8080');
     });
   })
-  .catch((err) => console.log(err));
+  .catch((err) => console.error(err));
