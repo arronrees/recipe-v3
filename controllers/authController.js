@@ -21,5 +21,13 @@ module.exports.postSignUp = async (req, res) => {
 
   const newUser = await createUser({ firstName, lastName, email, password });
 
+  if (newUser instanceof Error) {
+    console.log(newUser);
+    return res.send(newUser.message);
+  }
+
+  const userToShow = { ...newUser.dataValues, password: null };
+  req.session.user = userToShow;
+
   res.send('ye');
 };

@@ -35,8 +35,13 @@ const sessionConfig = {
     httpOnly: true,
   },
 };
-
 app.use(session(sessionConfig));
+
+app.use((req, res, next) => {
+  res.locals.user = req.session.user;
+
+  next();
+});
 
 // homepage route
 app.get('/', (req, res) => {
