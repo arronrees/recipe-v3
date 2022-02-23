@@ -26,8 +26,15 @@ module.exports.postSignUp = async (req, res) => {
     return res.send(newUser.message);
   }
 
+  // save user to session
   const userToShow = { ...newUser.dataValues, password: null };
   req.session.user = userToShow;
 
   res.send('ye');
+};
+
+module.exports.postSignOut = async (req, res) => {
+  req.session.destroy();
+
+  res.redirect('/');
 };

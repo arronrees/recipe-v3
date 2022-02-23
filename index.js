@@ -45,7 +45,7 @@ app.use((req, res, next) => {
 
 // homepage route
 app.get('/', (req, res) => {
-  res.send('Homepage here');
+  res.render('index');
 });
 
 // routes
@@ -58,6 +58,8 @@ app.use((req, res) => {
 
 // error handler
 app.use((err, req, res, next) => {
+  console.log(err);
+
   if (!err.message) err.message = 'Something went wrong...';
 
   res.status(err.status || 500).json({ error: true, message: err.message });
