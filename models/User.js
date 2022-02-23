@@ -25,7 +25,7 @@ const User = db.define('user', {
   },
 });
 
-User.sync({ alter: true }).then(() => {
+User.sync({ force: false }).then(() => {
   console.log('User model synced');
 });
 
