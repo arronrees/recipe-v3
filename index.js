@@ -5,7 +5,7 @@ const path = require('path');
 const session = require('express-session');
 const methodOverride = require('method-override');
 
-const { db } = require('./utils/db');
+const { db } = require('./lib/db');
 
 // routes
 const authRoutes = require('./routes/authRoutes');
@@ -48,7 +48,14 @@ app.use(authRoutes);
 
 // general 404 for all other routes
 app.use((req, res) => {
-  res.status(404).send('404 - Not Found');
+  next(new ExpressError('Page Not Found', 404));
+});
+
+// error handler
+app.use((err, req, res, next) => {
+  if (!err.message) err.message = 'Something went wrong...';
+
+  res.status(err.status || 500).json({ error: true, message: err.message });
 });
 
 // run server

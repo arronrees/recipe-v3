@@ -1,5 +1,5 @@
 const { DataTypes, UUID, UUIDV4 } = require('sequelize');
-const { db } = require('../utils/db');
+const { db } = require('../lib/db');
 
 const User = db.define('user', {
   id: {
