@@ -1,6 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+const session = require('express-session');
+const methodOverride = require('method-override');
+
 const { db } = require('./utils/db');
 
 // routes
@@ -18,6 +22,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('tiny'));
+app.use(methodOverride('_method'));
+
+// session
+const sessionConfig = {
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    expires: Date.now() + 1000 * 60 * 60 * 24,
+    maxAge: 1000 * 60 * 60 * 24,
+    httpOnly: true,
+  },
+};
+
+app.use(session(sessionConfig));
 
 // homepage route
 app.get('/', (req, res) => {
