@@ -1,5 +1,4 @@
 const { createUser } = require('../lib/auth/createUser');
-const { checkPassword } = require('../lib/auth/passwordUtils');
 const User = require('../models/User');
 
 module.exports.getSignUpPage = (req, res) => {
@@ -17,25 +16,38 @@ module.exports.postSignUp = async (req, res) => {
 
   // return user already registered
   if (foundUser) {
-    return res.send('Email already registered, please sign in');
+    req.flash('infoMessage', 'Email already registered, please sign in');
+    return res.redirect('/auth/sign-in');
   }
 
   const newUser = await createUser({ firstName, lastName, email, password });
 
+  if (!newUser) {
+    req.flash('errorMessage', `Error creating user, please try again`);
+    return res.redirect('/auth/sign-up');
+  }
   if (newUser instanceof Error) {
     console.log(newUser);
-    return res.send(newUser.message);
+
+    req.flash('errorMessage', `Error creating user, please try again`);
+    return res.redirect('/auth/sign-up');
   }
 
   // save user to session
   const userToShow = { ...newUser.dataValues, password: null };
-  req.session.user = userToShow;
+  // req.session.user = userToShow;
 
-  res.send('ye');
+  req.login(userToShow, (err) => {
+    if (err) next(err);
+
+    req.flash('successMessage', 'User created successfully');
+    res.redirect('/');
+  });
 };
 
 module.exports.postSignOut = async (req, res) => {
-  req.session.destroy();
+  req.logout();
+  req.flash('successMessage', 'Signed out successfully');
 
   res.redirect('/');
 };
@@ -45,28 +57,6 @@ module.exports.getSignInPage = (req, res) => {
 };
 
 module.exports.postSignIn = async (req, res) => {
-  const { email, password } = req.body;
-
-  const foundUser = await User.findOne({
-    where: {
-      email,
-    },
-  });
-
-  // user not found, redirect to signup
-  if (!foundUser) {
-    return res.send('User not found, please sign up');
-  }
-
-  const passwordMatches = await checkPassword(password, foundUser.password);
-
-  if (!passwordMatches) {
-    req.session.destroy();
-    return res.redirect('/auth/sign-in');
-  } else {
-    const userToShow = { ...foundUser, password: null };
-
-    req.session.user = userToShow;
-    return res.redirect('/');
-  }
+  req.flash('successMessage', `Signed in successfully`);
+  return res.redirect('/');
 };

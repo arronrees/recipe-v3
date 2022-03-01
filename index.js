@@ -5,6 +5,8 @@ const path = require('path');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const ExpressError = require('./utils/ExpressError');
+const flash = require('connect-flash');
+const passport = require('passport');
 
 const { db } = require('./lib/db');
 
@@ -38,8 +40,31 @@ const sessionConfig = {
 };
 app.use(session(sessionConfig));
 
+// passport auth
+app.use(passport.initialize());
+app.use(passport.authenticate('session'));
+app.use(passport.session());
+
+passport.serializeUser((user, cb) => {
+  process.nextTick(() => {
+    cb(null, { ...user.dataValues, password: null });
+  });
+});
+
+passport.deserializeUser((user, cb) => {
+  process.nextTick(() => {
+    return cb(null, user);
+  });
+});
+
+// register flash after session
+app.use(flash());
+
 app.use((req, res, next) => {
-  res.locals.user = req.session.user;
+  res.locals.user = req.user;
+  res.locals.successMessage = req.flash('successMessage');
+  res.locals.errorMessage = req.flash('errorMessage');
+  res.locals.infoMessage = req.flash('infoMessage');
 
   next();
 });

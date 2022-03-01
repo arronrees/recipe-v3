@@ -1,0 +1,18 @@
+.flash {
+  padding: 1rem;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+
+  &.error {
+    background-color: lightcoral;
+  }
+
+  &.info {
+    background-color: lightskyblue;
+  }
+
+  &.success {
+    background-color: lightgreen;
+  }
+}

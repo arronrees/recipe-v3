@@ -1,0 +1,19 @@
+.flash {
+  padding: 1rem;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+}
+
+.flash.error {
+  background-color: lightcoral;
+}
+
+.flash.info {
+  background-color: lightskyblue;
+}
+
+.flash.success {
+  background-color: lightgreen;
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,23 @@
+<% if(successMessage && successMessage.length) { %>
+
+  <div class="flash success">
+    Success: <%=successMessage%>
+  </div>
+
+  <% } %>
+
+    <% if(errorMessage && errorMessage.length) { %>
+
+      <div class="flash error">
+        Error: <%=errorMessage%>
+      </div>
+
+      <% } %>
+
+        <% if(infoMessage && infoMessage.length) { %>
+
+          <div class="flash info">
+            Info: <%=infoMessage%>
+          </div>
+
+          <% } %>
