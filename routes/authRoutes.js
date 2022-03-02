@@ -27,14 +27,20 @@ passport.use(
 
       // user not found, redirect to signup
       if (!foundUser) {
-        return done(null, false, { message: 'Incorrect credentials' });
+        return done(null, false, {
+          type: 'errorMessage',
+          message: 'Incorrect credentials',
+        });
       }
 
       const passwordMatches = await checkPassword(password, foundUser.password);
 
       // incorrect password
       if (!passwordMatches) {
-        return done(null, false, { message: 'Incorrect credentials' });
+        return done(null, false, {
+          type: 'errorMessage',
+          message: 'Incorrect credentials',
+        });
       }
 
       return done(null, foundUser);
@@ -55,6 +61,7 @@ router.get('/auth/sign-in', getSignInPage);
 router.post(
   '/auth/sign-in',
   passport.authenticate('local', {
+    failureFlash: true,
     failureRedirect: '/auth/sign-in',
   }),
   postSignIn
