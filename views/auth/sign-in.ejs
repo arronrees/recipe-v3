@@ -6,26 +6,41 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign In</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/reset.css">
   <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
 
-  <% if (user) { %>
-    <h1>user</h1>
-    <% } else { %>
-      <h1>no user</h1>
-      <% } %>
+  <%- include('../partials/header') %>
 
-        <form action="/auth/sign-in" method="post">
+    <section class="auth__section">
+      <form action="/auth/sign-in" method="post" class="auth__form">
+        <div class="row">
           <label for="email">Email</label>
-          <input type="email" name="email" id="email">
+          <input type="email" name="email" id="email" placeholder="Email" required>
+        </div>
+        <div class="row">
           <label for="password">Password</label>
-          <input type="password" name="password" id="password">
-          <button type="submit">Submit</button>
-        </form>
+          <input type="password" name="password" id="password" placeholder="Password" required>
+        </div>
+        <div class="row">
+          <button type="submit" class="btn btn--green">Submit</button>
+        </div>
+      </form>
+      <div class="sign__in__img">
+        <figure>
+          <img src="/img/sign.jpg" alt="">
+        </figure>
+      </div>
+    </section>
 
-        <%- include('../partials/flash') %>
+    <%- include('../partials/flash') %>
 </body>
 
 </html>
