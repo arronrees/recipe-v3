@@ -1,7 +1,10 @@
 const LocalStrategy = require('passport-local');
 const User = require('../models/User');
 const { checkPassword } = require('../lib/auth/passwordUtils');
-const { joiUserSignUp } = require('../models/validation/joiUser');
+const {
+  joiUserSignUp,
+  joiUserSignIn,
+} = require('../models/validation/joiUser');
 const Joi = require('joi');
 
 module.exports.passportLocalStrategy = new LocalStrategy(
@@ -20,7 +23,7 @@ module.exports.passportLocalStrategy = new LocalStrategy(
     if (!foundUser) {
       return done(null, false, {
         type: 'errorMessage',
-        message: 'Incorrect credentials',
+        message: 'Incorrect credentials, please try again',
       });
     }
 
@@ -30,7 +33,7 @@ module.exports.passportLocalStrategy = new LocalStrategy(
     if (!passwordMatches) {
       return done(null, false, {
         type: 'errorMessage',
-        message: 'Incorrect credentials',
+        message: 'Incorrect credentials, please try again',
       });
     }
 
@@ -45,6 +48,22 @@ module.exports.validateJoiUserSignUp = async (req, res, next) => {
   if (error) {
     if (Joi.isError(error)) {
       req.flash('errorMessage', error.message.replaceAll('"', ''));
+    } else {
+      req.flash('errorMessage', 'Something went wrong, please try again');
+    }
+    return res.redirect('/auth/sign-up');
+  }
+
+  next();
+};
+
+module.exports.validateJoiUserSignIn = async (req, res, next) => {
+  const { body } = req;
+  const { error } = joiUserSignIn.validate(body);
+
+  if (error) {
+    if (Joi.isError(error)) {
+      req.flash('errorMessage', 'Incorrect credentials, please try again');
     } else {
       req.flash('errorMessage', 'Something went wrong, please try again');
     }

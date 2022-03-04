@@ -11,6 +11,7 @@ const passport = require('passport');
 const {
   passportLocalStrategy,
   validateJoiUserSignUp,
+  validateJoiUserSignIn,
 } = require('../middleware/auth');
 
 passport.use('local', passportLocalStrategy);
@@ -27,6 +28,7 @@ router.get('/auth/sign-in', getSignInPage);
 
 router.post(
   '/auth/sign-in',
+  validateJoiUserSignIn,
   passport.authenticate('local', {
     failureFlash: true,
     failureRedirect: '/auth/sign-in',
