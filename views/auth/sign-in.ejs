@@ -17,30 +17,28 @@
 
 <body>
 
-  <%- include('../partials/header') %>
-
-    <section class="auth__section">
-      <form action="/auth/sign-in" method="post" class="auth__form">
-        <div class="row">
-          <label for="email">Email</label>
-          <input type="email" name="email" id="email" placeholder="Email" required>
-        </div>
-        <div class="row">
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" placeholder="Password" required>
-        </div>
-        <div class="row">
-          <button type="submit" class="btn btn--green">Submit</button>
-        </div>
-      </form>
-      <div class="sign__in__img">
-        <figure>
-          <img src="/img/sign.jpg" alt="">
-        </figure>
+  <section class="auth__section">
+    <form action="/auth/sign-in" method="post" class="auth__form">
+      <div class="row">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Email" required>
       </div>
-    </section>
+      <div class="row">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Password" required>
+      </div>
+      <div class="row">
+        <button type="submit" class="btn btn--green">Submit</button>
+      </div>
+    </form>
+    <div class="sign__in__img">
+      <figure>
+        <img src="/img/sign.jpg" alt="">
+      </figure>
+    </div>
+  </section>
 
-    <%- include('../partials/flash') %>
+  <%- include('../partials/flash') %>
 </body>
 
 </html>

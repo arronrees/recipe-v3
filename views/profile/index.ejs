@@ -17,23 +17,23 @@
 
 <body>
 
-  <%- include('./partials/header') %>
+  <%- include('../partials/header') %>
 
-    <h2>Homepage</h2>
+    <h2>Profile</h2>
 
     <form action="/auth/sign-out" method="post">
       <button>Sign Out</button>
     </form>
 
-    <a href="auth/sign-up" class="btn btn--teal">
+    <a href="auth/sign-up">
       Sign Up
     </a>
 
-    <a href="auth/sign-in" class="btn btn--green">
+    <a href="auth/sign-in">
       Sign In
     </a>
 
-    <%- include('./partials/flash') %>
+    <%- include('../partials/flash') %>
 </body>
 
 </html>

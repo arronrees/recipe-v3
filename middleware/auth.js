@@ -72,3 +72,14 @@ module.exports.validateJoiUserSignIn = async (req, res, next) => {
 
   next();
 };
+
+module.exports.isLoggedIn = async (req, res, next) => {
+  if (!req.isAuthenticated()) {
+    req.session.returnTo = req.originalUrl;
+
+    req.flash('errorMessage', 'Please sign in to view this content');
+    return res.redirect('/auth/sign-in');
+  }
+
+  next();
+};

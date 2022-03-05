@@ -57,6 +57,9 @@ module.exports.getSignInPage = (req, res) => {
 };
 
 module.exports.postSignIn = async (req, res) => {
+  const redirectUrl = req.session.returnTo || '/';
+  delete req.session.returnTo;
+
   req.flash('successMessage', `Signed in successfully`);
-  return res.redirect('/');
+  return res.redirect(redirectUrl);
 };
