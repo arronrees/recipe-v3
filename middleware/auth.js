@@ -13,9 +13,11 @@ module.exports.passportLocalStrategy = new LocalStrategy(
     passwordField: 'password',
   },
   async function verify(email, password, done) {
+    const emailLower = email.toLowerCase();
+
     const foundUser = await User.findOne({
       where: {
-        email,
+        email: emailLower,
       },
     });
 

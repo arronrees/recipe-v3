@@ -7,10 +7,11 @@ module.exports.getSignUpPage = (req, res) => {
 
 module.exports.postSignUp = async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
+  const emailLower = email.toLowerCase();
 
   const foundUser = await User.findOne({
     where: {
-      email,
+      email: emailLower,
     },
   });
 
@@ -20,7 +21,12 @@ module.exports.postSignUp = async (req, res) => {
     return res.redirect('/auth/sign-in');
   }
 
-  const newUser = await createUser({ firstName, lastName, email, password });
+  const newUser = await createUser({
+    firstName,
+    lastName,
+    emailLower,
+    password,
+  });
 
   if (!newUser) {
     req.flash('errorMessage', `Error creating user, please try again`);

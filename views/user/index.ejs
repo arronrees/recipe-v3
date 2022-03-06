@@ -53,7 +53,20 @@
         <input type="text" name="lastName" id="lastName" value="<%=user.lastName%>">
       </div>
       <input type="hidden" name="id" value="<%=user.id%>">
-      <button type="submit" class="btn btn--teal">Update</button>
+      <button type="submit" class="btn btn--teal">Update details</button>
+    </form>
+
+    <form action="/user/update-password?_method=PUT" method="post">
+      <div class="row">
+        <label for="currentPassword">Current Password</label>
+        <input type="password" name="currentPassword" id="currentPassword">
+      </div>
+      <div class="row">
+        <label for="newPassword">New Password</label>
+        <input type="password" name="newPassword" id="newPassword">
+      </div>
+      <input type="hidden" name="id" value="<%=user.id%>">
+      <button type="submit" class="btn btn--teal">Update password</button>
     </form>
 
 
