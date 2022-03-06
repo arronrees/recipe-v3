@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+  <%- include('../partials/header') %>
+
+    <h2>Profile</h2>
+
+    <form action="/auth/sign-out" method="post">
+      <button type="submit" class="btn btn--red">Sign Out</button>
+    </form>
+
+    <a href="auth/sign-up" class="btn btn--teal">
+      Sign Up
+    </a>
+
+    <a href="auth/sign-in" class="btn btn--green">
+      Sign In
+    </a>
+
+    <p>
+      <%=user.firstName%>
+    </p>
+    <p>
+      <%=user.lastName%>
+    </p>
+    <p>
+      <%=user.email%>
+    </p>
+
+    <form action="/user/update-details?_method=PUT" method="post">
+      <div class="row">
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstName" id="firstName" value="<%=user.firstName%>">
+      </div>
+      <div class="row">
+        <label for="lastName">Last Name</label>
+        <input type="text" name="lastName" id="lastName" value="<%=user.lastName%>">
+      </div>
+      <input type="hidden" name="id" value="<%=user.id%>">
+      <button type="submit" class="btn btn--teal">Update</button>
+    </form>
+
+
+    <%- include('../partials/flash') %>
+</body>
+
+</html>

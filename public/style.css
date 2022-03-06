@@ -3,6 +3,7 @@
   --mid-green: #6c856f;
   --dark-green: #0d181a;
   --teal: #406267;
+  --red: #bb3232;
   --title-font: 'Playfair Display', serif;
   --body-font: 'Dosis', sans-serif;
   --font-xlight: 200;
@@ -57,6 +58,7 @@ body {
   letter-spacing: 0.5px;
   line-height: 1.5;
   overflow-x: hidden;
+  background-color: var(--light-green);
 }
 
 .btn {
@@ -106,6 +108,24 @@ body {
 
 .btn.btn--teal:active {
   background-color: #233538;
+}
+
+.btn.btn--red {
+  background-color: var(--red);
+  -webkit-box-shadow: 0px 5px 50px rgba(108, 133, 111, 0.15);
+          box-shadow: 0px 5px 50px rgba(108, 133, 111, 0.15);
+}
+
+.btn.btn--red:hover {
+  background-color: #a12a2a;
+}
+
+.btn.btn--red:focus {
+  outline: 2px solid #7e2222;
+}
+
+.btn.btn--red:active {
+  background-color: #7e2222;
 }
 
 img,

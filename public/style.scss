@@ -4,6 +4,7 @@
   --mid-green: #6c856f;
   --dark-green: #0d181a;
   --teal: #406267;
+  --red: #bb3232;
 
   // fonts
   --title-font: 'Playfair Display', serif;
@@ -66,6 +67,7 @@ body {
   letter-spacing: 0.5px;
   line-height: 1.5;
   overflow-x: hidden;
+  background-color: var(--light-green);
 }
 
 .btn {
@@ -111,6 +113,23 @@ body {
 
     &:active {
       background-color: #233538;
+    }
+  }
+
+  &.btn--red {
+    background-color: var(--red);
+    box-shadow: 0px 5px 50px rgba(108, 133, 111, 0.15);
+
+    &:hover {
+      background-color: #a12a2a;
+    }
+
+    &:focus {
+      outline: 2px solid #7e2222;
+    }
+
+    &:active {
+      background-color: #7e2222;
     }
   }
 }
