@@ -3,11 +3,11 @@ const {
   putUpdateUserDetails,
   putUpdateUserPassword,
 } = require('../controllers/userController');
-const { isLoggedIn } = require('../middleware/auth');
+const { isLoggedInRedirectTo } = require('../middleware/auth');
 
 const router = require('express').Router();
 
-router.get('/user', isLoggedIn, getUserPage);
+router.get('/user', isLoggedInRedirectTo, getUserPage);
 
 router.put('/user/update-details', putUpdateUserDetails);
 

@@ -1,3 +1,4 @@
+const passport = require('passport');
 const {
   getSignUpPage,
   postSignUp,
@@ -5,26 +6,24 @@ const {
   getSignInPage,
   postSignIn,
 } = require('../controllers/authController');
-
-const passport = require('passport');
-
 const {
   passportLocalStrategy,
   validateJoiUserSignUp,
   validateJoiUserSignIn,
 } = require('../middleware/auth');
+const { isLoggedInRedirectAway } = require('../middleware/auth');
 
 passport.use('local', passportLocalStrategy);
 
 const router = require('express').Router();
 
-router.get('/auth/sign-up', getSignUpPage);
+router.get('/auth/sign-up', isLoggedInRedirectAway, getSignUpPage);
 
 router.post('/auth/sign-up', validateJoiUserSignUp, postSignUp);
 
 router.post('/auth/sign-out', postSignOut);
 
-router.get('/auth/sign-in', getSignInPage);
+router.get('/auth/sign-in', isLoggedInRedirectAway, getSignInPage);
 
 router.post(
   '/auth/sign-in',
