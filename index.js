@@ -13,6 +13,7 @@ const { db } = require('./lib/db');
 // routes
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
+const recipeRoutes = require('./routes/recipeRoutes');
 
 const app = express();
 
@@ -78,6 +79,7 @@ app.get('/', (req, res) => {
 // routes
 app.use(authRoutes);
 app.use(userRoutes);
+app.use(recipeRoutes);
 
 // general 404 for all other routes
 app.all('*', (req, res, next) => {

@@ -1,0 +1,61 @@
+<% pageTitle='Create Recipe' %>
+
+  <%- include('../partials/head') %>
+
+    <h2>Create Recipe</h2>
+
+    <form action="/auth/sign-out" method="post">
+      <button type="submit" class="btn btn--red">Sign Out</button>
+    </form>
+
+    <a href="/auth/sign-up" class="btn btn--teal">
+      Sign Up
+    </a>
+
+    <a href="/auth/sign-in" class="btn btn--green">
+      Sign In
+    </a>
+
+    <form action="/recipe/create" method="post" class="create__recipe__form">
+      <div class="row">
+        <label for="public">Make Public?</label>
+        <select name="public" id="public">
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required>
+      </div>
+      <div class="row">
+        <label for="serves">People serves</label>
+        <input type="number" name="serves" id="serves" required>
+      </div>
+      <div class="row">
+        <label for="difficulty">Difficulty</label>
+        <select name="difficulty" id="difficulty">
+          <option value="easy">Easy</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="difficulty">Difficulty</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="cookTimeHours">Cook Time Hours</label>
+        <input type="number" name="cookTimeHours" id="cookTimeHours" required>
+        <label for="cookTimeMinutes">Cook Time Mins</label>
+        <input type="number" name="cookTimeMinutes" id="cookTimeMinutes" required>
+      </div>
+      <div class="row">
+        <label for="prepTimeHours">Prep Time Hours</label>
+        <input type="number" name="prepTimeHours" id="prepTimeHours" required>
+        <label for="prepTimeMinutes">Prep Time Mins</label>
+        <input type="number" name="prepTimeMinutes" id="prepTimeMinutes" required>
+      </div>
+      <input type="hidden" name="userId" value="<%=user.id%>">
+      <div class="row">
+        <button class="btn btn--teal" type="submit">Create</button>
+      </div>
+    </form>
+
+    <%- include('../partials/footer') %>
