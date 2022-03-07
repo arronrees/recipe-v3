@@ -5,6 +5,10 @@ module.exports.getUserPage = (req, res) => {
   res.render('user/index');
 };
 
+module.exports.getUpdateUserDetails = (req, res) => {
+  res.render('user/update-details');
+};
+
 module.exports.putUpdateUserDetails = async (req, res, next) => {
   if (!req.user) {
     req.session.returnTo = '/user';
@@ -37,6 +41,10 @@ module.exports.putUpdateUserDetails = async (req, res, next) => {
     req.flash('successMessage', 'User updated successfully');
     res.redirect('/user');
   });
+};
+
+module.exports.getUpdateUserPassword = (req, res) => {
+  res.render('user/update-password');
 };
 
 module.exports.putUpdateUserPassword = async (req, res, next) => {

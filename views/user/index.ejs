@@ -8,49 +8,15 @@
       <button type="submit" class="btn btn--red">Sign Out</button>
     </form>
 
-    <a href="auth/sign-up" class="btn btn--teal">
+    <a href="/auth/sign-up" class="btn btn--teal">
       Sign Up
     </a>
 
-    <a href="auth/sign-in" class="btn btn--green">
+    <a href="/auth/sign-in" class="btn btn--green">
       Sign In
     </a>
 
-    <p>
-      <%=user.firstName%>
-    </p>
-    <p>
-      <%=user.lastName%>
-    </p>
-    <p>
-      <%=user.email%>
-    </p>
-
-    <form action="/user/update-details?_method=PUT" method="post">
-      <div class="row">
-        <label for="firstName">First Name</label>
-        <input type="text" name="firstName" id="firstName" value="<%=user.firstName%>">
-      </div>
-      <div class="row">
-        <label for="lastName">Last Name</label>
-        <input type="text" name="lastName" id="lastName" value="<%=user.lastName%>">
-      </div>
-      <input type="hidden" name="id" value="<%=user.id%>">
-      <button type="submit" class="btn btn--teal">Update details</button>
-    </form>
-
-    <form action="/user/update-password?_method=PUT" method="post">
-      <div class="row">
-        <label for="currentPassword">Current Password</label>
-        <input type="password" name="currentPassword" id="currentPassword">
-      </div>
-      <div class="row">
-        <label for="newPassword">New Password</label>
-        <input type="password" name="newPassword" id="newPassword">
-      </div>
-      <input type="hidden" name="id" value="<%=user.id%>">
-      <button type="submit" class="btn btn--teal">Update password</button>
-    </form>
-
+    <a href="/user/update-details">Update details</a>
+    <a href="/user/update-password">Update password</a>
 
     <%- include('../partials/footer') %>
