@@ -25,7 +25,8 @@ module.exports.putUpdateUserDetails = async (req, res, next) => {
 
   if (user.id !== req.user.id) {
     req.logout();
-    return res.redirect('/user');
+    req.flash('errorMessage', 'Please login to edit this');
+    return res.redirect('/user/update-details');
   }
 
   user.firstName = body.firstName;
@@ -60,7 +61,7 @@ module.exports.putUpdateUserPassword = async (req, res, next) => {
       'errorMessage',
       'New password cannot be same as current password'
     );
-    return res.redirect('/user');
+    return res.redirect('/user/update-password');
   }
 
   const user = await User.findOne({
@@ -71,6 +72,7 @@ module.exports.putUpdateUserPassword = async (req, res, next) => {
 
   if (user.id !== req.user.id) {
     req.logout();
+    req.flash('errorMessage', 'Please login to edit this');
     return res.redirect('/user');
   }
 
@@ -78,7 +80,7 @@ module.exports.putUpdateUserPassword = async (req, res, next) => {
 
   if (!passwordMatches) {
     req.flash('errorMessage', 'Incorrect current password');
-    return res.redirect('/user');
+    return res.redirect('/user/update-password');
   }
 
   const newHash = await hashPassword(newPassword);
