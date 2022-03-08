@@ -56,14 +56,6 @@ module.exports.putUpdateUserPassword = async (req, res, next) => {
 
   const { id, currentPassword, newPassword } = req.body;
 
-  if (currentPassword === newPassword) {
-    req.flash(
-      'errorMessage',
-      'New password cannot be same as current password'
-    );
-    return res.redirect('/user/update-password');
-  }
-
   const user = await User.findOne({
     where: {
       id,
@@ -80,6 +72,22 @@ module.exports.putUpdateUserPassword = async (req, res, next) => {
 
   if (!passwordMatches) {
     req.flash('errorMessage', 'Incorrect current password');
+    return res.redirect('/user/update-password');
+  }
+
+  if (newPassword.length < 8) {
+    req.flash(
+      'errorMessage',
+      'New password must have a minimum of 8 characters'
+    );
+    return res.redirect('/user/update-password');
+  }
+
+  if (currentPassword === newPassword) {
+    req.flash(
+      'errorMessage',
+      'New password cannot be same as current password'
+    );
     return res.redirect('/user/update-password');
   }
 

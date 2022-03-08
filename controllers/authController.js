@@ -24,7 +24,7 @@ module.exports.postSignUp = async (req, res) => {
   const newUser = await createUser({
     firstName,
     lastName,
-    emailLower,
+    email: emailLower,
     password,
   });
 
