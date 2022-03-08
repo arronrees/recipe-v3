@@ -6,6 +6,7 @@ const {
   joiUserSignIn,
 } = require('../models/validation/joiUser');
 const Joi = require('joi');
+const Recipe = require('../models/Recipe');
 
 module.exports.passportLocalStrategy = new LocalStrategy(
   {
@@ -90,6 +91,20 @@ module.exports.isLoggedInRedirectAway = async (req, res, next) => {
   if (req.isAuthenticated()) {
     req.flash('infoMessage', 'Already signed in');
     return res.redirect('/user');
+  }
+
+  next();
+};
+
+module.exports.isRecipeAuthor = async (req, res, next) => {
+  const { id } = req.params;
+  const userId = req.user.id;
+
+  const recipe = await Recipe.findByPk(id);
+
+  if (recipe.userId !== userId) {
+    req.flash('errorMessage', 'You are not authorised to edit this recipe');
+    return res.redirect('/');
   }
 
   next();

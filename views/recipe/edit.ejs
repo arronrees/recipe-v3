@@ -1,0 +1,62 @@
+<% pageTitle='Create Recipe' %>
+
+  <%- include('../partials/head') %>
+
+    <h2>Edit Recipe <%=recipe.name%>
+    </h2>
+
+    <form action="/auth/sign-out" method="post">
+      <button type="submit" class="btn btn--red">Sign Out</button>
+    </form>
+
+    <a href="/auth/sign-up" class="btn btn--teal">
+      Sign Up
+    </a>
+
+    <a href="/auth/sign-in" class="btn btn--green">
+      Sign In
+    </a>
+
+    <form action="/recipe/edit/<%=recipe.id%>?_method=PUT" method="post" class="create__recipe__form">
+      <div class="row">
+        <label for="public">Make Public?</label>
+        <select name="public" id="public">
+          <option value="true" <%=recipe.public ? 'selected' : '' %> >Yes</option>
+          <option value="false" <%=recipe.public ? '' : 'selected' %> >No</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" value="<%=recipe.name%>" required>
+      </div>
+      <div class="row">
+        <label for="serves">People serves</label>
+        <input type="number" name="serves" id="serves" value="<%=recipe.serves%>" required>
+      </div>
+      <div class="row">
+        <label for="difficulty">Difficulty</label>
+        <select name="difficulty" id="difficulty">
+          <option value="easy" <%=recipe.difficulty==='easy' ? 'selected' : '' %> >Easy</option>
+          <option value="intermediate" <%=recipe.difficulty==='intermediate' ? 'selected' : '' %> >Intermediate</option>
+          <option value="difficult" <%=recipe.difficulty==='difficult' ? 'selected' : '' %> >Difficult</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="cookTimeHours">Cook Time Hours</label>
+        <input type="number" name="cookTimeHours" id="cookTimeHours" value="<%=recipe.cookTimeHours%>" required>
+        <label for="cookTimeMinutes">Cook Time Mins</label>
+        <input type="number" name="cookTimeMinutes" id="cookTimeMinutes" value="<%=recipe.cookTimeMinutes%>" required>
+      </div>
+      <div class="row">
+        <label for="prepTimeHours">Prep Time Hours</label>
+        <input type="number" name="prepTimeHours" id="prepTimeHours" value="<%=recipe.prepTimeHours%>" required>
+        <label for="prepTimeMinutes">Prep Time Mins</label>
+        <input type="number" name="prepTimeMinutes" id="prepTimeMinutes" value="<%=recipe.prepTimeMinutes%>" required>
+      </div>
+      <input type="hidden" name="userId" value="<%=recipe.userId%>">
+      <div class="row">
+        <button class="btn btn--teal" type="submit">Create</button>
+      </div>
+    </form>
+
+    <%- include('../partials/footer') %>

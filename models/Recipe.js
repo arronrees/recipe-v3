@@ -28,11 +28,19 @@ const Recipe = db.define('recipe', {
     values: ['easy', 'intermediate', 'hard'],
     allowNull: false,
   },
-  cookTime: {
+  cookTimeHours: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  prepTime: {
+  cookTimeMinutes: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  prepTimeHours: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  prepTimeMinutes: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },

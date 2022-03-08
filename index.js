@@ -14,6 +14,7 @@ const { db } = require('./lib/db');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const recipeRoutes = require('./routes/recipeRoutes');
+const Recipe = require('./models/Recipe');
 
 const app = express();
 
@@ -72,8 +73,10 @@ app.use((req, res, next) => {
 });
 
 // homepage route
-app.get('/', (req, res) => {
-  res.render('index');
+app.get('/', async (req, res) => {
+  const recipes = await Recipe.findAll({});
+
+  res.render('index', { recipes });
 });
 
 // routes

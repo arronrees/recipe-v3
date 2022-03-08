@@ -16,4 +16,15 @@
       Sign In
     </a>
 
+    <div>
+      <% recipes.forEach(recipe=> { %>
+        <div>
+          <p>
+            <%=recipe.name%>
+          </p>
+          <a href="/recipe/edit/<%=recipe.id%>">Edit</a>
+        </div>
+        <% }) %>
+    </div>
+
     <%- include('./partials/footer') %>
