@@ -87,7 +87,6 @@ module.exports.putEditRecipe = async (req, res) => {
     prepTimeHours,
     prepTimeMinutes,
   } = req.body;
-  const { filename } = req.file;
 
   const recipe = await Recipe.findByPk(id);
 
@@ -112,7 +111,10 @@ module.exports.putEditRecipe = async (req, res) => {
   recipe.prepTimeHours = prepTimeHours;
   recipe.prepTimeMinutes = prepTimeMinutes;
   recipe.totalTime = totalTime;
-  recipe.image = filename;
+
+  if (req.file) {
+    recipe.image = req.file.filename;
+  }
 
   await recipe.save();
 
