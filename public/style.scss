@@ -2,6 +2,7 @@
   // colours
   --light-green: #d9e0d9;
   --mid-green: #6c856f;
+  --mid-dark-green: #102b13;
   --dark-green: #0d181a;
   --teal: #406267;
   --red: #bb3232;
@@ -300,6 +301,49 @@ img {
 
     .btn {
       width: 100%;
+    }
+  }
+}
+
+// recipe cards
+.recipe__card__grid {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+
+  .recipe__card {
+    position: relative;
+
+    .img {
+      height: 20rem;
+    }
+
+    .text {
+      position: absolute;
+      bottom: -1rem;
+      left: -1rem;
+      background-color: var(--mid-dark-green);
+      color: #fff;
+      padding: 1.5rem;
+
+      h3 {
+        font-size: 1.75rem;
+        font-family: var(--title-font);
+      }
+
+      ul {
+        display: flex;
+
+        li {
+          margin-right: 1rem;
+          text-transform: capitalize;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+      }
     }
   }
 }

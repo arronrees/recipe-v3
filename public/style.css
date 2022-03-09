@@ -1,6 +1,7 @@
 :root {
   --light-green: #d9e0d9;
   --mid-green: #6c856f;
+  --mid-dark-green: #102b13;
   --dark-green: #0d181a;
   --teal: #406267;
   --red: #bb3232;
@@ -360,5 +361,51 @@ img {
 
 .create__recipe__form .row .btn {
   width: 100%;
+}
+
+.recipe__card__grid {
+  padding: 2rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  gap: 4rem;
+}
+
+.recipe__card__grid .recipe__card {
+  position: relative;
+}
+
+.recipe__card__grid .recipe__card .img {
+  height: 20rem;
+}
+
+.recipe__card__grid .recipe__card .text {
+  position: absolute;
+  bottom: -1rem;
+  left: -1rem;
+  background-color: var(--mid-dark-green);
+  color: #fff;
+  padding: 1.5rem;
+}
+
+.recipe__card__grid .recipe__card .text h3 {
+  font-size: 1.75rem;
+  font-family: var(--title-font);
+}
+
+.recipe__card__grid .recipe__card .text ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.recipe__card__grid .recipe__card .text ul li {
+  margin-right: 1rem;
+  text-transform: capitalize;
+}
+
+.recipe__card__grid .recipe__card .text ul li:last-of-type {
+  margin-right: 0;
 }
 /*# sourceMappingURL=style.css.map */

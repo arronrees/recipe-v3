@@ -43,7 +43,11 @@ const Recipe = db.define('recipe', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  totalTime: {
+  totalTimeHours: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  totalTimeMinutes: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },

@@ -23,12 +23,9 @@ module.exports.postCreateRecipe = async (req, res) => {
   } = req.body;
   const { filename } = req.file;
 
-  // convert all times to mins
-  const prepTotal =
-    parseFloat(prepTimeHours) * 60 + parseFloat(prepTimeMinutes);
-  const cookTotal =
-    parseFloat(cookTimeHours) * 60 + parseFloat(cookTimeMinutes);
-  const totalTime = prepTotal + cookTotal;
+  const totalTimeHours = parseFloat(prepTimeHours) + parseFloat(cookTimeHours);
+  const totalTimeMinutes =
+    parseFloat(prepTimeHours) + parseFloat(prepTimeMinutes);
 
   const newRecipe = await Recipe.create({
     userId,
@@ -40,7 +37,8 @@ module.exports.postCreateRecipe = async (req, res) => {
     cookTimeMinutes,
     prepTimeHours,
     prepTimeMinutes,
-    totalTime,
+    totalTimeHours,
+    totalTimeMinutes,
     image: filename,
   });
 
@@ -95,12 +93,9 @@ module.exports.putEditRecipe = async (req, res) => {
     return res.redirect(`/recipe/${recipe.id}`);
   }
 
-  // convert all times to mins
-  const prepTotal =
-    parseFloat(prepTimeHours) * 60 + parseFloat(prepTimeMinutes);
-  const cookTotal =
-    parseFloat(cookTimeHours) * 60 + parseFloat(cookTimeMinutes);
-  const totalTime = prepTotal + cookTotal;
+  const totalTimeHours = parseFloat(prepTimeHours) + parseFloat(cookTimeHours);
+  const totalTimeMinutes =
+    parseFloat(prepTimeHours) + parseFloat(prepTimeMinutes);
 
   recipe.name = name;
   recipe.public = public;
@@ -110,7 +105,8 @@ module.exports.putEditRecipe = async (req, res) => {
   recipe.cookTimeMinutes = cookTimeMinutes;
   recipe.prepTimeHours = prepTimeHours;
   recipe.prepTimeMinutes = prepTimeMinutes;
-  recipe.totalTime = totalTime;
+  recipe.totalTimeHours = totalTimeHours;
+  recipe.totalTimeMinutes = totalTimeMinutes;
 
   if (req.file) {
     recipe.image = req.file.filename;

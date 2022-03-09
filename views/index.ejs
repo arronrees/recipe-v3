@@ -18,16 +18,33 @@
 
     <a href="/recipe/create" class="btn btn--teal">Create recipe</a>
 
-    <div>
+    <section class="recipe__card__grid">
       <% recipes.forEach(recipe=> { %>
-        <div>
-          <p>
-            <%=recipe.name%>
-          </p>
-          <a href="/recipe/<%=recipe.id%>">View</a>
-          <img src="/img/recipes/<%=recipe.image%>" alt="#" />
-        </div>
+        <a class="recipe__card" href="/recipe/<%=recipe.id%>">
+          <div class="img">
+            <figure>
+              <img src="/img/recipes/<%=recipe.image%>" alt="#" />
+            </figure>
+          </div>
+          <div class="text">
+            <h3>
+              <%=recipe.name%>
+            </h3>
+            <p class="user">Arron Rees</p>
+            <ul>
+              <li>
+                <%=recipe.totalTimeHours===0 ? '' : `${recipe.totalTimeHours} Hours` %>
+                  <%=recipe.totalTimeMinutes %> Mins
+              </li>
+              <li>Serves <%=recipe.serves%>
+              </li>
+              <li>
+                <%=recipe.difficulty%>
+              </li>
+            </ul>
+          </div>
+        </a>
         <% }) %>
-    </div>
+    </section>
 
     <%- include('./partials/footer') %>
