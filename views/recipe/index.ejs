@@ -26,8 +26,10 @@
 
     <img src="/img/recipes/<%=recipe.image%>" alt="#">
 
-    <a href="/recipe/edit/<%=recipe.id%>" class="btn btn--green">
-      Edit
-    </a>
+    <% if (user && recipe.userId===user.id) { %>
+      <a href="/recipe/edit/<%=recipe.id%>" class="btn btn--green">
+        Edit
+      </a>
+      <% } %>
 
-    <%- include('../partials/footer') %></input>
+        <%- include('../partials/footer') %></input>

@@ -8,12 +8,13 @@ const {
 } = require('../controllers/recipeController');
 const { isLoggedInRedirectTo, isRecipeAuthor } = require('../middleware/auth');
 const multer = require('multer');
+const { v4: uuidv4 } = require('uuid');
 
 const storage = multer.diskStorage({
   destination: 'files/img/recipes',
   filename: (req, file, cb) => {
     const ext = file.mimetype.split('/')[1];
-    cb(null, `${file.fieldname}-${Date.now()}.${ext}`);
+    cb(null, `${uuidv4()}-${Date.now()}.${ext}`);
   },
 });
 const upload = multer({ storage });
