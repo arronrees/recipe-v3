@@ -16,7 +16,7 @@
       Sign In
     </a>
 
-    <form action="/recipe/create" method="post" class="create__recipe__form">
+    <form action="/recipe/create" method="post" class="create__recipe__form" enctype="multipart/form-data">
       <div class="row">
         <label for="public">Make Public?</label>
         <select name="public" id="public">
@@ -51,6 +51,10 @@
         <input type="number" name="prepTimeHours" id="prepTimeHours" required>
         <label for="prepTimeMinutes">Prep Time Mins</label>
         <input type="number" name="prepTimeMinutes" id="prepTimeMinutes" required>
+      </div>
+      <div class="row">
+        <label for="image">Image</label>
+        <input type="file" name="image" id="image">
       </div>
       <input type="hidden" name="userId" value="<%=user.id%>">
       <div class="row">

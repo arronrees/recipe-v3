@@ -23,6 +23,7 @@ app.set('view engine', 'ejs');
 
 // static files
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'files')));
 
 // middleware
 app.use(express.urlencoded({ extended: true }));
@@ -85,8 +86,12 @@ app.use(userRoutes);
 app.use(recipeRoutes);
 
 // general 404 for all other routes
+app.use((req, res) => {
+  res.status(404).redirect('/');
+});
+
 app.all('*', (req, res, next) => {
-  next(new ExpressError('Not Found', 404));
+  next(new ExpressError('Not Found', 500));
 });
 
 // error handler

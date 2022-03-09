@@ -16,6 +16,8 @@
       Sign In
     </a>
 
+    <a href="/recipe/create" class="btn btn--teal">Create recipe</a>
+
     <div>
       <% recipes.forEach(recipe=> { %>
         <div>
@@ -23,6 +25,7 @@
             <%=recipe.name%>
           </p>
           <a href="/recipe/edit/<%=recipe.id%>">Edit</a>
+          <img src="/recipes/<%=recipe.image%>" alt="#" />
         </div>
         <% }) %>
     </div>

@@ -21,6 +21,8 @@ module.exports.postCreateRecipe = async (req, res) => {
     prepTimeHours,
     prepTimeMinutes,
   } = req.body;
+  const { filename, path, destination } = req.file;
+  console.log(req.file);
 
   // convert all times to mins
   const prepTotal =
@@ -40,6 +42,7 @@ module.exports.postCreateRecipe = async (req, res) => {
     prepTimeHours,
     prepTimeMinutes,
     totalTime,
+    image: filename,
   });
 
   if (!newRecipe) {

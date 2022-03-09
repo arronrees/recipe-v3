@@ -24,8 +24,7 @@ const Recipe = db.define('recipe', {
     allowNull: false,
   },
   difficulty: {
-    type: DataTypes.ENUM,
-    values: ['easy', 'intermediate', 'hard'],
+    type: DataTypes.STRING(255),
     allowNull: false,
   },
   cookTimeHours: {
@@ -47,6 +46,9 @@ const Recipe = db.define('recipe', {
   totalTime: {
     type: DataTypes.INTEGER,
     allowNull: false,
+  },
+  image: {
+    type: DataTypes.STRING(1024),
   },
 });
 
