@@ -21,8 +21,7 @@ module.exports.postCreateRecipe = async (req, res) => {
     prepTimeHours,
     prepTimeMinutes,
   } = req.body;
-  const { filename, path, destination } = req.file;
-  console.log(req.file);
+  const { filename } = req.file;
 
   // convert all times to mins
   const prepTotal =
@@ -51,7 +50,20 @@ module.exports.postCreateRecipe = async (req, res) => {
   }
 
   req.flash('successMessage', 'Recipe created successfully');
-  res.redirect('/');
+  res.redirect(`/recipe/${newRecipe.id}`);
+};
+
+module.exports.getSingleRecipe = async (req, res) => {
+  const { id } = req.params;
+
+  const recipe = await Recipe.findByPk(id);
+
+  if (!recipe) {
+    req.flash('errorMessage', 'No recipe found');
+    return res.redirect('/');
+  }
+
+  res.render('recipe/index', { recipe });
 };
 
 module.exports.getEditRecipe = async (req, res) => {
@@ -75,13 +87,13 @@ module.exports.putEditRecipe = async (req, res) => {
     prepTimeHours,
     prepTimeMinutes,
   } = req.body;
+  const { filename } = req.file;
 
   const recipe = await Recipe.findByPk(id);
 
   if (req.user.id !== userId) {
-    req.logout();
-    req.session.returnTo = `/recipe/edit/${id}`;
-    return res.redirect('/auth/sign-in');
+    req.flash('errorMessage', 'You do not have permission to do this');
+    return res.redirect(`/recipe/${recipe.id}`);
   }
 
   // convert all times to mins
@@ -100,9 +112,26 @@ module.exports.putEditRecipe = async (req, res) => {
   recipe.prepTimeHours = prepTimeHours;
   recipe.prepTimeMinutes = prepTimeMinutes;
   recipe.totalTime = totalTime;
+  recipe.image = filename;
 
   await recipe.save();
 
   req.flash('successMessage', 'Recipe updated successfully');
+  res.redirect(`/recipe/${recipe.id}`);
+};
+
+module.exports.deleteSingleRecipe = async (req, res) => {
+  const { id } = req.params;
+
+  const recipe = await Recipe.findByPk(id);
+
+  if (req.user.id !== recipe.userId) {
+    req.flash('errorMessage', 'You do not have permission to do this');
+    return res.redirect(`/recipe/${recipe.id}`);
+  }
+
+  await recipe.destroy();
+
+  req.flash('successMessage', 'Recipe deleted successfully');
   res.redirect('/');
 };

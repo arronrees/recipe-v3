@@ -3,6 +3,8 @@ const {
   putEditRecipe,
   postCreateRecipe,
   getCreateRecipe,
+  getSingleRecipe,
+  deleteSingleRecipe,
 } = require('../controllers/recipeController');
 const { isLoggedInRedirectTo, isRecipeAuthor } = require('../middleware/auth');
 const multer = require('multer');
@@ -27,6 +29,8 @@ router.post(
   postCreateRecipe
 );
 
+router.get('/recipe/:id', getSingleRecipe);
+
 router.get(
   '/recipe/edit/:id',
   isLoggedInRedirectTo,
@@ -38,7 +42,15 @@ router.put(
   '/recipe/edit/:id',
   isLoggedInRedirectTo,
   isRecipeAuthor,
+  upload.single('image'),
   putEditRecipe
+);
+
+router.delete(
+  '/recipe/delete/:id',
+  isLoggedInRedirectTo,
+  isRecipeAuthor,
+  deleteSingleRecipe
 );
 
 module.exports = router;

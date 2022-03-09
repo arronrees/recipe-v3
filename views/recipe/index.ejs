@@ -1,0 +1,33 @@
+<% pageTitle='Create Recipe' %>
+
+  <%- include('../partials/head') %>
+
+    <h2>Recipe - <%=recipe.name%>
+    </h2>
+
+    <form action="/auth/sign-out" method="post">
+      <button type="submit" class="btn btn--red">Sign Out</button>
+    </form>
+
+    <a href="/auth/sign-up" class="btn btn--teal">
+      Sign Up
+    </a>
+
+    <a href="/auth/sign-in" class="btn btn--green">
+      Sign In
+    </a>
+
+    <p>Name <%=recipe.name%>
+    </p>
+    <p>Serves <%=recipe.serves%>
+    </p>
+    <p>Difficulty <%=recipe.difficulty%>
+    </p>
+
+    <img src="/img/recipes/<%=recipe.image%>" alt="#">
+
+    <a href="/recipe/edit/<%=recipe.id%>" class="btn btn--green">
+      Edit
+    </a>
+
+    <%- include('../partials/footer') %></input>

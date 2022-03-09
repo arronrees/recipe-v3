@@ -17,7 +17,12 @@
       Sign In
     </a>
 
-    <form action="/recipe/edit/<%=recipe.id%>?_method=PUT" method="post" class="create__recipe__form">
+    <form action="/recipe/delete/<%=recipe.id%>?_method=DELETE" method="post">
+      <button type="submit" class="btn btn--red">Delete</button>
+    </form>
+
+    <form action="/recipe/edit/<%=recipe.id%>?_method=PUT" method="post" enctype="multipart/form-data"
+      class="create__recipe__form">
       <div class="row">
         <label for="public">Make Public?</label>
         <select name="public" id="public">
@@ -52,6 +57,10 @@
         <input type="number" name="prepTimeHours" id="prepTimeHours" value="<%=recipe.prepTimeHours%>" required>
         <label for="prepTimeMinutes">Prep Time Mins</label>
         <input type="number" name="prepTimeMinutes" id="prepTimeMinutes" value="<%=recipe.prepTimeMinutes%>" required>
+      </div>
+      <div class="row">
+        <label for="image">Image</label>
+        <input type="file" name="image" id="image">
       </div>
       <input type="hidden" name="userId" value="<%=recipe.userId%>">
       <div class="row">
