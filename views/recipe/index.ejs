@@ -4,29 +4,44 @@
 
     <%- include('../partials/header') %>
 
-      <h2>Recipe - <%=recipe.name%>
-      </h2>
+      <main class="recipe__inner">
 
-      <p>Name <%=recipe.name%>
-      </p>
-      <p>Serves <%=recipe.serves%>
-      </p>
-      <p>Difficulty <%=recipe.difficulty%>
-      </p>
+        <section class="main__img">
+          <div class="img">
+            <figure>
+              <img src="/img/recipes/<%=recipe.image%>" alt="#">
+            </figure>
+            <div class="overlay"></div>
+          </div>
+          <div class="text">
+            <h1>
+              <%=recipe.name%>
+            </h1>
+            <p>
+              By <a href="/">
+                <%=recipe.userName%>
+              </a>
+            </p>
+          </div>
+        </section>
 
-      <img src="/img/recipes/<%=recipe.image%>" alt="#">
+        <section class="details">
 
-      <% if (user && recipe.userId===user.id) { %>
-        <a href="/recipe/edit/<%=recipe.id%>" class="btn btn--green">
-          Edit
-        </a>
-        <% } %>
+        </section>
 
-          <% if(user) { %>
-            <form action="/recipe/save/<%=recipe.id%>" method="post">
-              <input type="hidden" name="userId" value="<%=user.id%>">
-              <button type="submit" class="btn btn--green">Save Recipe</button>
-            </form>
-            <% } %>
+        <% if (user && recipe.userId===user.id) { %>
+          <a href="/recipe/edit/<%=recipe.id%>" class="btn btn--green">
+            Edit
+          </a>
+          <% } %>
 
-              <%- include('../partials/footer') %></input>
+            <% if(user) { %>
+              <form action="/recipe/save/<%=recipe.id%>" method="post">
+                <input type="hidden" name="userId" value="<%=user.id%>">
+                <button type="submit" class="btn btn--green">Save Recipe</button>
+              </form>
+              <% } %>
+
+      </main>
+
+      <%- include('../partials/footer') %></input>

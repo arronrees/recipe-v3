@@ -68,7 +68,7 @@ body {
   letter-spacing: 0.5px;
   line-height: 1.5;
   overflow-x: hidden;
-  background-color: var(--light-green);
+  // background-color: var(--light-green);
   color: var(--dark-green);
 }
 
@@ -327,10 +327,6 @@ img {
       }
     }
 
-    label {
-      // display: none;
-    }
-
     .btn {
       width: 100%;
     }
@@ -415,6 +411,60 @@ img {
             &::after {
               display: none;
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+// recipe inner page
+.recipe__inner {
+  .main__img {
+    position: relative;
+
+    .img {
+      height: 20rem;
+      position: relative;
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.95),
+          rgba(0, 0, 0, 0)
+        );
+      }
+    }
+
+    .text {
+      color: var(--dark-green);
+      padding: 2rem;
+
+      h1 {
+        text-transform: capitalize;
+        font-size: 2rem;
+        font-weight: var(--font-xbold);
+        font-family: var(--title-font);
+      }
+
+      p {
+        padding-top: 1rem;
+
+        a {
+          color: var(--teal);
+          transition: var(--fast-speed);
+          border-bottom: 1px solid var(--teal);
+          display: inline-block;
+          font-weight: var(--font-xbold);
+
+          &:hover {
+            color: var(--red);
+            border-color: var(--red);
           }
         }
       }
