@@ -2,31 +2,21 @@
 
   <%- include('../partials/head') %>
 
-    <h2>Update User Details</h2>
+    <%- include('../partials/header') %>
 
-    <form action="/auth/sign-out" method="post">
-      <button type="submit" class="btn btn--red">Sign Out</button>
-    </form>
+      <h2>Update User Details</h2>
 
-    <a href="/auth/sign-up" class="btn btn--teal">
-      Sign Up
-    </a>
+      <form action="/user/update-details?_method=PUT" method="post" class="update__user__form">
+        <div class="row">
+          <label for="firstName">First Name</label>
+          <input type="text" name="firstName" id="firstName" value="<%=user.firstName%>">
+        </div>
+        <div class="row">
+          <label for="lastName">Last Name</label>
+          <input type="text" name="lastName" id="lastName" value="<%=user.lastName%>">
+        </div>
+        <input type="hidden" name="id" value="<%=user.id%>">
+        <button type="submit" class="btn btn--teal">Update details</button>
+      </form>
 
-    <a href="/auth/sign-in" class="btn btn--green">
-      Sign In
-    </a>
-
-    <form action="/user/update-details?_method=PUT" method="post" class="update__user__form">
-      <div class="row">
-        <label for="firstName">First Name</label>
-        <input type="text" name="firstName" id="firstName" value="<%=user.firstName%>">
-      </div>
-      <div class="row">
-        <label for="lastName">Last Name</label>
-        <input type="text" name="lastName" id="lastName" value="<%=user.lastName%>">
-      </div>
-      <input type="hidden" name="id" value="<%=user.id%>">
-      <button type="submit" class="btn btn--teal">Update details</button>
-    </form>
-
-    <%- include('../partials/footer') %>
+      <%- include('../partials/footer') %>

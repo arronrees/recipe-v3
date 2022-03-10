@@ -2,52 +2,40 @@
 
   <%- include('./partials/head') %>
 
-    <h2>Homepage</h2>
+    <%- include('./partials/header') %>
 
-    <form action="/auth/sign-out" method="post">
-      <button class="btn btn--red">Sign Out</button>
-    </form>
+      <a href="/recipe/create" class="btn btn--teal">Create recipe</a>
 
-    <a href="/auth/sign-up" class="btn btn--teal">
-      Sign Up
-    </a>
+      <section class="recipe__card__grid">
+        <% recipes.forEach(recipe=> { %>
+          <a class="recipe__card" href="/recipe/<%=recipe.id%>">
+            <div class="img">
+              <div class="overlay"></div>
+              <figure>
+                <img src="/img/recipes/<%=recipe.image%>" alt="#" />
+              </figure>
+            </div>
+            <div class="text">
+              <h3>
+                <%=recipe.name%>
+              </h3>
+              <p class="user">
+                <%=recipe.userName%>
+              </p>
+              <ul>
+                <li>
+                  <%=recipe.totalTimeHours===0 ? '' : `${recipe.totalTimeHours} Hours` %>
+                    <%=recipe.totalTimeMinutes %> Mins
+                </li>
+                <li>Serves <%=recipe.serves%>
+                </li>
+                <li>
+                  <%=recipe.difficulty%>
+                </li>
+              </ul>
+            </div>
+          </a>
+          <% }) %>
+      </section>
 
-    <a href="/auth/sign-in" class="btn btn--green">
-      Sign In
-    </a>
-
-    <a href="/recipe/create" class="btn btn--teal">Create recipe</a>
-
-    <section class="recipe__card__grid">
-      <% recipes.forEach(recipe=> { %>
-        <a class="recipe__card" href="/recipe/<%=recipe.id%>">
-          <div class="img">
-            <div class="overlay"></div>
-            <figure>
-              <img src="/img/recipes/<%=recipe.image%>" alt="#" />
-            </figure>
-          </div>
-          <div class="text">
-            <h3>
-              <%=recipe.name%>
-            </h3>
-            <p class="user">
-              <%=recipe.userName%>
-            </p>
-            <ul>
-              <li>
-                <%=recipe.totalTimeHours===0 ? '' : `${recipe.totalTimeHours} Hours` %>
-                  <%=recipe.totalTimeMinutes %> Mins
-              </li>
-              <li>Serves <%=recipe.serves%>
-              </li>
-              <li>
-                <%=recipe.difficulty%>
-              </li>
-            </ul>
-          </div>
-        </a>
-        <% }) %>
-    </section>
-
-    <%- include('./partials/footer') %>
+      <%- include('./partials/footer') %>

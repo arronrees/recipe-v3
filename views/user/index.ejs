@@ -2,21 +2,11 @@
 
   <%- include('../partials/head') %>
 
-    <h2>Profile</h2>
+    <%- include('../partials/header') %>
 
-    <form action="/auth/sign-out" method="post">
-      <button type="submit" class="btn btn--red">Sign Out</button>
-    </form>
+      <h2>Profile</h2>
 
-    <a href="/auth/sign-up" class="btn btn--teal">
-      Sign Up
-    </a>
+      <a href="/user/update-details">Update details</a>
+      <a href="/user/update-password">Update password</a>
 
-    <a href="/auth/sign-in" class="btn btn--green">
-      Sign In
-    </a>
-
-    <a href="/user/update-details">Update details</a>
-    <a href="/user/update-password">Update password</a>
-
-    <%- include('../partials/footer') %>
+      <%- include('../partials/footer') %>

@@ -69,6 +69,7 @@ body {
   line-height: 1.5;
   overflow-x: hidden;
   background-color: var(--light-green);
+  color: var(--dark-green);
 }
 
 .btn {
@@ -169,6 +170,37 @@ img {
 
   &.success {
     background-color: lightgreen;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+
+  .logo {
+    h1 {
+      font-size: 2rem;
+      font-weight: var(--font-xbold);
+      font-family: var(--title-font);
+    }
+  }
+
+  .navbar {
+    .nav__menu {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      > li {
+        margin-right: 1rem;
+
+        &:last-of-type {
+          margin-right: 0;
+        }
+      }
+    }
   }
 }
 

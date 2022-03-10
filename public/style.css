@@ -60,6 +60,7 @@ body {
   line-height: 1.5;
   overflow-x: hidden;
   background-color: var(--light-green);
+  color: var(--dark-green);
 }
 
 .btn {
@@ -167,6 +168,45 @@ img {
 
 .flash.success {
   background-color: lightgreen;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1rem;
+}
+
+.header .logo h1 {
+  font-size: 2rem;
+  font-weight: var(--font-xbold);
+  font-family: var(--title-font);
+}
+
+.header .navbar .nav__menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.header .navbar .nav__menu > li {
+  margin-right: 1rem;
+}
+
+.header .navbar .nav__menu > li:last-of-type {
+  margin-right: 0;
 }
 
 .auth__section {
