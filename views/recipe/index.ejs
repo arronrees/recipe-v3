@@ -22,4 +22,11 @@
         </a>
         <% } %>
 
-          <%- include('../partials/footer') %></input>
+          <% if(user) { %>
+            <form action="/recipe/save/<%=recipe.id%>" method="post">
+              <input type="hidden" name="userId" value="<%=user.id%>">
+              <button type="submit" class="btn btn--green">Save Recipe</button>
+            </form>
+            <% } %>
+
+              <%- include('../partials/footer') %></input>

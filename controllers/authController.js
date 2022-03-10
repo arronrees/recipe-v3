@@ -40,7 +40,7 @@ module.exports.postSignUp = async (req, res) => {
   }
 
   // save user to session
-  const userToShow = { ...newUser.dataValues, password: null };
+  const userToShow = { ...newUser, password: null };
 
   req.login(userToShow, (err) => {
     if (err) next(err);

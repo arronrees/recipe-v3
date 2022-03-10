@@ -1,4 +1,5 @@
 const Recipe = require('../models/Recipe');
+const User = require('../models/User');
 
 module.exports.getCreateRecipe = (req, res) => {
   res.render('recipe/create');
@@ -141,4 +142,36 @@ module.exports.deleteSingleRecipe = async (req, res) => {
 
   req.flash('successMessage', 'Recipe deleted successfully');
   res.redirect('/');
+};
+
+module.exports.postSaveRecipe = async (req, res) => {
+  const { id } = req.params;
+  const { userId } = req.body;
+
+  if (!req.user) {
+    res.session.returnTo = `/recipe/${id}`;
+    req.flash('errorMessage', 'You need to login to save a recipe');
+    return res.redirect('/auth/sign-in');
+  }
+
+  if (req.user.id !== userId) {
+    req.flash('errorMessage', 'Error saving recipe, please try again');
+    return res.redirect(`/recipe/${id}`);
+  }
+
+  const user = await User.findByPk(userId);
+
+  if (user.savedRecipes.includes(id)) {
+    user.savedRecipes = user.savedRecipes.filter((recipe) => recipe !== id);
+    await user.save();
+
+    req.flash('successMessage', 'Recipe removed successfully');
+    return res.redirect(`/recipe/${id}`);
+  }
+
+  user.savedRecipes = [...user.savedRecipes, id];
+  await user.save();
+
+  req.flash('successMessage', 'Recipe saved successfully');
+  res.redirect(`/recipe/${id}`);
 };

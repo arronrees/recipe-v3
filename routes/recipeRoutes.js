@@ -5,6 +5,7 @@ const {
   getCreateRecipe,
   getSingleRecipe,
   deleteSingleRecipe,
+  postSaveRecipe,
 } = require('../controllers/recipeController');
 const { isLoggedInRedirectTo, isRecipeAuthor } = require('../middleware/auth');
 const multer = require('multer');
@@ -53,5 +54,7 @@ router.delete(
   isRecipeAuthor,
   deleteSingleRecipe
 );
+
+router.post('/recipe/save/:id', isLoggedInRedirectTo, postSaveRecipe);
 
 module.exports = router;
