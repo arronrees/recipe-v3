@@ -11,6 +11,10 @@ const Recipe = db.define('recipe', {
     type: UUID,
     allowNull: false,
   },
+  userName: {
+    type: DataTypes.STRING(1024),
+    allowNull: false,
+  },
   public: {
     type: DataTypes.BOOLEAN,
     defaultValue: true,

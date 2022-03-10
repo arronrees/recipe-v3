@@ -23,6 +23,14 @@ module.exports.postCreateRecipe = async (req, res) => {
   } = req.body;
   const { filename } = req.file;
 
+  if (req.user.id !== userId) {
+    req.flash(
+      'errorMessage',
+      'An error occured when trying to create recipe, please try again'
+    );
+    return res.redirect('/recipe/create');
+  }
+
   const totalTimeHours = parseFloat(prepTimeHours) + parseFloat(cookTimeHours);
   const totalTimeMinutes =
     parseFloat(prepTimeHours) + parseFloat(prepTimeMinutes);
@@ -40,6 +48,7 @@ module.exports.postCreateRecipe = async (req, res) => {
     totalTimeHours,
     totalTimeMinutes,
     image: filename,
+    userName: `${req.user.firstName} ${req.user.lastName}`,
   });
 
   if (!newRecipe) {

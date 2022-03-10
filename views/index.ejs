@@ -22,6 +22,7 @@
       <% recipes.forEach(recipe=> { %>
         <a class="recipe__card" href="/recipe/<%=recipe.id%>">
           <div class="img">
+            <div class="overlay"></div>
             <figure>
               <img src="/img/recipes/<%=recipe.image%>" alt="#" />
             </figure>
@@ -30,7 +31,9 @@
             <h3>
               <%=recipe.name%>
             </h3>
-            <p class="user">Arron Rees</p>
+            <p class="user">
+              <%=recipe.userName%>
+            </p>
             <ul>
               <li>
                 <%=recipe.totalTimeHours===0 ? '' : `${recipe.totalTimeHours} Hours` %>
