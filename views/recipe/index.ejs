@@ -22,6 +22,13 @@
                 <%=recipe.userName%>
               </a>
             </p>
+            <ul class="categories">
+              <% recipe.categories.forEach(category=> { %>
+                <li><a href="/recipe/category?category=<%=category%>">
+                    <%=category%>
+                  </a></li>
+                <% }); %>
+            </ul>
           </div>
         </section>
 

@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const Recipe = require('../models/Recipe');
 const User = require('../models/User');
 
@@ -66,7 +67,7 @@ module.exports.postCreateRecipe = async (req, res) => {
     totalTimeHours,
     totalTimeMinutes,
     image: filename,
-    cats,
+    catgories: cats,
     userName: `${req.user.firstName} ${req.user.lastName}`,
   });
 
@@ -210,4 +211,20 @@ module.exports.postSaveRecipe = async (req, res) => {
 
   req.flash('successMessage', 'Recipe saved successfully');
   res.redirect(`/recipe/${id}`);
+};
+
+module.exports.getCategoryRecipes = async (req, res) => {
+  const { category } = req.query;
+
+  if (!category) {
+    req.flash('infoMessage', 'No recipes with this category');
+    return res.redirect('/');
+  }
+
+  const recipes = await Recipe.findAll({
+    where: { public: true, categories: { [Op.contains]: [category] } },
+    order: [['createdAt', 'DESC']],
+  });
+
+  res.render('recipe/category', { recipes });
 };
