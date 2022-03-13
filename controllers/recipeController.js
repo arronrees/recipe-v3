@@ -32,9 +32,18 @@ module.exports.postCreateRecipe = async (req, res) => {
     return res.redirect('/recipe/create');
   }
 
-  const totalTimeHours = parseFloat(prepTimeHours) + parseFloat(cookTimeHours);
-  const totalTimeMinutes =
-    parseFloat(prepTimeHours) + parseFloat(prepTimeMinutes);
+  let totalTimeHours = parseFloat(prepTimeHours) + parseFloat(cookTimeHours);
+  let totalTimeMinutes =
+    parseFloat(prepTimeMinutes) + parseFloat(cookTimeMinutes);
+
+  if (totalTimeMinutes === 120) {
+    totalTimeMinutes = 0;
+    totalTimeHours += 2;
+  } else if (totalTimeMinutes >= 60) {
+    let remainder = totalTimeMinutes % 60;
+    totalTimeHours += 1;
+    totalTimeMinutes = remainder;
+  }
 
   const newRecipe = await Recipe.create({
     userId,
@@ -103,9 +112,18 @@ module.exports.putEditRecipe = async (req, res) => {
     return res.redirect(`/recipe/${recipe.id}`);
   }
 
-  const totalTimeHours = parseFloat(prepTimeHours) + parseFloat(cookTimeHours);
-  const totalTimeMinutes =
-    parseFloat(prepTimeHours) + parseFloat(prepTimeMinutes);
+  let totalTimeHours = parseFloat(prepTimeHours) + parseFloat(cookTimeHours);
+  let totalTimeMinutes =
+    parseFloat(prepTimeMinutes) + parseFloat(cookTimeMinutes);
+
+  if (totalTimeMinutes === 120) {
+    totalTimeMinutes = 0;
+    totalTimeHours += 2;
+  } else if (totalTimeMinutes >= 60) {
+    let remainder = totalTimeMinutes % 60;
+    totalTimeHours += 1;
+    totalTimeMinutes = remainder;
+  }
 
   recipe.name = name;
   recipe.public = public;
