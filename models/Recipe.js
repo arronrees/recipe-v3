@@ -31,6 +31,10 @@ const Recipe = db.define('recipe', {
     type: DataTypes.STRING(255),
     allowNull: false,
   },
+  categories: {
+    type: DataTypes.ARRAY(DataTypes.STRING(255)),
+    defaultValue: [],
+  },
   cookTimeHours: {
     type: DataTypes.INTEGER,
     allowNull: false,

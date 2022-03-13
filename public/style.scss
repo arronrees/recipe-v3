@@ -309,7 +309,21 @@ img {
     width: 20rem;
     padding: 0 1rem;
 
-    input {
+    &.categories {
+      label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .add {
+          cursor: pointer;
+        }
+      }
+    }
+
+    input,
+    select,
+    textarea {
       padding: 1rem 2rem;
       border-radius: 5px;
       background-color: #fff;
@@ -317,9 +331,11 @@ img {
       font-family: var(--title-font);
       color: var(--dark-green);
       box-shadow: 0px 5px 50px rgba(108, 133, 111, 0.1);
+      border: 1px solid rgba(64, 98, 103, 0.2);
 
       &:focus {
-        outline: 2px solid var(--teal);
+        border-color: var(--teal);
+        outline: 1px solid var(--teal);
       }
 
       &::placeholder {

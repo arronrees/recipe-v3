@@ -75,7 +75,10 @@ app.use((req, res, next) => {
 
 // homepage route
 app.get('/', async (req, res) => {
-  const recipes = await Recipe.findAll({ order: [['createdAt', 'DESC']] });
+  const recipes = await Recipe.findAll({
+    where: { public: true },
+    order: [['createdAt', 'DESC']],
+  });
 
   res.render('index', { recipes });
 });

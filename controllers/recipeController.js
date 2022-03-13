@@ -21,6 +21,7 @@ module.exports.postCreateRecipe = async (req, res) => {
     cookTimeMinutes,
     prepTimeHours,
     prepTimeMinutes,
+    categories,
   } = req.body;
   const { filename } = req.file;
 
@@ -45,6 +46,13 @@ module.exports.postCreateRecipe = async (req, res) => {
     totalTimeMinutes = remainder;
   }
 
+  let cats = [];
+  categories.forEach((cat) => {
+    if (cat !== '') {
+      cats.push(cat.toLowerCase());
+    }
+  });
+
   const newRecipe = await Recipe.create({
     userId,
     public,
@@ -58,6 +66,7 @@ module.exports.postCreateRecipe = async (req, res) => {
     totalTimeHours,
     totalTimeMinutes,
     image: filename,
+    cats,
     userName: `${req.user.firstName} ${req.user.lastName}`,
   });
 
@@ -103,6 +112,7 @@ module.exports.putEditRecipe = async (req, res) => {
     cookTimeMinutes,
     prepTimeHours,
     prepTimeMinutes,
+    categories,
   } = req.body;
 
   const recipe = await Recipe.findByPk(id);
@@ -140,6 +150,14 @@ module.exports.putEditRecipe = async (req, res) => {
     recipe.image = req.file.filename;
   }
 
+  let cats = [];
+  categories.forEach((cat) => {
+    if (cat !== '') {
+      cats.push(cat.toLowerCase());
+    }
+  });
+
+  recipe.categories = cats;
   await recipe.save();
 
   req.flash('successMessage', 'Recipe updated successfully');

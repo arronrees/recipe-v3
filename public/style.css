@@ -367,7 +367,25 @@ img {
   padding: 0 1rem;
 }
 
-.create__recipe__form .row input {
+.create__recipe__form .row.categories label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.create__recipe__form .row.categories label .add {
+  cursor: pointer;
+}
+
+.create__recipe__form .row input,
+.create__recipe__form .row select,
+.create__recipe__form .row textarea {
   padding: 1rem 2rem;
   border-radius: 5px;
   background-color: #fff;
@@ -376,25 +394,37 @@ img {
   color: var(--dark-green);
   -webkit-box-shadow: 0px 5px 50px rgba(108, 133, 111, 0.1);
           box-shadow: 0px 5px 50px rgba(108, 133, 111, 0.1);
+  border: 1px solid rgba(64, 98, 103, 0.2);
 }
 
-.create__recipe__form .row input:focus {
-  outline: 2px solid var(--teal);
+.create__recipe__form .row input:focus,
+.create__recipe__form .row select:focus,
+.create__recipe__form .row textarea:focus {
+  border-color: var(--teal);
+  outline: 1px solid var(--teal);
 }
 
-.create__recipe__form .row input::-webkit-input-placeholder {
+.create__recipe__form .row input::-webkit-input-placeholder,
+.create__recipe__form .row select::-webkit-input-placeholder,
+.create__recipe__form .row textarea::-webkit-input-placeholder {
   opacity: 0.75;
 }
 
-.create__recipe__form .row input:-ms-input-placeholder {
+.create__recipe__form .row input:-ms-input-placeholder,
+.create__recipe__form .row select:-ms-input-placeholder,
+.create__recipe__form .row textarea:-ms-input-placeholder {
   opacity: 0.75;
 }
 
-.create__recipe__form .row input::-ms-input-placeholder {
+.create__recipe__form .row input::-ms-input-placeholder,
+.create__recipe__form .row select::-ms-input-placeholder,
+.create__recipe__form .row textarea::-ms-input-placeholder {
   opacity: 0.75;
 }
 
-.create__recipe__form .row input::placeholder {
+.create__recipe__form .row input::placeholder,
+.create__recipe__form .row select::placeholder,
+.create__recipe__form .row textarea::placeholder {
   opacity: 0.75;
 }
 
