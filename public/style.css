@@ -560,4 +560,36 @@ img {
   color: var(--red);
   border-color: var(--red);
 }
+
+.recipe__inner .main__img .text ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  margin-top: 1rem;
+}
+
+.recipe__inner .main__img .text ul li {
+  margin-right: 0.5rem;
+}
+
+.recipe__inner .main__img .text ul li:last-of-type {
+  margin-right: 0;
+}
+
+.recipe__inner .main__img .text ul li a {
+  -webkit-transition: var(--fast-speed);
+  transition: var(--fast-speed);
+  border-bottom: 1px solid transparent;
+}
+
+.recipe__inner .main__img .text ul li a:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
 /*# sourceMappingURL=style.css.map */

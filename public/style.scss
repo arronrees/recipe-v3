@@ -484,6 +484,31 @@ img {
           }
         }
       }
+
+      ul {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        margin-top: 1rem;
+
+        li {
+          margin-right: 0.5rem;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+
+          a {
+            transition: var(--fast-speed);
+            border-bottom: 1px solid transparent;
+
+            &:hover {
+              border-color: var(--red);
+              color: var(--red);
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -1,3 +1,4 @@
+const { validate } = require('uuid');
 const { Op } = require('sequelize');
 const Recipe = require('../models/Recipe');
 const User = require('../models/User');
@@ -67,7 +68,7 @@ module.exports.postCreateRecipe = async (req, res) => {
     totalTimeHours,
     totalTimeMinutes,
     image: filename,
-    catgories: cats,
+    categories: cats,
     userName: `${req.user.firstName} ${req.user.lastName}`,
   });
 
@@ -227,4 +228,32 @@ module.exports.getCategoryRecipes = async (req, res) => {
   });
 
   res.render('recipe/category', { recipes });
+};
+
+module.exports.getUserRecipes = async (req, res) => {
+  const { id } = req.params;
+
+  if (!validate(id)) {
+    req.flash('errorMessage', 'User not found');
+    return res.redirect('/');
+  }
+
+  const user = await User.findByPk(id);
+
+  if (!user) {
+    req.flash('errorMessage', 'No user found');
+    return res.redirect('/');
+  }
+
+  const recipes = await Recipe.findAll({
+    where: { public: true, userId: id },
+    order: [['createdAt', 'DESC']],
+  });
+
+  if (recipes.length < 1) {
+    req.flash('infoMessage', `This user hasn't added any recipes`);
+    return res.redirect('/');
+  }
+
+  res.render('recipe/user', { recipes, recipeUser: user });
 };

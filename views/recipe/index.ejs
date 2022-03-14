@@ -18,14 +18,14 @@
               <%=recipe.name%>
             </h1>
             <p>
-              By <a href="/">
+              By <a href="/recipe/user/<%=recipe.userId%>">
                 <%=recipe.userName%>
               </a>
             </p>
             <ul class="categories">
               <% recipe.categories.forEach(category=> { %>
                 <li><a href="/recipe/category?category=<%=category%>">
-                    <%=category%>
+                    #<%=category%>
                   </a></li>
                 <% }); %>
             </ul>

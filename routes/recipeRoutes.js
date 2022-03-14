@@ -7,6 +7,7 @@ const {
   deleteSingleRecipe,
   postSaveRecipe,
   getCategoryRecipes,
+  getUserRecipes,
 } = require('../controllers/recipeController');
 const { isLoggedInRedirectTo, isRecipeAuthor } = require('../middleware/auth');
 const multer = require('multer');
@@ -24,6 +25,8 @@ const upload = multer({ storage });
 const router = require('express').Router();
 
 router.get('/recipe/category', getCategoryRecipes);
+
+router.get('/recipe/user/:id', getUserRecipes);
 
 router.get('/recipe/create', isLoggedInRedirectTo, getCreateRecipe);
 
