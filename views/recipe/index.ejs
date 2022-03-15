@@ -33,7 +33,13 @@
         </section>
 
         <section class="details">
-
+          <ul class="ingredients">
+            <% recipe.ingredients.forEach(category=> { %>
+              <li>
+                <%=category%>
+              </li>
+              <% }); %>
+          </ul>
         </section>
 
         <% if (user && recipe.userId===user.id) { %>

@@ -309,7 +309,8 @@ img {
     width: 20rem;
     padding: 0 1rem;
 
-    &.categories {
+    &.categories,
+    &.ingredients {
       label {
         display: flex;
         align-items: center;

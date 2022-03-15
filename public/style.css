@@ -367,7 +367,7 @@ img {
   padding: 0 1rem;
 }
 
-.create__recipe__form .row.categories label {
+.create__recipe__form .row.categories label, .create__recipe__form .row.ingredients label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -379,7 +379,7 @@ img {
           justify-content: space-between;
 }
 
-.create__recipe__form .row.categories label .add {
+.create__recipe__form .row.categories label .add, .create__recipe__form .row.ingredients label .add {
   cursor: pointer;
 }
 

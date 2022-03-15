@@ -24,6 +24,7 @@ module.exports.postCreateRecipe = async (req, res) => {
     prepTimeHours,
     prepTimeMinutes,
     categories,
+    ingredients,
   } = req.body;
   const { filename } = req.file;
 
@@ -55,6 +56,13 @@ module.exports.postCreateRecipe = async (req, res) => {
     }
   });
 
+  let ings = [];
+  ingredients.forEach((ing) => {
+    if (ing !== '') {
+      ings.push(ing.toLowerCase());
+    }
+  });
+
   const newRecipe = await Recipe.create({
     userId,
     public,
@@ -69,6 +77,7 @@ module.exports.postCreateRecipe = async (req, res) => {
     totalTimeMinutes,
     image: filename,
     categories: cats,
+    ingredients: ings,
     userName: `${req.user.firstName} ${req.user.lastName}`,
   });
 
@@ -115,6 +124,7 @@ module.exports.putEditRecipe = async (req, res) => {
     prepTimeHours,
     prepTimeMinutes,
     categories,
+    ingredients,
   } = req.body;
 
   const recipe = await Recipe.findByPk(id);
@@ -159,6 +169,14 @@ module.exports.putEditRecipe = async (req, res) => {
     }
   });
 
+  let ings = [];
+  ingredients.forEach((ing) => {
+    if (ing !== '') {
+      ings.push(ing.toLowerCase());
+    }
+  });
+
+  recipe.ingredients = ings;
   recipe.categories = cats;
   await recipe.save();
 
