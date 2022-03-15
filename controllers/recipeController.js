@@ -221,15 +221,29 @@ module.exports.postSaveRecipe = async (req, res) => {
     user.savedRecipes = user.savedRecipes.filter((recipe) => recipe !== id);
     await user.save();
 
-    req.flash('successMessage', 'Recipe removed successfully');
-    return res.redirect(`/recipe/${id}`);
+    const userToShow = { ...user, password: null };
+
+    req.logout();
+    return req.login(userToShow, (err) => {
+      if (err) next(err);
+
+      req.flash('successMessage', 'Recipe removed successfully');
+      res.redirect(`/recipe/${id}`);
+    });
   }
 
   user.savedRecipes = [...user.savedRecipes, id];
   await user.save();
 
-  req.flash('successMessage', 'Recipe saved successfully');
-  res.redirect(`/recipe/${id}`);
+  const userToShow = { ...user, password: null };
+
+  req.logout();
+  req.login(userToShow, (err) => {
+    if (err) next(err);
+
+    req.flash('successMessage', 'Recipe saved successfully');
+    res.redirect(`/recipe/${id}`);
+  });
 };
 
 module.exports.getCategoryRecipes = async (req, res) => {

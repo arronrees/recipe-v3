@@ -51,7 +51,13 @@
             <% if(user) { %>
               <form action="/recipe/save/<%=recipe.id%>" method="post">
                 <input type="hidden" name="userId" value="<%=user.id%>">
-                <button type="submit" class="btn btn--green">Save Recipe</button>
+                <button type="submit" class="btn btn--green">
+                  <% if(user.savedRecipes.includes(recipe.id)) { %>
+                    Unsave Recipe
+                    <% } else { %>
+                      Save Recipe
+                      <% } %>
+                </button>
               </form>
               <% } %>
 
