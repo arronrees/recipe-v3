@@ -107,10 +107,22 @@ module.exports.putUpdateUserPassword = async (req, res, next) => {
   });
 };
 
-module.exports.getUserRecipes = async (req, res) => {
+module.exports.getLoggedInUserRecipes = async (req, res) => {
   const id = req.user.id;
-
   const recipes = await Recipe.findAll({ where: { public: true, userId: id } });
 
   res.render('user/my-recipes', { recipes });
+};
+
+module.exports.getUserSavedRecipes = async (req, res) => {
+  let recipes = [];
+
+  for (let i = 0; i < req.user.savedRecipes.length; i++) {
+    const r = await Recipe.findOne({
+      where: { id: req.user.savedRecipes[i] },
+    });
+    if (r) recipes.push(r);
+  }
+
+  res.render('user/saved-recipes', { recipes });
 };
