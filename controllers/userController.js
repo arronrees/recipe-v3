@@ -1,4 +1,5 @@
 const { checkPassword, hashPassword } = require('../lib/auth/passwordUtils');
+const Recipe = require('../models/Recipe');
 const User = require('../models/User');
 
 module.exports.getUserPage = (req, res) => {
@@ -104,4 +105,12 @@ module.exports.putUpdateUserPassword = async (req, res, next) => {
     req.flash('successMessage', 'Password updated successfully');
     res.redirect('/user');
   });
+};
+
+module.exports.getUserRecipes = async (req, res) => {
+  const id = req.user.id;
+
+  const recipes = await Recipe.findAll({ where: { public: true, userId: id } });
+
+  res.render('user/my-recipes', { recipes });
 };

@@ -4,6 +4,7 @@ const {
   putUpdateUserDetails,
   getUpdateUserPassword,
   putUpdateUserPassword,
+  getUserRecipes,
 } = require('../controllers/userController');
 const { isLoggedInRedirectTo } = require('../middleware/auth');
 
@@ -22,5 +23,7 @@ router.get(
 );
 
 router.put('/user/update-password', putUpdateUserPassword);
+
+router.get('/user/my-recipes', isLoggedInRedirectTo, getUserRecipes);
 
 module.exports = router;
