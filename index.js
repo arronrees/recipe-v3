@@ -90,7 +90,7 @@ app.use(recipeRoutes);
 
 // general 404 for all other routes
 app.use((req, res) => {
-  res.status(404).redirect('/');
+  res.status(404).render('404');
 });
 
 app.all('*', (req, res, next) => {

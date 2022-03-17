@@ -97,6 +97,22 @@ module.exports.putUpdateUserPassword = async (req, res, next) => {
   });
 };
 
+module.exports.deleteUserAccount = async (req, res) => {
+  const { id } = req.body;
+
+  if (req.user.id !== id) {
+    req.flash('errorMessage', 'You can only delete your own account');
+    return res.redirect('/user');
+  }
+
+  const user = await User.destroy({ where: { id } });
+  const recipes = await Recipe.destroy({ where: { userId: id } });
+
+  req.flash('successMessage', 'User deleted successfully');
+  req.logout();
+  res.redirect('/');
+};
+
 module.exports.getLoggedInUserRecipes = async (req, res) => {
   const id = req.user.id;
   const recipes = await Recipe.findAll({ where: { public: true, userId: id } });

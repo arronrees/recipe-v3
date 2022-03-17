@@ -11,4 +11,9 @@
       <a href="/user/saved-recipes">Saved Recipes</a>
       <a href="/user/my-recipes">My Recipes</a>
 
+      <form action="/user/delete?_method=DELETE" method="POST">
+        <input type="hidden" id="id" name="id" value="<%=user.id%>">
+        <button type="submit" class="btn btn--red">Delete Account</button>
+      </form>
+
       <%- include('../partials/footer') %>

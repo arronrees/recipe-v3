@@ -6,6 +6,7 @@ const {
   putUpdateUserPassword,
   getLoggedInUserRecipes,
   getUserSavedRecipes,
+  deleteUserAccount,
 } = require('../controllers/userController');
 const { isLoggedInRedirectTo } = require('../middleware/auth');
 
@@ -28,6 +29,8 @@ router.put(
   isLoggedInRedirectTo,
   putUpdateUserPassword
 );
+
+router.delete('/user/delete', isLoggedInRedirectTo, deleteUserAccount);
 
 router.get('/user/my-recipes', isLoggedInRedirectTo, getLoggedInUserRecipes);
 

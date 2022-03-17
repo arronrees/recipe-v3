@@ -23,10 +23,6 @@ module.exports.postCreateRecipe = async (req, res) => {
   } = req.body;
   const { filename } = req.file;
 
-  console.log(req.body);
-  console.log(typeof categories);
-  console.log(typeof ingredients);
-
   if (req.user.id !== userId) {
     req.flash(
       'errorMessage',
