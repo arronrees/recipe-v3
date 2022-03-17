@@ -23,6 +23,10 @@ module.exports.postCreateRecipe = async (req, res) => {
   } = req.body;
   const { filename } = req.file;
 
+  console.log(req.body);
+  console.log(typeof categories);
+  console.log(typeof ingredients);
+
   if (req.user.id !== userId) {
     req.flash(
       'errorMessage',
@@ -45,18 +49,26 @@ module.exports.postCreateRecipe = async (req, res) => {
   }
 
   let cats = [];
-  categories.forEach((cat) => {
-    if (cat !== '') {
-      cats.push(cat.toLowerCase());
-    }
-  });
+  if (typeof categories === 'string') {
+    cats.push(categories);
+  } else {
+    categories.forEach((cat) => {
+      if (cat !== '') {
+        cats.push(cat.toLowerCase());
+      }
+    });
+  }
 
   let ings = [];
-  ingredients.forEach((ing) => {
-    if (ing !== '') {
-      ings.push(ing.toLowerCase());
-    }
-  });
+  if (typeof ingredients === 'string') {
+    ings.push(ingredients);
+  } else {
+    ingredients.forEach((ing) => {
+      if (ing !== '') {
+        ings.push(ing.toLowerCase());
+      }
+    });
+  }
 
   const newRecipe = await Recipe.create({
     userId,
