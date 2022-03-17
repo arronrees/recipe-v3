@@ -11,20 +11,26 @@ const { isLoggedInRedirectTo } = require('../middleware/auth');
 
 const router = require('express').Router();
 
-router.use(isLoggedInRedirectTo);
+router.get('/user', isLoggedInRedirectTo, getUserPage);
 
-router.get('/user', getUserPage);
+router.get('/user/update-details', isLoggedInRedirectTo, getUpdateUserDetails);
 
-router.get('/user/update-details', getUpdateUserDetails);
+router.put('/user/update-details', isLoggedInRedirectTo, putUpdateUserDetails);
 
-router.put('/user/update-details', putUpdateUserDetails);
+router.get(
+  '/user/update-password',
+  isLoggedInRedirectTo,
+  getUpdateUserPassword
+);
 
-router.get('/user/update-password', getUpdateUserPassword);
+router.put(
+  '/user/update-password',
+  isLoggedInRedirectTo,
+  putUpdateUserPassword
+);
 
-router.put('/user/update-password', putUpdateUserPassword);
+router.get('/user/my-recipes', isLoggedInRedirectTo, getLoggedInUserRecipes);
 
-router.get('/user/my-recipes', getLoggedInUserRecipes);
-
-router.get('/user/saved-recipes', getUserSavedRecipes);
+router.get('/user/saved-recipes', isLoggedInRedirectTo, getUserSavedRecipes);
 
 module.exports = router;
