@@ -8,11 +8,6 @@ module.exports.getCreateRecipe = (req, res) => {
 };
 
 module.exports.postCreateRecipe = async (req, res) => {
-  if (!req.user) {
-    req.session.returnTo = '/recipe/create';
-    return res.redirect('/auth/sign-in');
-  }
-
   const {
     userId,
     public,
@@ -203,12 +198,6 @@ module.exports.deleteSingleRecipe = async (req, res) => {
 module.exports.postSaveRecipe = async (req, res) => {
   const { id } = req.params;
   const { userId } = req.body;
-
-  if (!req.user) {
-    res.session.returnTo = `/recipe/${id}`;
-    req.flash('errorMessage', 'You need to login to save a recipe');
-    return res.redirect('/auth/sign-in');
-  }
 
   if (req.user.id !== userId) {
     req.flash('errorMessage', 'Error saving recipe, please try again');

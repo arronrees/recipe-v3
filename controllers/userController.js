@@ -11,11 +11,6 @@ module.exports.getUpdateUserDetails = (req, res) => {
 };
 
 module.exports.putUpdateUserDetails = async (req, res, next) => {
-  if (!req.user) {
-    req.session.returnTo = '/user';
-    return res.redirect('/auth/sign-in');
-  }
-
   const { body } = req;
 
   const user = await User.findOne({
@@ -50,11 +45,6 @@ module.exports.getUpdateUserPassword = (req, res) => {
 };
 
 module.exports.putUpdateUserPassword = async (req, res, next) => {
-  if (!req.user) {
-    req.session.returnTo = '/user';
-    return res.redirect('/auth/sign-in');
-  }
-
   const { id, currentPassword, newPassword } = req.body;
 
   const user = await User.findOne({
