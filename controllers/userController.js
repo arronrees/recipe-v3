@@ -1,6 +1,7 @@
 const { checkPassword, hashPassword } = require('../lib/auth/passwordUtils');
 const Recipe = require('../models/Recipe');
 const User = require('../models/User');
+const SavedRecipe = require('../models/SavedRecipe');
 
 module.exports.getUserPage = (req, res) => {
   res.render('user/index');
@@ -121,13 +122,17 @@ module.exports.getLoggedInUserRecipes = async (req, res) => {
 };
 
 module.exports.getUserSavedRecipes = async (req, res) => {
+  const id = req.user.id;
+
+  const savedRecipes = await SavedRecipe.findAll({ where: { userId: id } });
+
   let recipes = [];
 
-  for (let i = 0; i < req.user.savedRecipes.length; i++) {
-    const r = await Recipe.findOne({
-      where: { id: req.user.savedRecipes[i] },
+  for (let i = 0; i < savedRecipes.length; i++) {
+    const recipe = await Recipe.findOne({
+      where: { id: savedRecipes[i].recipeId },
     });
-    if (r) recipes.push(r);
+    if (recipe) recipes.push(recipe);
   }
 
   res.render('user/saved-recipes', { recipes });
