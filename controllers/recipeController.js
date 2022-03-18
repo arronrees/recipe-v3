@@ -179,18 +179,26 @@ module.exports.putEditRecipe = async (req, res) => {
   }
 
   let cats = [];
-  categories.forEach((cat) => {
-    if (cat !== '') {
-      cats.push(cat.toLowerCase());
-    }
-  });
+  if (typeof categories === 'string') {
+    cats.push(categories);
+  } else {
+    categories.forEach((cat) => {
+      if (cat !== '') {
+        cats.push(cat.toLowerCase());
+      }
+    });
+  }
 
   let ings = [];
-  ingredients.forEach((ing) => {
-    if (ing !== '') {
-      ings.push(ing.toLowerCase());
-    }
-  });
+  if (typeof ingredients === 'string') {
+    ings.push(ingredients);
+  } else {
+    ingredients.forEach((ing) => {
+      if (ing !== '') {
+        ings.push(ing.toLowerCase());
+      }
+    });
+  }
 
   recipe.ingredients = ings;
   recipe.categories = cats;
