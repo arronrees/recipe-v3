@@ -23,10 +23,6 @@ const User = db.define('user', {
     type: DataTypes.STRING(1024),
     allowNull: false,
   },
-  savedRecipes: {
-    type: DataTypes.ARRAY(DataTypes.STRING(1024)),
-    defaultValue: [],
-  },
 });
 
 User.sync({ force: false }).then(() => {

@@ -2,6 +2,7 @@ const { validate } = require('uuid');
 const { Op } = require('sequelize');
 const Recipe = require('../models/Recipe');
 const User = require('../models/User');
+const SavedRecipe = require('../models/SavedRecipe');
 
 module.exports.getCreateRecipe = (req, res) => {
   res.render('recipe/create');
@@ -103,7 +104,19 @@ module.exports.getSingleRecipe = async (req, res) => {
     return res.redirect('/');
   }
 
-  res.render('recipe/index', { recipe });
+  let savedRecipe = null;
+
+  if (req.user) {
+    savedRecipe = await SavedRecipe.findAll({
+      where: { recipeId: id, userId: req.user.id },
+    });
+  }
+
+  if (savedRecipe && savedRecipe.length === 0) {
+    savedRecipe = null;
+  }
+
+  res.render('recipe/index', { recipe, savedRecipe });
 };
 
 module.exports.getEditRecipe = async (req, res) => {
@@ -199,6 +212,8 @@ module.exports.deleteSingleRecipe = async (req, res) => {
 
   await recipe.destroy();
 
+  const savedRecipes = await SavedRecipe.destroy({ where: { recipeId: id } });
+
   req.flash('successMessage', 'Recipe deleted successfully');
   res.redirect('/');
 };
@@ -212,35 +227,21 @@ module.exports.postSaveRecipe = async (req, res) => {
     return res.redirect(`/recipe/${id}`);
   }
 
-  const user = await User.findByPk(userId);
+  const savedRecipe = await SavedRecipe.findOne({
+    where: { userId, recipeId: id },
+  });
 
-  if (user.savedRecipes.includes(id)) {
-    user.savedRecipes = user.savedRecipes.filter((recipe) => recipe !== id);
-    await user.save();
-
-    const userToShow = { ...user, password: null };
-
-    req.logout();
-    return req.login(userToShow, (err) => {
-      if (err) next(err);
-
-      req.flash('successMessage', 'Recipe removed successfully');
-      res.redirect(`/recipe/${id}`);
-    });
-  }
-
-  user.savedRecipes = [...user.savedRecipes, id];
-  await user.save();
-
-  const userToShow = { ...user, password: null };
-
-  req.logout();
-  req.login(userToShow, (err) => {
-    if (err) next(err);
+  if (!savedRecipe) {
+    const newSave = await SavedRecipe.create({ userId, recipeId: id });
 
     req.flash('successMessage', 'Recipe saved successfully');
-    res.redirect(`/recipe/${id}`);
-  });
+    return res.redirect(`/recipe/${id}`);
+  }
+
+  await savedRecipe.destroy();
+
+  req.flash('successMessage', 'Recipe unsaved successfully');
+  res.redirect(`/recipe/${id}`);
 };
 
 module.exports.getCategoryRecipes = async (req, res) => {
