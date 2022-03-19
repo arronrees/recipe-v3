@@ -211,7 +211,7 @@ img {
   grid-template-columns: 1fr 2fr;
 
   .auth__form {
-    background-color: var(--light-green);
+    background-color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -224,17 +224,21 @@ img {
       width: 20rem;
       padding: 0 1rem;
 
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
       input {
         padding: 1rem 2rem;
         border-radius: 5px;
         background-color: #fff;
         width: 100%;
         font-family: var(--title-font);
-        color: var(--dark-green);
-        box-shadow: 0px 5px 50px rgba(108, 133, 111, 0.1);
+        color: var(--teal);
+        border: 1px solid var(--teal);
 
         &:focus {
-          outline: 2px solid var(--teal);
+          border: 2px solid var(--teal);
         }
 
         &::placeholder {
@@ -266,6 +270,10 @@ img {
     margin-bottom: 1rem;
     width: 20rem;
     padding: 0 1rem;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
 
     input {
       padding: 1rem 2rem;
@@ -308,6 +316,10 @@ img {
     margin-bottom: 1rem;
     width: 20rem;
     padding: 0 1rem;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
 
     &.categories,
     &.ingredients {

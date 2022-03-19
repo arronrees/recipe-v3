@@ -217,7 +217,7 @@ img {
 }
 
 .auth__section .auth__form {
-  background-color: var(--light-green);
+  background-color: #fff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -241,19 +241,22 @@ img {
   padding: 0 1rem;
 }
 
+.auth__section .auth__form .row:last-of-type {
+  margin-bottom: 0;
+}
+
 .auth__section .auth__form .row input {
   padding: 1rem 2rem;
   border-radius: 5px;
   background-color: #fff;
   width: 100%;
   font-family: var(--title-font);
-  color: var(--dark-green);
-  -webkit-box-shadow: 0px 5px 50px rgba(108, 133, 111, 0.1);
-          box-shadow: 0px 5px 50px rgba(108, 133, 111, 0.1);
+  color: var(--teal);
+  border: 1px solid var(--teal);
 }
 
 .auth__section .auth__form .row input:focus {
-  outline: 2px solid var(--teal);
+  border: 2px solid var(--teal);
 }
 
 .auth__section .auth__form .row input::-webkit-input-placeholder {
@@ -302,6 +305,10 @@ img {
   margin-bottom: 1rem;
   width: 20rem;
   padding: 0 1rem;
+}
+
+.update__user__form .row:last-of-type {
+  margin-bottom: 0;
 }
 
 .update__user__form .row input {
@@ -365,6 +372,10 @@ img {
   margin-bottom: 1rem;
   width: 20rem;
   padding: 0 1rem;
+}
+
+.create__recipe__form .row:last-of-type {
+  margin-bottom: 0;
 }
 
 .create__recipe__form .row.categories label, .create__recipe__form .row.ingredients label {
