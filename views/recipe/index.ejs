@@ -24,7 +24,7 @@
             </p>
             <ul class="categories">
               <% recipe.categories.forEach(category=> { %>
-                <li><a href="/recipe/category?category=<%=category%>">
+                <li><a href="/recipe/category/<%=category%>">
                     #<%=category%>
                   </a></li>
                 <% }); %>
@@ -34,9 +34,9 @@
 
         <section class="details">
           <ul class="ingredients">
-            <% recipe.ingredients.forEach(category=> { %>
+            <% recipe.ingredients.forEach(ingredient=> { %>
               <li>
-                <%=category%>
+                <%=ingredient%>
               </li>
               <% }); %>
           </ul>

@@ -26,7 +26,7 @@ const upload = multer({ storage });
 
 const router = require('express').Router();
 
-router.get('/recipe/category', getCategoryRecipes);
+router.get('/recipe/category/:category', getCategoryRecipes);
 
 router.get('/recipe/user/:id', getUserRecipes);
 

@@ -253,7 +253,7 @@ module.exports.postSaveRecipe = async (req, res) => {
 };
 
 module.exports.getCategoryRecipes = async (req, res) => {
-  const { category } = req.query;
+  const { category } = req.params;
 
   if (!category) {
     req.flash('infoMessage', 'No recipes with this category');
