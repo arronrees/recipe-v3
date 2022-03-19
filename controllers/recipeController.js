@@ -295,3 +295,13 @@ module.exports.getUserRecipes = async (req, res) => {
 
   res.render('recipe/user', { recipes, recipeUser: user });
 };
+
+module.exports.getSearchRecipes = async (req, res) => {
+  const { searchText } = req.query;
+
+  const recipes = await Recipe.findAll({
+    where: { name: { [Op.substring]: searchText } },
+  });
+
+  res.render('recipe/search', { recipes });
+};

@@ -8,6 +8,7 @@ const {
   postSaveRecipe,
   getCategoryRecipes,
   getUserRecipes,
+  getSearchRecipes,
 } = require('../controllers/recipeController');
 const { isLoggedInRedirectTo, isRecipeAuthor } = require('../middleware/auth');
 const multer = require('multer');
@@ -28,6 +29,8 @@ const router = require('express').Router();
 router.get('/recipe/category', getCategoryRecipes);
 
 router.get('/recipe/user/:id', getUserRecipes);
+
+router.get('/recipe/search', getSearchRecipes);
 
 router.get('/recipe/create', isLoggedInRedirectTo, getCreateRecipe);
 

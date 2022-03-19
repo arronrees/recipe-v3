@@ -4,27 +4,28 @@
   </div>
   <nav class="navbar">
     <ul class="nav__menu">
+      <li>
+        <form action="/recipe/search" method="GET">
+          <input type="text" id="searchText" name="searchText" />
+        </form>
+      </li>
       <% if (!user) { %>
-        <li>
-          <a href="/auth/sign-in" class="btn btn--green">
-            Sign In
-          </a>
-        </li>
-        <li>
-          <a href="/auth/sign-up" class="btn btn--teal">
-            Sign Up
-          </a>
-        </li>
-        <% } else { %>
-          <li>
-            <a href="/user">My Profile</a>
-          </li>
-          <li>
-            <form action="/auth/sign-out" method="post">
-              <button class="btn btn--red">Sign Out</button>
-            </form>
-          </li>
-          <% } %>
+      <li>
+        <a href="/auth/sign-in" class="btn btn--green"> Sign In </a>
+      </li>
+      <li>
+        <a href="/auth/sign-up" class="btn btn--teal"> Sign Up </a>
+      </li>
+      <% } else { %>
+      <li>
+        <a href="/user">My Profile</a>
+      </li>
+      <li>
+        <form action="/auth/sign-out" method="post">
+          <button class="btn btn--red">Sign Out</button>
+        </form>
+      </li>
+      <% } %>
     </ul>
   </nav>
 </header>
