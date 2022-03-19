@@ -70,7 +70,7 @@ module.exports.postCreateRecipe = async (req, res) => {
   const newRecipe = await Recipe.create({
     userId,
     public,
-    name,
+    name: name.toLowerCase(),
     serves,
     difficulty,
     cookTimeHours,
@@ -163,7 +163,7 @@ module.exports.putEditRecipe = async (req, res) => {
     totalTimeMinutes = remainder;
   }
 
-  recipe.name = name;
+  recipe.name = name.toLowerCase();
   recipe.public = public;
   recipe.serves = serves;
   recipe.difficulty = difficulty;
