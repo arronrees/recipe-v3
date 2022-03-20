@@ -63,6 +63,10 @@ const Recipe = db.define('recipe', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  instructions: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
   image: {
     type: DataTypes.STRING(1024),
   },

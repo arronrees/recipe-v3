@@ -40,6 +40,9 @@
               </li>
               <% }); %>
           </ul>
+          <div class="instructions">
+            <%- recipe.instructions %>
+          </div>
         </section>
 
         <% if (user && recipe.userId===user.id) { %>

@@ -21,8 +21,11 @@ module.exports.postCreateRecipe = async (req, res) => {
     prepTimeMinutes,
     categories,
     ingredients,
+    instructions,
   } = req.body;
   const { filename } = req.file;
+
+  console.log(instructions);
 
   if (req.user.id !== userId) {
     req.flash(
@@ -82,6 +85,7 @@ module.exports.postCreateRecipe = async (req, res) => {
     image: filename,
     categories: cats,
     ingredients: ings,
+    instructions,
     userName: `${req.user.firstName} ${req.user.lastName}`,
   });
 
@@ -141,6 +145,7 @@ module.exports.putEditRecipe = async (req, res) => {
     prepTimeMinutes,
     categories,
     ingredients,
+    instructions,
   } = req.body;
 
   const recipe = await Recipe.findByPk(id);
@@ -173,6 +178,7 @@ module.exports.putEditRecipe = async (req, res) => {
   recipe.prepTimeMinutes = prepTimeMinutes;
   recipe.totalTimeHours = totalTimeHours;
   recipe.totalTimeMinutes = totalTimeMinutes;
+  recipe.instructions = instructions;
 
   if (req.file) {
     recipe.image = req.file.filename;
