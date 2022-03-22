@@ -68,7 +68,7 @@ body {
   letter-spacing: 0.5px;
   line-height: 1.5;
   overflow-x: hidden;
-  // background-color: var(--light-green);
+  background-color: var(--light-green);
   color: var(--dark-green);
 }
 
@@ -449,11 +449,15 @@ img {
 
 // recipe inner page
 .recipe__inner {
+  max-width: 1024px;
+  padding: 2rem;
+  margin: 0 auto;
+
   .main__img {
     position: relative;
 
     .img {
-      height: 20rem;
+      height: 32rem;
       position: relative;
 
       .overlay {
@@ -469,18 +473,55 @@ img {
         );
       }
     }
+  }
 
-    .text {
-      color: var(--dark-green);
-      padding: 2rem;
+  .title {
+    color: var(--dark-green);
+    padding-top: 2rem;
+
+    .heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+
+      .save__form {
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 2rem;
+          height: 2rem;
+
+          svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--teal);
+          }
+        }
+      }
 
       h1 {
         text-transform: capitalize;
-        font-size: 2rem;
+        font-size: 3.5rem;
         font-weight: var(--font-xbold);
         font-family: var(--title-font);
-      }
+        position: relative;
 
+        &::after {
+          content: '';
+          width: 50%;
+          height: 1px;
+          position: absolute;
+          background-color: var(--dark-green);
+          bottom: -0.5rem;
+          left: 1rem;
+        }
+      }
+    }
+
+    .summary {
       p {
         padding-top: 1rem;
 
@@ -520,6 +561,54 @@ img {
               color: var(--red);
             }
           }
+        }
+      }
+    }
+  }
+
+  .details {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    padding: 2rem 0;
+
+    .content {
+      font-size: 1.5rem;
+      font-weight: var(--font-xlight);
+    }
+
+    .sidebar {
+      .figures {
+        padding-bottom: 2rem;
+
+        li {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-bottom: 0.25rem;
+
+          span {
+            &:first-of-type {
+              font-weight: var(--font-xbold);
+            }
+          }
+        }
+      }
+
+      .ingredients {
+        h3 {
+          font-size: 2rem;
+          font-weight: var(--font-bold);
+          font-family: var(--title-font);
+          padding-bottom: 1rem;
+        }
+
+        li {
+          list-style: square;
+          margin-left: 2.5rem;
+          padding-bottom: 0.25rem;
+          font-size: 1.25rem;
+          font-weight: var(--font-xlight);
         }
       }
     }

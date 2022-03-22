@@ -59,6 +59,7 @@ body {
   letter-spacing: 0.5px;
   line-height: 1.5;
   overflow-x: hidden;
+  background-color: var(--light-green);
   color: var(--dark-green);
 }
 
@@ -523,12 +524,18 @@ img {
   display: none;
 }
 
+.recipe__inner {
+  max-width: 1024px;
+  padding: 2rem;
+  margin: 0 auto;
+}
+
 .recipe__inner .main__img {
   position: relative;
 }
 
 .recipe__inner .main__img .img {
-  height: 20rem;
+  height: 32rem;
   position: relative;
 }
 
@@ -542,23 +549,68 @@ img {
   background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0));
 }
 
-.recipe__inner .main__img .text {
+.recipe__inner .title {
   color: var(--dark-green);
-  padding: 2rem;
+  padding-top: 2rem;
 }
 
-.recipe__inner .main__img .text h1 {
+.recipe__inner .title .heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.recipe__inner .title .heading .save__form button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 2rem;
+  height: 2rem;
+}
+
+.recipe__inner .title .heading .save__form button svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--teal);
+}
+
+.recipe__inner .title .heading h1 {
   text-transform: capitalize;
-  font-size: 2rem;
+  font-size: 3.5rem;
   font-weight: var(--font-xbold);
   font-family: var(--title-font);
+  position: relative;
 }
 
-.recipe__inner .main__img .text p {
+.recipe__inner .title .heading h1::after {
+  content: '';
+  width: 50%;
+  height: 1px;
+  position: absolute;
+  background-color: var(--dark-green);
+  bottom: -0.5rem;
+  left: 1rem;
+}
+
+.recipe__inner .title .summary p {
   padding-top: 1rem;
 }
 
-.recipe__inner .main__img .text p a {
+.recipe__inner .title .summary p a {
   color: var(--teal);
   -webkit-transition: var(--fast-speed);
   transition: var(--fast-speed);
@@ -567,12 +619,12 @@ img {
   font-weight: var(--font-xbold);
 }
 
-.recipe__inner .main__img .text p a:hover {
+.recipe__inner .title .summary p a:hover {
   color: var(--red);
   border-color: var(--red);
 }
 
-.recipe__inner .main__img .text ul {
+.recipe__inner .title .summary ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -585,22 +637,72 @@ img {
   margin-top: 1rem;
 }
 
-.recipe__inner .main__img .text ul li {
+.recipe__inner .title .summary ul li {
   margin-right: 0.5rem;
 }
 
-.recipe__inner .main__img .text ul li:last-of-type {
+.recipe__inner .title .summary ul li:last-of-type {
   margin-right: 0;
 }
 
-.recipe__inner .main__img .text ul li a {
+.recipe__inner .title .summary ul li a {
   -webkit-transition: var(--fast-speed);
   transition: var(--fast-speed);
   border-bottom: 1px solid transparent;
 }
 
-.recipe__inner .main__img .text ul li a:hover {
+.recipe__inner .title .summary ul li a:hover {
   border-color: var(--red);
   color: var(--red);
+}
+
+.recipe__inner .details {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 1fr;
+      grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+  padding: 2rem 0;
+}
+
+.recipe__inner .details .content {
+  font-size: 1.5rem;
+  font-weight: var(--font-xlight);
+}
+
+.recipe__inner .details .sidebar .figures {
+  padding-bottom: 2rem;
+}
+
+.recipe__inner .details .sidebar .figures li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 0.25rem;
+}
+
+.recipe__inner .details .sidebar .figures li span:first-of-type {
+  font-weight: var(--font-xbold);
+}
+
+.recipe__inner .details .sidebar .ingredients h3 {
+  font-size: 2rem;
+  font-weight: var(--font-bold);
+  font-family: var(--title-font);
+  padding-bottom: 1rem;
+}
+
+.recipe__inner .details .sidebar .ingredients li {
+  list-style: square;
+  margin-left: 2.5rem;
+  padding-bottom: 0.25rem;
+  font-size: 1.25rem;
+  font-weight: var(--font-xlight);
 }
 /*# sourceMappingURL=style.css.map */
