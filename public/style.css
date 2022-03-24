@@ -406,7 +406,7 @@ img {
   transition: none;
 }
 
-.create__recipe__form {
+.recipe__form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -422,19 +422,39 @@ img {
           flex-direction: column;
   font-size: 1.5rem;
   color: var(--mid-green);
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-bottom: 4rem;
 }
 
-.create__recipe__form .row {
-  margin-bottom: 1rem;
-  width: 20rem;
-  padding: 0 1rem;
+.recipe__form .row {
+  margin: 0 0.5rem 0.75rem 0.5rem;
 }
 
-.create__recipe__form .row:last-of-type {
+.recipe__form .row.cookTime, .recipe__form .row.prepTime {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.recipe__form .row.instructions, .recipe__form .row.public, .recipe__form .row.submit {
+  grid-column: span 2 / auto;
+}
+
+.recipe__form .row:last-of-type {
   margin-bottom: 0;
 }
 
-.create__recipe__form .row.categories label, .create__recipe__form .row.ingredients label {
+.recipe__form .row.categories label, .recipe__form .row.ingredients label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -446,13 +466,18 @@ img {
           justify-content: space-between;
 }
 
-.create__recipe__form .row.categories label .add, .create__recipe__form .row.ingredients label .add {
+.recipe__form .row.categories label .add, .recipe__form .row.ingredients label .add {
   cursor: pointer;
 }
 
-.create__recipe__form .row input,
-.create__recipe__form .row select,
-.create__recipe__form .row textarea {
+.recipe__form .row label {
+  font-size: 1.15rem;
+  font-weight: var(--font-bold);
+}
+
+.recipe__form .row input,
+.recipe__form .row select,
+.recipe__form .row textarea {
   padding: 1rem 2rem;
   border-radius: 5px;
   background-color: #fff;
@@ -464,38 +489,38 @@ img {
   border: 1px solid rgba(64, 98, 103, 0.2);
 }
 
-.create__recipe__form .row input:focus,
-.create__recipe__form .row select:focus,
-.create__recipe__form .row textarea:focus {
+.recipe__form .row input:focus,
+.recipe__form .row select:focus,
+.recipe__form .row textarea:focus {
   border-color: var(--teal);
   outline: 1px solid var(--teal);
 }
 
-.create__recipe__form .row input::-webkit-input-placeholder,
-.create__recipe__form .row select::-webkit-input-placeholder,
-.create__recipe__form .row textarea::-webkit-input-placeholder {
+.recipe__form .row input::-webkit-input-placeholder,
+.recipe__form .row select::-webkit-input-placeholder,
+.recipe__form .row textarea::-webkit-input-placeholder {
   opacity: 0.75;
 }
 
-.create__recipe__form .row input:-ms-input-placeholder,
-.create__recipe__form .row select:-ms-input-placeholder,
-.create__recipe__form .row textarea:-ms-input-placeholder {
+.recipe__form .row input:-ms-input-placeholder,
+.recipe__form .row select:-ms-input-placeholder,
+.recipe__form .row textarea:-ms-input-placeholder {
   opacity: 0.75;
 }
 
-.create__recipe__form .row input::-ms-input-placeholder,
-.create__recipe__form .row select::-ms-input-placeholder,
-.create__recipe__form .row textarea::-ms-input-placeholder {
+.recipe__form .row input::-ms-input-placeholder,
+.recipe__form .row select::-ms-input-placeholder,
+.recipe__form .row textarea::-ms-input-placeholder {
   opacity: 0.75;
 }
 
-.create__recipe__form .row input::placeholder,
-.create__recipe__form .row select::placeholder,
-.create__recipe__form .row textarea::placeholder {
+.recipe__form .row input::placeholder,
+.recipe__form .row select::placeholder,
+.recipe__form .row textarea::placeholder {
   opacity: 0.75;
 }
 
-.create__recipe__form .row .btn {
+.recipe__form .row .btn {
   width: 100%;
 }
 

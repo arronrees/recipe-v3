@@ -347,7 +347,7 @@ img {
 }
 
 // create recipe
-.create__recipe__form {
+.recipe__form {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -355,10 +355,28 @@ img {
   font-size: 1.5rem;
   color: var(--mid-green);
 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-bottom: 4rem;
+
   .row {
-    margin-bottom: 1rem;
-    width: 20rem;
-    padding: 0 1rem;
+    margin: 0 0.5rem 0.75rem 0.5rem;
+
+    &.cookTime,
+    &.prepTime {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    &.instructions,
+    &.public,
+    &.submit {
+      grid-column: span 2 / auto;
+    }
 
     &:last-of-type {
       margin-bottom: 0;
@@ -375,6 +393,11 @@ img {
           cursor: pointer;
         }
       }
+    }
+
+    label {
+      font-size: 1.15rem;
+      font-weight: var(--font-bold);
     }
 
     input,
