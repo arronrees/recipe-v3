@@ -116,7 +116,10 @@ module.exports.deleteUserAccount = async (req, res) => {
 
 module.exports.getLoggedInUserRecipes = async (req, res) => {
   const id = req.user.id;
-  const recipes = await Recipe.findAll({ where: { public: true, userId: id } });
+  const recipes = await Recipe.findAll({
+    where: { userId: id },
+    order: [['createdAt', 'DESC']],
+  });
 
   res.render('user/my-recipes', { recipes });
 };
@@ -130,7 +133,8 @@ module.exports.getUserSavedRecipes = async (req, res) => {
 
   for (let i = 0; i < savedRecipes.length; i++) {
     const recipe = await Recipe.findOne({
-      where: { id: savedRecipes[i].recipeId },
+      where: { public: true, id: savedRecipes[i].recipeId },
+      order: [['createdAt', 'DESC']],
     });
     if (recipe) recipes.push(recipe);
   }

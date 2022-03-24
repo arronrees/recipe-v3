@@ -61,11 +61,11 @@ module.exports.postCreateRecipe = async (req, res) => {
 
   let ings = [];
   if (typeof ingredients === 'string') {
-    ings.push(ingredients);
+    ings.push(ingredients.toLowerCase());
   } else {
     ingredients.forEach((ing) => {
       if (ing !== '') {
-        ings.push(ing);
+        ings.push(ing.toLowerCase());
       }
     });
   }
@@ -73,7 +73,8 @@ module.exports.postCreateRecipe = async (req, res) => {
   const newRecipe = await Recipe.create({
     userId,
     public,
-    name,
+    // is lowercase for search
+    name: name.toLowerCase(),
     serves,
     difficulty,
     cookTimeHours,
@@ -106,6 +107,15 @@ module.exports.getSingleRecipe = async (req, res) => {
   if (!recipe) {
     req.flash('errorMessage', 'No recipe found');
     return res.redirect('/');
+  }
+
+  if (!recipe.public) {
+    if (req.user && recipe.userId === req.user.id) {
+      // carry on
+    } else {
+      req.flash('errorMessage', 'No Recipe found');
+      return res.redirect('/');
+    }
   }
 
   let savedRecipe = null;
@@ -168,7 +178,8 @@ module.exports.putEditRecipe = async (req, res) => {
     totalTimeMinutes = remainder;
   }
 
-  recipe.name = name;
+  // is lowercase for search
+  recipe.name = name.toLowerCase();
   recipe.public = public;
   recipe.serves = serves;
   recipe.difficulty = difficulty;
@@ -197,11 +208,11 @@ module.exports.putEditRecipe = async (req, res) => {
 
   let ings = [];
   if (typeof ingredients === 'string') {
-    ings.push(ingredients);
+    ings.push(ingredients.toLowerCase());
   } else {
     ingredients.forEach((ing) => {
       if (ing !== '') {
-        ings.push(ing);
+        ings.push(ing.toLowerCase());
       }
     });
   }
