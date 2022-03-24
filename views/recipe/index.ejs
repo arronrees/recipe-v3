@@ -103,6 +103,32 @@
           </aside>
         </section>
 
+        <% if (user && recipe.userId !==user.id) { %>
+          <div class="add__user__photos">
+            <h5>Add your photos!</h5>
+            <form action="/recipe/user-photos/<%=recipe.id%>/<%=user.id%>" method="POST" enctype="multipart/form-data">
+              <input type="file" name="image" id="image" required>
+              <button type="submit" class="btn btn--teal">Add</button>
+            </form>
+          </div>
+          <% } %>
+
+            <div class="user__photos">
+              <% userPhotos.forEach(photo=> { %>
+                <div class="user__photo">
+                  <% if(user && photo.userId===user.id) { %>
+                    <form action="/recipe/user-photos/<%=photo.id%>?_method=DELETE" method="POST">
+                      <input type="hidden" name="recipeId" value="<%=recipe.id%>">
+                      <button type="submit" class="btn btn--red">Delete</button>
+                    </form>
+                    <% } %>
+                      <figure>
+                        <img src="/img/recipes/<%=photo.image%>" alt="#">
+                      </figure>
+                </div>
+                <% }) %>
+            </div>
+
       </main>
 
       <%- include('../partials/footer') %></input>

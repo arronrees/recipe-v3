@@ -3,6 +3,7 @@ const { Op } = require('sequelize');
 const Recipe = require('../models/Recipe');
 const User = require('../models/User');
 const SavedRecipe = require('../models/SavedRecipe');
+const UserPhoto = require('../models/UserPhoto');
 
 module.exports.getCreateRecipe = (req, res) => {
   res.render('recipe/create');
@@ -24,8 +25,6 @@ module.exports.postCreateRecipe = async (req, res) => {
     instructions,
   } = req.body;
   const { filename } = req.file;
-
-  console.log(instructions);
 
   if (req.user.id !== userId) {
     req.flash(
@@ -118,6 +117,8 @@ module.exports.getSingleRecipe = async (req, res) => {
     }
   }
 
+  const userPhotos = await UserPhoto.findAll({ where: { recipeId: id } });
+
   let savedRecipe = null;
 
   if (req.user) {
@@ -130,7 +131,7 @@ module.exports.getSingleRecipe = async (req, res) => {
     savedRecipe = null;
   }
 
-  res.render('recipe/index', { recipe, savedRecipe });
+  res.render('recipe/index', { recipe, savedRecipe, userPhotos });
 };
 
 module.exports.getEditRecipe = async (req, res) => {
@@ -329,4 +330,52 @@ module.exports.getSearchRecipes = async (req, res) => {
   });
 
   res.render('recipe/search', { recipes });
+};
+
+module.exports.postAddUserPhoto = async (req, res) => {
+  const { id, userId } = req.params;
+  const { filename } = req.file;
+
+  if (req.user.id !== userId) {
+    req.flash(
+      'errorMessage',
+      'An error occured when trying to add photo, please try again'
+    );
+    return res.redirect(`/recipe/${id}`);
+  }
+
+  const newPhoto = await UserPhoto.create({
+    recipeId: id,
+    userId,
+    image: filename,
+  });
+
+  if (!newPhoto) {
+    req.flash(
+      'errorMessage',
+      'An error occured when trying to add photo, please try again'
+    );
+    return res.redirect(`/recipe/${id}`);
+  }
+
+  req.flash('successMessage', 'Photo successfully added');
+  res.redirect(`/recipe/${id}`);
+};
+
+module.exports.deleteUserPhoto = async (req, res) => {
+  const { id } = req.params;
+  const { recipeId } = req.body;
+
+  const deletedPhoto = await UserPhoto.destroy({ where: { id } });
+
+  if (!deletedPhoto) {
+    req.flash(
+      'errorMessage',
+      'An error occured when trying to delete photo, please try again'
+    );
+    return res.redirect(`/recipe/${recipeId}`);
+  }
+
+  req.flash('successMessage', 'Photo successfully deleted');
+  res.redirect(`/recipe/${recipeId}`);
 };

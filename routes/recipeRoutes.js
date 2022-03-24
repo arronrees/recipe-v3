@@ -9,6 +9,8 @@ const {
   getCategoryRecipes,
   getUserRecipes,
   getSearchRecipes,
+  postAddUserPhoto,
+  deleteUserPhoto,
 } = require('../controllers/recipeController');
 const { isLoggedInRedirectTo, isRecipeAuthor } = require('../middleware/auth');
 const multer = require('multer');
@@ -59,6 +61,16 @@ router.put(
   upload.single('image'),
   putEditRecipe
 );
+
+router.post(
+  '/recipe/user-photos/:id/:userId',
+  isLoggedInRedirectTo,
+  validateParamsUUID,
+  upload.single('image'),
+  postAddUserPhoto
+);
+
+router.delete('/recipe/user-photos/:id', deleteUserPhoto);
 
 router.delete(
   '/recipe/delete/:id',
