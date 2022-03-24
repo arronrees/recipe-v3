@@ -1,31 +1,41 @@
 <header class="header">
   <div class="logo">
-    <h1><a href="/">Tasty</a></h1>
+    <h1>
+      <a href="/" title="Back to the homepage">Tasty</a>
+    </h1>
+    <a href="/recipe/create" class="btn btn--teal create__btn">Create recipe</a>
   </div>
   <nav class="navbar">
     <ul class="nav__menu">
-      <li>
+      <li class="search">
         <form action="/recipe/search" method="GET">
-          <input type="text" id="searchText" name="searchText" />
+          <input type="text" id="searchText" name="searchText" placeholder="Search..." title="Enter search term" />
         </form>
       </li>
       <% if (!user) { %>
-      <li>
-        <a href="/auth/sign-in" class="btn btn--green"> Sign In </a>
-      </li>
-      <li>
-        <a href="/auth/sign-up" class="btn btn--teal"> Sign Up </a>
-      </li>
-      <% } else { %>
-      <li>
-        <a href="/user">My Profile</a>
-      </li>
-      <li>
-        <form action="/auth/sign-out" method="post">
-          <button class="btn btn--red">Sign Out</button>
-        </form>
-      </li>
-      <% } %>
+        <li>
+          <a href="/auth/sign-in" class="btn btn--green"> Sign In </a>
+        </li>
+        <li>
+          <a href="/auth/sign-up" class="btn btn--teal"> Sign Up </a>
+        </li>
+        <% } else { %>
+          <li class="profile">
+            <a href="/user" title="My Profile">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                <path fill-rule="evenodd"
+                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <form action="/auth/sign-out" method="post">
+              <button class="btn btn--red">Sign Out</button>
+            </form>
+          </li>
+          <% } %>
     </ul>
   </nav>
 </header>

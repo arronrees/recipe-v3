@@ -7,6 +7,7 @@
       <h2>Update User Details</h2>
 
       <form action="/user/update-details?_method=PUT" method="post" class="update__user__form">
+        <input type="hidden" name="id" value="<%=user.id%>">
         <div class="row">
           <label for="firstName">First Name</label>
           <input type="text" name="firstName" id="firstName" value="<%=user.firstName%>">
@@ -15,8 +16,9 @@
           <label for="lastName">Last Name</label>
           <input type="text" name="lastName" id="lastName" value="<%=user.lastName%>">
         </div>
-        <input type="hidden" name="id" value="<%=user.id%>">
-        <button type="submit" class="btn btn--teal">Update details</button>
+        <div class="row">
+          <button type="submit" class="btn btn--teal">Update details</button>
+        </div>
       </form>
 
       <%- include('../partials/footer') %>

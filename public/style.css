@@ -87,6 +87,8 @@ body {
 }
 
 .btn.btn--green:focus {
+  -webkit-transition: none;
+  transition: none;
   outline: 2px solid var(--teal);
 }
 
@@ -183,10 +185,23 @@ img {
   padding: 1rem;
 }
 
+.header .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .header .logo h1 {
   font-size: 2rem;
   font-weight: var(--font-xbold);
   font-family: var(--title-font);
+}
+
+.header .logo .create__btn {
+  margin-left: 1rem;
 }
 
 .header .navbar .nav__menu {
@@ -209,6 +224,58 @@ img {
   margin-right: 0;
 }
 
+.header .navbar .nav__menu > li.profile {
+  padding: 0.5rem;
+}
+
+.header .navbar .nav__menu > li.profile a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.header .navbar .nav__menu > li.profile a svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: var(--mid-dark-green);
+}
+
+.header .navbar .nav__menu > li.search form input {
+  border-bottom: 1px solid rgba(16, 43, 19, 0.15);
+  padding: 0.25rem;
+  font-family: var(--title-font);
+  color: var(--mid-dark-green);
+  -webkit-transition: var(--fast-speed);
+  transition: var(--fast-speed);
+}
+
+.header .navbar .nav__menu > li.search form input::-webkit-input-placeholder {
+  color: var(--mid-dark-green);
+}
+
+.header .navbar .nav__menu > li.search form input:-ms-input-placeholder {
+  color: var(--mid-dark-green);
+}
+
+.header .navbar .nav__menu > li.search form input::-ms-input-placeholder {
+  color: var(--mid-dark-green);
+}
+
+.header .navbar .nav__menu > li.search form input::placeholder {
+  color: var(--mid-dark-green);
+}
+
+.header .navbar .nav__menu > li.search form input:focus {
+  outline: none;
+  border-color: var(--mid-dark-green);
+}
+
 .auth__section {
   min-height: 100vh;
   display: -ms-grid;
@@ -218,7 +285,7 @@ img {
 }
 
 .auth__section .auth__form {
-  background-color: #fff;
+  background-color: var(--light-green);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -252,28 +319,11 @@ img {
   background-color: #fff;
   width: 100%;
   font-family: var(--title-font);
-  color: var(--teal);
-  border: 1px solid var(--teal);
+  color: var(--dark-green);
 }
 
 .auth__section .auth__form .row input:focus {
-  border: 2px solid var(--teal);
-}
-
-.auth__section .auth__form .row input::-webkit-input-placeholder {
-  opacity: 0.75;
-}
-
-.auth__section .auth__form .row input:-ms-input-placeholder {
-  opacity: 0.75;
-}
-
-.auth__section .auth__form .row input::-ms-input-placeholder {
-  opacity: 0.75;
-}
-
-.auth__section .auth__form .row input::placeholder {
-  opacity: 0.75;
+  outline: 2px solid var(--teal);
 }
 
 .auth__section .auth__form .row label {
@@ -349,6 +399,11 @@ img {
 
 .update__user__form .row .btn {
   width: 100%;
+}
+
+.update__user__form .row .btn:focus {
+  -webkit-transition: none;
+  transition: none;
 }
 
 .create__recipe__form {
@@ -448,9 +503,11 @@ img {
   padding: 2rem;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 .recipe__card__grid .recipe__card {
@@ -524,6 +581,20 @@ img {
   display: none;
 }
 
+@media only screen and (max-width: 950px) {
+  .recipe__card__grid {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .recipe__card__grid {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+}
+
 .recipe__inner {
   max-width: 1024px;
   padding: 2rem;
@@ -532,6 +603,12 @@ img {
 
 .recipe__inner .main__img {
   position: relative;
+}
+
+.recipe__inner .main__img .edit__btn {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
 }
 
 .recipe__inner .main__img .img {
@@ -704,5 +781,6 @@ img {
   padding-bottom: 0.25rem;
   font-size: 1.25rem;
   font-weight: var(--font-xlight);
+  text-transform: capitalize;
 }
 /*# sourceMappingURL=style.css.map */
