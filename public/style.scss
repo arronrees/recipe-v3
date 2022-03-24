@@ -346,7 +346,7 @@ img {
   }
 }
 
-// create recipe
+// create/edit recipe
 .recipe__form {
   display: flex;
   align-items: center;
@@ -365,6 +365,10 @@ img {
   .row {
     margin: 0 0.5rem 0.75rem 0.5rem;
 
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
     &.cookTime,
     &.prepTime {
       display: grid;
@@ -376,10 +380,6 @@ img {
     &.public,
     &.submit {
       grid-column: span 2 / auto;
-    }
-
-    &:last-of-type {
-      margin-bottom: 0;
     }
 
     &.categories,
@@ -484,6 +484,7 @@ img {
       h3 {
         font-size: 1.75rem;
         font-family: var(--title-font);
+        text-transform: capitalize;
       }
 
       ul {

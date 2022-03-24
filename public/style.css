@@ -438,6 +438,10 @@ img {
   margin: 0 0.5rem 0.75rem 0.5rem;
 }
 
+.recipe__form .row:last-of-type {
+  margin-bottom: 0;
+}
+
 .recipe__form .row.cookTime, .recipe__form .row.prepTime {
   display: -ms-grid;
   display: grid;
@@ -448,10 +452,6 @@ img {
 
 .recipe__form .row.instructions, .recipe__form .row.public, .recipe__form .row.submit {
   grid-column: span 2 / auto;
-}
-
-.recipe__form .row:last-of-type {
-  margin-bottom: 0;
 }
 
 .recipe__form .row.categories label, .recipe__form .row.ingredients label {
@@ -576,6 +576,7 @@ img {
 .recipe__card__grid .recipe__card .text h3 {
   font-size: 1.75rem;
   font-family: var(--title-font);
+  text-transform: capitalize;
 }
 
 .recipe__card__grid .recipe__card .text ul {

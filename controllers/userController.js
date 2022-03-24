@@ -127,14 +127,16 @@ module.exports.getLoggedInUserRecipes = async (req, res) => {
 module.exports.getUserSavedRecipes = async (req, res) => {
   const id = req.user.id;
 
-  const savedRecipes = await SavedRecipe.findAll({ where: { userId: id } });
+  const savedRecipes = await SavedRecipe.findAll({
+    where: { userId: id },
+    order: [['createdAt', 'DESC']],
+  });
 
   let recipes = [];
 
   for (let i = 0; i < savedRecipes.length; i++) {
     const recipe = await Recipe.findOne({
       where: { public: true, id: savedRecipes[i].recipeId },
-      order: [['createdAt', 'DESC']],
     });
     if (recipe) recipes.push(recipe);
   }
