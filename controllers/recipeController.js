@@ -50,7 +50,7 @@ module.exports.postCreateRecipe = async (req, res) => {
 
   let cats = [];
   if (typeof categories === 'string') {
-    cats.push(categories);
+    cats.push(categories.toLowerCase());
   } else {
     categories.forEach((cat) => {
       if (cat !== '') {
@@ -65,7 +65,7 @@ module.exports.postCreateRecipe = async (req, res) => {
   } else {
     ingredients.forEach((ing) => {
       if (ing !== '') {
-        ings.push(ing.toLowerCase());
+        ings.push(ing);
       }
     });
   }
@@ -73,7 +73,7 @@ module.exports.postCreateRecipe = async (req, res) => {
   const newRecipe = await Recipe.create({
     userId,
     public,
-    name: name.toLowerCase(),
+    name,
     serves,
     difficulty,
     cookTimeHours,
@@ -168,7 +168,7 @@ module.exports.putEditRecipe = async (req, res) => {
     totalTimeMinutes = remainder;
   }
 
-  recipe.name = name.toLowerCase();
+  recipe.name = name;
   recipe.public = public;
   recipe.serves = serves;
   recipe.difficulty = difficulty;
@@ -186,7 +186,7 @@ module.exports.putEditRecipe = async (req, res) => {
 
   let cats = [];
   if (typeof categories === 'string') {
-    cats.push(categories);
+    cats.push(categories.toLowerCase());
   } else {
     categories.forEach((cat) => {
       if (cat !== '') {
@@ -201,7 +201,7 @@ module.exports.putEditRecipe = async (req, res) => {
   } else {
     ingredients.forEach((ing) => {
       if (ing !== '') {
-        ings.push(ing.toLowerCase());
+        ings.push(ing);
       }
     });
   }
@@ -306,7 +306,15 @@ module.exports.getSearchRecipes = async (req, res) => {
   const { searchText } = req.query;
 
   const recipes = await Recipe.findAll({
-    where: { name: { [Op.substring]: searchText } },
+    where: {
+      [Op.or]: [
+        {
+          name: { [Op.substring]: searchText },
+        },
+        { categories: { [Op.contains]: [searchText] } },
+        { ingredients: { [Op.contains]: [searchText] } },
+      ],
+    },
   });
 
   res.render('recipe/search', { recipes });
