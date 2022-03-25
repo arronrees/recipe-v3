@@ -723,4 +723,57 @@ img {
       }
     }
   }
+
+  .user__photos {
+    .user__photo__splide {
+      .splide__arrows {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        padding: 0 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.75),
+          rgba(0, 0, 0, 0) 50%,
+          rgba(0, 0, 0, 0.75)
+        );
+        z-index: 10;
+
+        .splide__arrow {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          svg {
+            fill: #fff;
+            width: 2rem;
+            height: 2rem;
+          }
+
+          &.splide__arrow--prev {
+            svg {
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+
+      .splide__slide {
+        .user__photo {
+          height: 20rem;
+          position: relative;
+
+          form {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+          }
+        }
+      }
+    }
+  }
 }

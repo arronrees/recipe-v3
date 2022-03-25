@@ -345,6 +345,13 @@ module.exports.postAddUserPhoto = async (req, res) => {
     return res.redirect(`/recipe/${id}`);
   }
 
+  const userPhotos = await UserPhoto.findAll({ where: { userId } });
+
+  if (userPhotos.length >= 3) {
+    req.flash('errorMessage', 'You have already added 3 images to this recipe');
+    return res.redirect(`/recipe/${id}`);
+  }
+
   const newPhoto = await UserPhoto.create({
     recipeId: id,
     userId,
