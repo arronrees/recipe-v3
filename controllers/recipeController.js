@@ -239,6 +239,7 @@ module.exports.deleteSingleRecipe = async (req, res) => {
   await recipe.destroy();
 
   const savedRecipes = await SavedRecipe.destroy({ where: { recipeId: id } });
+  const userPhotos = await UserPhoto.destroy({ where: { recipeId: id } });
 
   req.flash('successMessage', 'Recipe deleted successfully');
   res.redirect('/');

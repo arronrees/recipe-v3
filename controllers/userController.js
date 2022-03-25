@@ -2,6 +2,7 @@ const { checkPassword, hashPassword } = require('../lib/auth/passwordUtils');
 const Recipe = require('../models/Recipe');
 const User = require('../models/User');
 const SavedRecipe = require('../models/SavedRecipe');
+const UserPhoto = require('../models/UserPhoto');
 
 module.exports.getUserPage = (req, res) => {
   res.render('user/index');
@@ -108,6 +109,8 @@ module.exports.deleteUserAccount = async (req, res) => {
 
   const user = await User.destroy({ where: { id } });
   const recipes = await Recipe.destroy({ where: { userId: id } });
+  const savedRecipes = await SavedRecipe.destroy({ where: { userId: id } });
+  const userPhotos = await UserPhoto.destroy({ where: { userId: id } });
 
   req.flash('successMessage', 'User deleted successfully');
   req.logout();
