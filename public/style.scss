@@ -254,6 +254,28 @@ img {
   display: grid;
   grid-template-columns: 1fr 2fr;
 
+  .form__sect {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .redirection {
+      margin-top: 2rem;
+
+      a {
+        display: inline;
+        font-weight: var(--font-bold);
+        color: var(--teal);
+        transition: var(--fast-speed);
+
+        &:hover {
+          color: var(--mid-dark-green);
+        }
+      }
+    }
+  }
+
   .auth__form {
     background-color: var(--light-green);
     display: flex;

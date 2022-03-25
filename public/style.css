@@ -284,6 +284,38 @@ img {
       grid-template-columns: 1fr 2fr;
 }
 
+.auth__section .form__sect {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.auth__section .form__sect .redirection {
+  margin-top: 2rem;
+}
+
+.auth__section .form__sect .redirection a {
+  display: inline;
+  font-weight: var(--font-bold);
+  color: var(--teal);
+  -webkit-transition: var(--fast-speed);
+  transition: var(--fast-speed);
+}
+
+.auth__section .form__sect .redirection a:hover {
+  color: var(--mid-dark-green);
+}
+
 .auth__section .auth__form {
   background-color: var(--light-green);
   display: -webkit-box;
