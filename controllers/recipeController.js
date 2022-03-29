@@ -4,6 +4,10 @@ const Recipe = require('../models/Recipe');
 const User = require('../models/User');
 const SavedRecipe = require('../models/SavedRecipe');
 const UserPhoto = require('../models/UserPhoto');
+const sharp = require('sharp');
+const fs = require('fs');
+const path = require('path');
+const { v4: uuidv4 } = require('uuid');
 
 module.exports.getCreateRecipe = (req, res) => {
   res.render('recipe/create');
@@ -33,6 +37,26 @@ module.exports.postCreateRecipe = async (req, res) => {
     );
     return res.redirect('/recipe/create');
   }
+
+  const inputImg = fs.readFileSync(
+    path.join(__dirname, `../files/img/recipes/${req.file.filename}`),
+    (err, data) => {}
+  );
+
+  let outPutImgFilename = `${uuidv4()}-${Date.now()}.webp`;
+
+  const outputImg = await sharp(inputImg)
+    .resize(1200)
+    .toFile(path.join(__dirname, `../files/img/recipes/${outPutImgFilename}`));
+
+  if (!outputImg) {
+    req.flash('errorMessage', 'Error creating recipe, please try again');
+    return res.redirect('/recipe/create');
+  }
+
+  const removedImg = fs.unlinkSync(
+    path.join(__dirname, `../files/img/recipes/${req.file.filename}`)
+  );
 
   let totalTimeHours = parseFloat(prepTimeHours) + parseFloat(cookTimeHours);
   let totalTimeMinutes =
@@ -82,7 +106,7 @@ module.exports.postCreateRecipe = async (req, res) => {
     prepTimeMinutes,
     totalTimeHours,
     totalTimeMinutes,
-    image: filename,
+    image: outPutImgFilename,
     categories: cats,
     ingredients: ings,
     instructions,
@@ -193,7 +217,26 @@ module.exports.putEditRecipe = async (req, res) => {
   recipe.instructions = instructions;
 
   if (req.file) {
-    recipe.image = req.file.filename;
+    const inputImg = fs.readFileSync(
+      path.join(__dirname, `../files/img/recipes/${req.file.filename}`),
+      (err, data) => {}
+    );
+
+    let outPutImgFilename = `${uuidv4()}-${Date.now()}.webp`;
+
+    const outputImg = await sharp(inputImg)
+      .resize(1200)
+      .toFile(
+        path.join(__dirname, `../files/img/recipes/${outPutImgFilename}`)
+      );
+
+    if (outputImg) {
+      recipe.image = outPutImgFilename;
+    }
+
+    const removedImg = fs.unlinkSync(
+      path.join(__dirname, `../files/img/recipes/${req.file.filename}`)
+    );
   }
 
   let cats = [];
