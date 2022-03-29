@@ -842,6 +842,10 @@ img {
   text-transform: capitalize;
 }
 
+.recipe__inner .user__photos {
+  padding: 4rem 0;
+}
+
 .recipe__inner .user__photos .user__photo__splide .splide__arrows {
   position: absolute;
   top: 0;
@@ -857,9 +861,8 @@ img {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.75)), color-stop(50%, rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.75)));
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.75));
   z-index: 10;
+  pointer-events: none;
 }
 
 .recipe__inner .user__photos .user__photo__splide .splide__arrows .splide__arrow {
@@ -872,6 +875,7 @@ img {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  pointer-events: all;
 }
 
 .recipe__inner .user__photos .user__photo__splide .splide__arrows .splide__arrow svg {
@@ -883,6 +887,11 @@ img {
 .recipe__inner .user__photos .user__photo__splide .splide__arrows .splide__arrow.splide__arrow--prev svg {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
+}
+
+.recipe__inner .user__photos .user__photo__splide .splide__track {
+  cursor: -webkit-grab;
+  cursor: grab;
 }
 
 .recipe__inner .user__photos .user__photo__splide .splide__slide .user__photo {

@@ -725,6 +725,8 @@ img {
   }
 
   .user__photos {
+    padding: 4rem 0;
+
     .user__photo__splide {
       .splide__arrows {
         position: absolute;
@@ -735,18 +737,14 @@ img {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: linear-gradient(
-          to right,
-          rgba(0, 0, 0, 0.75),
-          rgba(0, 0, 0, 0) 50%,
-          rgba(0, 0, 0, 0.75)
-        );
         z-index: 10;
+        pointer-events: none;
 
         .splide__arrow {
           display: flex;
           align-items: center;
           justify-content: center;
+          pointer-events: all;
 
           svg {
             fill: #fff;
@@ -760,6 +758,10 @@ img {
             }
           }
         }
+      }
+
+      .splide__track {
+        cursor: grab;
       }
 
       .splide__slide {

@@ -113,45 +113,36 @@
           </div>
           <% } %>
 
-            <div class="user__photos">
-              <div class="splide user__photo__splide">
-                <div class="splide__arrows">
-                  <button class="splide__arrow splide__arrow--prev">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-                    </svg>
-                  </button>
-                  <button class="splide__arrow splide__arrow--next">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-                    </svg>
-                  </button>
-                </div>
-                <div class="splide__track">
-                  <ul class="splide__list">
+            <% if (userPhotos && userPhotos.length> 0) { %>
+              <div class="user__photos">
+                <div class="splide user__photo__splide">
+                  <div class="splide__track">
+                    <ul class="splide__list">
                       <% userPhotos.forEach(photo=> { %>
-                      <li class="splide__slide">
-                        <div class="user__photo">
-                          <% if(user && photo.userId===user.id) { %>
-                            <form action="/recipe/user-photos/<%=photo.id%>?_method=DELETE" method="POST">
-                              <input type="hidden" name="recipeId" value="<%=recipe.id%>">
-                              <button type="submit" class="btn btn--red">Delete</button>
-                            </form>
-                            <% } %>
-                              <figure>
-                                <img src="/img/recipes/<%=photo.image%>" alt="#">
-                              </figure>
-                        </div>
-                      </li>
-                      <% }) %>
+                        <li class="splide__slide">
+                          <div class="user__photo">
+                            <% if(user && photo.userId===user.id) { %>
+                              <form action="/recipe/user-photos/<%=photo.id%>?_method=DELETE" method="POST">
+                                <input type="hidden" name="recipeId" value="<%=recipe.id%>">
+                                <button type="submit" class="btn btn--red">Delete</button>
+                              </form>
+                              <% } %>
+                                <figure>
+                                  <img src="/img/recipes/<%=photo.image%>" alt="#">
+                                </figure>
+                          </div>
+                        </li>
+                        <% }) %>
                     </ul>
                   </div>
                 </div>
-            </div>
+              </div>
 
-            <script defer>
-              const userPhotoSplide = new Splide('.user__photo__splide', {type: 'loop', perPage: 3, perMove: 1, easing: 'ease', speed: 1000, autoplay: true, interval: 5000, gap: '1rem'}).mount()
-            </script>
+              <script defer>
+                const userPhotoSplide = new Splide('.user__photo__splide', { type: 'loop', perPage: 3, perMove: 1, easing: 'ease', speed: 1000, autoplay: true, interval: 5000, gap: '1rem', pagination: false, drag: true, arrows: false }).mount()
+              </script>
+              <% } %>
+
 
       </main>
 
