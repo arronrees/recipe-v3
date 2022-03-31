@@ -437,7 +437,11 @@ module.exports.deleteUserPhoto = async (req, res) => {
   const { id } = req.params;
   const { recipeId } = req.body;
 
-  const deletedPhoto = await UserPhoto.destroy({ where: { id } });
+  const deletedPhoto = await UserPhoto.findByPk(id);
+
+  const removedImg = fs.unlinkSync(
+    path.join(__dirname, `../files/img/recipes/${deletedPhoto.image}`)
+  );
 
   if (!deletedPhoto) {
     req.flash(
@@ -446,6 +450,8 @@ module.exports.deleteUserPhoto = async (req, res) => {
     );
     return res.redirect(`/recipe/${recipeId}`);
   }
+
+  await deletedPhoto.destroy();
 
   req.flash('successMessage', 'Photo successfully deleted');
   res.redirect(`/recipe/${recipeId}`);

@@ -980,12 +980,14 @@ img {
   height: 100%;
   background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.75)), to(rgba(0, 0, 0, 0)));
   background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  z-index: 0;
 }
 
 .recipe__inner .user__photos .user__photo__splide .splide__slide .user__photo form {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
+  z-index: 1;
 }
 
 .recipe__inner .user__photos .user__photo__splide .splide__slide .user__photo form .btn {

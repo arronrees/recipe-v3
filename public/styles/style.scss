@@ -822,12 +822,14 @@ img {
               rgba(0, 0, 0, 0.75),
               rgba(0, 0, 0, 0)
             );
+            z-index: 0;
           }
 
           form {
             position: absolute;
             bottom: 1rem;
             right: 1rem;
+            z-index: 1;
 
             .btn {
               padding: 0.75rem;
