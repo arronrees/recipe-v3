@@ -136,6 +136,7 @@
                                 <figure>
                                   <img src="/img/recipes/<%=photo.image%>" alt="#">
                                 </figure>
+                                <div class="overlay"></div>
                           </div>
                         </li>
                         <% }) %>
@@ -145,7 +146,27 @@
               </div>
 
               <script defer>
-                const userPhotoSplide = new Splide('.user__photo__splide', { type: 'loop', perPage: 3, perMove: 1, easing: 'ease', speed: 1000, autoplay: true, interval: 5000, gap: '1rem', pagination: false, drag: true, arrows: false }).mount()
+                const userPhotoSplide = new Splide('.user__photo__splide', {
+                  type: 'loop',
+                  perPage: 3,
+                  perMove: 1,
+                  easing: 'ease',
+                  speed: 1000,
+                  autoplay: true,
+                  interval: 5000,
+                  gap: '1rem',
+                  pagination: false,
+                  drag: true,
+                  arrows: false,
+                  breakpoints: {
+                    800: {
+                      perPage: 2,
+                    },
+                    600: {
+                      perPage: 1
+                    }
+                  }
+                }).mount()
               </script>
               <% } %>
 
