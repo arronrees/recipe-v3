@@ -395,10 +395,30 @@ module.exports.postAddUserPhoto = async (req, res) => {
     return res.redirect(`/recipe/${id}`);
   }
 
+  const inputImg = fs.readFileSync(
+    path.join(__dirname, `../files/img/recipes/${filename}`),
+    (err, data) => {}
+  );
+
+  let outPutImgFilename = `${uuidv4()}-${Date.now()}.webp`;
+
+  const outputImg = await sharp(inputImg)
+    .resize(800)
+    .toFile(path.join(__dirname, `../files/img/recipes/${outPutImgFilename}`));
+
+  if (!outputImg) {
+    req.flash('errorMessage', 'Error adding photo, please try again');
+    return res.redirect(`/recipe/${id}`);
+  }
+
+  const removedImg = fs.unlinkSync(
+    path.join(__dirname, `../files/img/recipes/${filename}`)
+  );
+
   const newPhoto = await UserPhoto.create({
     recipeId: id,
     userId,
-    image: filename,
+    image: outPutImgFilename,
   });
 
   if (!newPhoto) {
