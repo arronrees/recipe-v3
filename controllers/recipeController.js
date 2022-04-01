@@ -279,6 +279,10 @@ module.exports.deleteSingleRecipe = async (req, res) => {
     return res.redirect(`/recipe/${recipe.id}`);
   }
 
+  const removedImg = fs.unlinkSync(
+    path.join(__dirname, `../files/img/recipes/${recipe.image}`)
+  );
+
   await recipe.destroy();
 
   const savedRecipes = await SavedRecipe.destroy({ where: { recipeId: id } });
