@@ -286,7 +286,25 @@ module.exports.deleteSingleRecipe = async (req, res) => {
   await recipe.destroy();
 
   const savedRecipes = await SavedRecipe.destroy({ where: { recipeId: id } });
-  const userPhotos = await UserPhoto.destroy({ where: { recipeId: id } });
+  const userPhotos = await UserPhoto.findAll({ where: { recipeId: id } });
+
+  for (let i = 0; i < userPhotos.length; i++) {
+    const photo = userPhotos[i];
+
+    const removedImg = fs.unlinkSync(
+      path.join(__dirname, `../files/img/recipes/${photo.image}`)
+    );
+
+    if (!photo) {
+      req.flash(
+        'errorMessage',
+        'An error occured when trying to delete photo, please try again'
+      );
+      return res.redirect(`/recipe/${id}`);
+    }
+
+    await photo.destroy();
+  }
 
   req.flash('successMessage', 'Recipe deleted successfully');
   res.redirect('/');

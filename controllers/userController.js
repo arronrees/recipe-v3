@@ -3,6 +3,8 @@ const Recipe = require('../models/Recipe');
 const User = require('../models/User');
 const SavedRecipe = require('../models/SavedRecipe');
 const UserPhoto = require('../models/UserPhoto');
+const fs = require('fs');
+const path = require('path');
 
 module.exports.getUserPage = (req, res) => {
   res.render('user/index');
@@ -108,9 +110,31 @@ module.exports.deleteUserAccount = async (req, res) => {
   }
 
   const user = await User.destroy({ where: { id } });
-  const recipes = await Recipe.destroy({ where: { userId: id } });
   const savedRecipes = await SavedRecipe.destroy({ where: { userId: id } });
-  const userPhotos = await UserPhoto.destroy({ where: { userId: id } });
+
+  const recipes = await Recipe.findAll({ where: { userId: id } });
+
+  for (let i = 0; i < recipes.length; i++) {
+    const recipe = recipes[i];
+
+    const removedImg = fs.unlinkSync(
+      path.join(__dirname, `../files/img/recipes/${recipe.image}`)
+    );
+
+    await recipe.destroy();
+  }
+
+  const userPhotos = await UserPhoto.findAll({ where: { userId: id } });
+
+  for (let i = 0; i < userPhotos.length; i++) {
+    const photo = userPhotos[i];
+
+    const removedImg = fs.unlinkSync(
+      path.join(__dirname, `../files/img/recipes/${photo.image}`)
+    );
+
+    await photo.destroy();
+  }
 
   req.flash('successMessage', 'User deleted successfully');
   req.logout();
