@@ -143,6 +143,14 @@ module.exports.getSingleRecipe = async (req, res) => {
 
   const userPhotos = await UserPhoto.findAll({ where: { recipeId: id } });
 
+  let currentUserSavedRecipes = null;
+
+  if (req.user) {
+    currentUserSavedRecipes = await UserPhoto.findAll({
+      where: { userId: req.user.id },
+    });
+  }
+
   let savedRecipe = null;
 
   if (req.user) {
@@ -155,7 +163,12 @@ module.exports.getSingleRecipe = async (req, res) => {
     savedRecipe = null;
   }
 
-  res.render('recipe/index', { recipe, savedRecipe, userPhotos });
+  res.render('recipe/index', {
+    recipe,
+    savedRecipe,
+    userPhotos,
+    currentUserSavedRecipes,
+  });
 };
 
 module.exports.getEditRecipe = async (req, res) => {
