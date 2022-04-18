@@ -230,6 +230,8 @@ module.exports.putEditRecipe = async (req, res) => {
   recipe.instructions = instructions;
 
   if (req.file) {
+    let originalImage = recipe.image;
+
     const inputImg = fs.readFileSync(
       path.join(__dirname, `../files/img/recipes/${req.file.filename}`),
       (err, data) => {}
@@ -249,6 +251,10 @@ module.exports.putEditRecipe = async (req, res) => {
 
     const removedImg = fs.unlinkSync(
       path.join(__dirname, `../files/img/recipes/${req.file.filename}`)
+    );
+
+    const removedOriginalImg = fs.unlinkSync(
+      path.join(__dirname, `../files/img/recipes/${originalImage}`)
     );
   }
 
