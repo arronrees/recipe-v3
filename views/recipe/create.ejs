@@ -9,15 +9,15 @@
       <form action="/recipe/create" method="post" class="recipe__form" enctype="multipart/form-data">
         <div class="row name">
           <label for="name">Name</label>
-          <input type="text" name="name" id="name" required>
+          <input type="text" name="name" id="name">
         </div>
         <div class="row image">
           <label for="image">Image</label>
-          <input type="file" name="image" id="image" required>
+          <input type="file" name="image" id="image" accept="image/png, image/jpg, image/jpeg, image/webp">
         </div>
         <div class="row serves">
           <label for="serves">People serves</label>
-          <input type="number" name="serves" id="serves" required>
+          <input type="number" name="serves" id="serves">
         </div>
         <div class="row difficulty">
           <label for="difficulty">Difficulty</label>
@@ -30,21 +30,21 @@
         <div class="row cookTime">
           <div>
             <label for="cookTimeHours">Cook Time Hours</label>
-            <input type="number" name="cookTimeHours" id="cookTimeHours" required>
+            <input type="number" name="cookTimeHours" id="cookTimeHours">
           </div>
           <div>
             <label for="cookTimeMinutes">Cook Time Mins</label>
-            <input type="number" name="cookTimeMinutes" id="cookTimeMinutes" required>
+            <input type="number" name="cookTimeMinutes" id="cookTimeMinutes">
           </div>
         </div>
         <div class="row prepTime">
           <div>
             <label for="prepTimeHours">Prep Time Hours</label>
-            <input type="number" name="prepTimeHours" id="prepTimeHours" required>
+            <input type="number" name="prepTimeHours" id="prepTimeHours">
           </div>
           <div>
             <label for="prepTimeMinutes">Prep Time Mins</label>
-            <input type="number" name="prepTimeMinutes" id="prepTimeMinutes" required>
+            <input type="number" name="prepTimeMinutes" id="prepTimeMinutes">
           </div>
         </div>
         <div class="row categories">
@@ -55,7 +55,7 @@
               <path
                 d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
             </svg></label>
-          <input type="text" id="categories" name="categories" required>
+          <input type="text" id="categories" name="categories">
         </div>
         <div class="row ingredients">
           <label for="ingredients">Ingredients <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -65,11 +65,11 @@
               <path
                 d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
             </svg></label>
-          <input type="text" id="ingredients" name="ingredients" required>
+          <input type="text" id="ingredients" name="ingredients">
         </div>
         <div class="row instructions">
           <label for="instructions">Instructions</label>
-          <textarea name="instructions" id="instructions" required></textarea>
+          <textarea name="instructions" id="instructions"></textarea>
         </div>
         <div class="row public">
           <label for="public">Make Public?</label>

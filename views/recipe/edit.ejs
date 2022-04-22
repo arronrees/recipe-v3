@@ -15,15 +15,15 @@
         class="recipe__form">
         <div class="row name">
           <label for="name">Name</label>
-          <input type="text" name="name" id="name" value="<%=recipe.name%>" required>
+          <input type="text" name="name" id="name" value="<%=recipe.name%>">
         </div>
         <div class="row image">
           <label for="image">Image</label>
-          <input type="file" name="image" id="image">
+          <input type="file" name="image" accept="image/png, image/jpg, image/jpeg, image/webp" id="image">
         </div>
         <div class="row serves">
           <label for="serves">People serves</label>
-          <input type="number" name="serves" id="serves" value="<%=recipe.serves%>" required>
+          <input type="number" name="serves" id="serves" value="<%=recipe.serves%>">
         </div>
         <div class="row difficulty">
           <label for="difficulty">Difficulty</label>
@@ -37,23 +37,23 @@
         <div class="row cookTime">
           <div>
             <label for="cookTimeHours">Cook Time Hours</label>
-            <input type="number" name="cookTimeHours" id="cookTimeHours" value="<%=recipe.cookTimeHours%>" required>
+            <input type="number" name="cookTimeHours" id="cookTimeHours" value="<%=recipe.cookTimeHours%>">
           </div>
           <div>
             <label for="cookTimeMinutes">Cook Time Mins</label>
             <input type="number" name="cookTimeMinutes" id="cookTimeMinutes" value="<%=recipe.cookTimeMinutes%>"
-              required>
+            >
           </div>
         </div>
         <div class="row prepTime">
           <div>
             <label for="prepTimeHours">Prep Time Hours</label>
-            <input type="number" name="prepTimeHours" id="prepTimeHours" value="<%=recipe.prepTimeHours%>" required>
+            <input type="number" name="prepTimeHours" id="prepTimeHours" value="<%=recipe.prepTimeHours%>">
           </div>
           <div>
             <label for="prepTimeMinutes">Prep Time Mins</label>
             <input type="number" name="prepTimeMinutes" id="prepTimeMinutes" value="<%=recipe.prepTimeMinutes%>"
-              required>
+            >
           </div>
         </div>
         <div class="row categories">
