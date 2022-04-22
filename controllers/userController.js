@@ -35,6 +35,20 @@ module.exports.putUpdateUserDetails = async (req, res, next) => {
 
   const userToShow = { ...user, password: null };
 
+  const userRecipes = await Recipe.findAll({
+    where: {
+      userId: body.id,
+    },
+  });
+
+  for (let i = 0; i < userRecipes.length; i++) {
+    const recipe = userRecipes[i];
+
+    recipe.userName = `${body.firstName} ${body.lastName}`;
+
+    await recipe.save();
+  }
+
   req.logout();
   req.login(userToShow, (err) => {
     if (err) next(err);
