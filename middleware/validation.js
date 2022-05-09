@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const { validate } = require('uuid');
-const { joiRecipeCreate } = require('../models/validation/joiRecipe');
+const { joiRecipe } = require('../models/validation/joiRecipe');
 
 module.exports.validateParamsUUID = (req, res, next) => {
   const { id } = req.params;
@@ -13,9 +13,9 @@ module.exports.validateParamsUUID = (req, res, next) => {
   next();
 };
 
-module.exports.valideCreateRecipe = async (req, res, next) => {
+module.exports.validateRecipeObject = async (req, res, next) => {
   const { body } = req;
-  const { error } = joiRecipeCreate.validate(body);
+  const { error } = joiRecipe.validate(body);
 
   console.log(body);
 

@@ -17,7 +17,7 @@ const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
 const {
   validateParamsUUID,
-  valideCreateRecipe,
+  validateRecipeObject,
 } = require('../middleware/validation');
 
 const storage = multer.diskStorage({
@@ -43,7 +43,7 @@ router.post(
   '/recipe/create',
   isLoggedInRedirectTo,
   upload.single('image'),
-  valideCreateRecipe,
+  validateRecipeObject,
   postCreateRecipe
 );
 
@@ -63,6 +63,7 @@ router.put(
   validateParamsUUID,
   isRecipeAuthor,
   upload.single('image'),
+  validateRecipeObject,
   putEditRecipe
 );
 

@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-module.exports.joiRecipeCreate = Joi.object({
+module.exports.joiRecipe = Joi.object({
   name: Joi.string().required(),
   serves: Joi.string().required(),
   difficulty: Joi.string().required(),
