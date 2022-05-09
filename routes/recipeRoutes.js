@@ -15,7 +15,10 @@ const {
 const { isLoggedInRedirectTo, isRecipeAuthor } = require('../middleware/auth');
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
-const { validateParamsUUID } = require('../middleware/validation');
+const {
+  validateParamsUUID,
+  valideCreateRecipe,
+} = require('../middleware/validation');
 
 const storage = multer.diskStorage({
   destination: 'files/img/recipes',
@@ -40,6 +43,7 @@ router.post(
   '/recipe/create',
   isLoggedInRedirectTo,
   upload.single('image'),
+  valideCreateRecipe,
   postCreateRecipe
 );
 
