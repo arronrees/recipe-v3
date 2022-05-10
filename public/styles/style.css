@@ -445,6 +445,13 @@ img {
   width: 100%;
 }
 
+.auth__section .auth__form .error__message {
+  color: var(--red);
+  font-size: 1rem;
+  padding: 0.5rem 0 0 0.5rem;
+  display: none;
+}
+
 .update__user__form {
   display: -webkit-box;
   display: -ms-flexbox;

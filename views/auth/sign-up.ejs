@@ -7,19 +7,26 @@
         <form action="/auth/sign-up" method="post" class="auth__form">
           <div class="row">
             <label for="firstName">First Name</label>
-            <input type="text" name="firstName" id="firstName" placeholder="First Name" required>
+            <input type="text" name="firstName" id="firstName" placeholder="First Name"
+              data-error="Please enter your first name">
+            <div class="error__message" data-for="firstName"></div>
           </div>
           <div class="row">
             <label for="lastName">Last Name</label>
-            <input type="text" name="lastName" id="lastName" placeholder="Last Name" required>
+            <input type="text" name="lastName" id="lastName" placeholder="Last Name"
+              data-error="Please enter your last name">
+            <div class="error__message" data-for="lastName"></div>
           </div>
           <div class="row">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="Email" required>
+            <input type="email" name="email" id="email" placeholder="Email" data-error="Please enter a valid email">
+            <div class="error__message" data-for="email"></div>
           </div>
           <div class="row">
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Password" required>
+            <input type="password" name="password" id="password" placeholder="Password"
+              data-error="Password must be 8 characters long">
+            <div class="error__message" data-for="password"></div>
           </div>
           <div class="row">
             <button type="submit" class="btn btn--green">Sign Up</button>
@@ -33,5 +40,84 @@
         </figure>
       </div>
     </section>
+
+    <script>
+
+      const select = (selector) => document.querySelector(selector);
+
+      const form = select('.auth__form');
+
+      const fields = [
+        select('#firstName'),
+        select('#lastName'),
+        select('#email'),
+        select('#password'),
+      ];
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const { complete } = checkForm();
+
+        if (complete) {
+          form.submit();
+        } else {
+          window.scrollTo(0, 0);
+        }
+      });
+
+      const checkElement = (el) => {
+        let complete = true;
+
+        const isEmailValid = (email) => {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+        }
+
+        if (el.value.trim() === '') {
+          complete = false;
+        } else {
+          complete = true;
+        }
+
+        if (el.name === 'email') {
+          const emailValid = isEmailValid(el.value);
+
+          if (!emailValid) {
+            complete = false;
+          }
+        }
+
+        console.log(el.name);
+        if (el.name === 'password') {
+          console.log(el.value);
+          if (el.value.length < 8) {
+            complete = false;
+          }
+        }
+
+        return complete;
+      }
+
+      const checkForm = () => {
+        let complete = true;
+
+        fields.forEach(field => {
+          const el = checkElement(field);
+          const err = select(`[data-for="${field.name}"]`);
+          err.style.display = 'none';
+          err.textContent = '';
+
+          if (!el) {
+            complete = false;
+
+            err.style.display = 'block'
+            err.textContent = field.dataset.error;
+          }
+        })
+
+        return { complete };
+      }
+
+    </script>
 
     <%- include('../partials/footer') %>

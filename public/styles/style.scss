@@ -363,6 +363,13 @@ img {
         width: 100%;
       }
     }
+
+    .error__message {
+      color: var(--red);
+      font-size: 1rem;
+      padding: 0.5rem 0 0 0.5rem;
+      display: none;
+    }
   }
 }
 
