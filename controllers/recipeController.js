@@ -368,7 +368,7 @@ module.exports.getCategoryRecipes = async (req, res) => {
     order: [['createdAt', 'DESC']],
   });
 
-  res.render('recipe/category', { recipes });
+  res.render('recipe/category', { recipes, category });
 };
 
 module.exports.getUserRecipes = async (req, res) => {
