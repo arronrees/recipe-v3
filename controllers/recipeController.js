@@ -402,19 +402,24 @@ module.exports.getUserRecipes = async (req, res) => {
 module.exports.getSearchRecipes = async (req, res) => {
   const { searchText } = req.query;
 
+  const searchQuery = searchText.replace(
+    /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi,
+    ''
+  );
+
   const recipes = await Recipe.findAll({
     where: {
       [Op.or]: [
         {
-          name: { [Op.substring]: searchText },
+          name: { [Op.substring]: searchQuery.toLowerCase() },
         },
-        { categories: { [Op.contains]: [searchText] } },
-        { ingredients: { [Op.contains]: [searchText] } },
+        { categories: { [Op.contains]: [searchQuery.toLowerCase()] } },
+        { ingredients: { [Op.contains]: [searchQuery.toLowerCase()] } },
       ],
     },
   });
 
-  res.render('recipe/search', { recipes });
+  res.render('recipe/search', { recipes, searchQuery });
 };
 
 module.exports.postAddUserPhoto = async (req, res) => {
