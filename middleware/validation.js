@@ -17,11 +17,8 @@ module.exports.validateRecipeObject = async (req, res, next) => {
   const { body } = req;
   const { error } = joiRecipe.validate(body);
 
-  console.log(body);
-
   if (error) {
     if (Joi.isError(error)) {
-      console.log(error);
       req.flash('errorMessage', 'Please fill out all the details correctly');
     } else {
       req.flash('errorMessage', 'Something went wrong, please try again');

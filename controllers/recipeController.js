@@ -39,7 +39,7 @@ module.exports.postCreateRecipe = async (req, res) => {
   }
 
   const inputImg = fs.readFileSync(
-    path.join(__dirname, `../files/img/recipes/${req.file.filename}`),
+    path.join(__dirname, `../files/img/recipes/${filename}`),
     (err, data) => {}
   );
 
@@ -55,7 +55,7 @@ module.exports.postCreateRecipe = async (req, res) => {
   }
 
   const removedImg = fs.unlinkSync(
-    path.join(__dirname, `../files/img/recipes/${req.file.filename}`)
+    path.join(__dirname, `../files/img/recipes/${filename}`)
   );
 
   let totalTimeHours = parseFloat(prepTimeHours) + parseFloat(cookTimeHours);
