@@ -15,9 +15,14 @@
           </div>
 
           <% if (user && recipe.userId===user.id) { %>
-            <a href="/recipe/edit/<%=recipe.id%>" class="btn btn--green edit__btn">
-              Edit
-            </a>
+            <div class="update__recipe__btns">
+              <a href="/recipe/edit/<%=recipe.id%>" class="btn btn--green edit__btn">
+                Edit
+              </a>
+              <form class="delete__recipe__form" action="/recipe/delete/<%=recipe.id%>?_method=DELETE" method="post">
+                <button type="submit" class="btn btn--red">Delete</button>
+              </form>
+            </div>
             <% } %>
 
         </section>
@@ -72,6 +77,7 @@
 
         <section class="details">
           <section class="content">
+            <h4 class="instructions__title">How to make</h4>
             <%- recipe.instructions %>
           </section>
           <aside class="sidebar">

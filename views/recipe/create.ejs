@@ -4,7 +4,7 @@
 
     <%- include('../partials/header') %>
 
-      <h2>Create Recipe</h2>
+      <h2 class="page__title">Create Recipe</h2>
 
       <form action="/recipe/create" method="post" class="recipe__form" enctype="multipart/form-data">
         <div class="row name">
@@ -95,7 +95,7 @@
         </div>
         <input type="hidden" name="userId" value="<%=user.id%>">
         <div class="row submit">
-          <button class="btn btn--teal" type="submit">Create</button>
+          <button class="btn btn--teal" type="submit">Create Recipe</button>
         </div>
       </form>
 

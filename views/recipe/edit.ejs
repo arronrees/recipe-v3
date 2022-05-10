@@ -4,12 +4,8 @@
 
     <%- include('../partials/header') %>
 
-      <h2>Edit Recipe <%=recipe.name%>
+      <h2 class="page__title">Edit <%=recipe.name%> recipe
       </h2>
-
-      <form action="/recipe/delete/<%=recipe.id%>?_method=DELETE" method="post">
-        <button type="submit" class="btn btn--red">Delete</button>
-      </form>
 
       <form action="/recipe/edit/<%=recipe.id%>?_method=PUT" method="post" enctype="multipart/form-data"
         class="recipe__form">
@@ -108,7 +104,7 @@
         </div>
         <input type="hidden" name="userId" value="<%=recipe.userId%>">
         <div class="row submit">
-          <button class="btn btn--teal" type="submit">Update</button>
+          <button class="btn btn--teal" type="submit">Update Recipe</button>
         </div>
       </form>
 
