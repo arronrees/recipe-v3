@@ -15,45 +15,55 @@
         class="recipe__form">
         <div class="row name">
           <label for="name">Name</label>
-          <input type="text" name="name" id="name" value="<%=recipe.name%>">
+          <input type="text" name="name" id="name" value="<%=recipe.name%>" data-error="Please add the recipe name">
+          <div class="error__message" data-for="name"></div>
         </div>
         <div class="row image">
           <label for="image">Image</label>
-          <input type="file" name="image" accept="image/png, image/jpg, image/jpeg, image/webp" id="image">
+          <input type="file" name="image" id="image" accept="image/png, image/jpg, image/jpeg, image/webp">
         </div>
         <div class="row serves">
           <label for="serves">People serves</label>
-          <input type="number" name="serves" id="serves" value="<%=recipe.serves%>">
+          <input type="number" name="serves" id="serves" value="<%=recipe.serves%>"
+            data-error="Please add how many people the recipe serves">
+          <div class="error__message" data-for="serves"></div>
         </div>
         <div class="row difficulty">
           <label for="difficulty">Difficulty</label>
-          <select name="difficulty" id="difficulty">
+          <select name="difficulty" id="difficulty" data-error="Please choose a difficulty">
             <option value="easy" <%=recipe.difficulty==='easy' ? 'selected' : '' %> >Easy</option>
             <option value="intermediate" <%=recipe.difficulty==='intermediate' ? 'selected' : '' %> >Intermediate
             </option>
             <option value="difficult" <%=recipe.difficulty==='difficult' ? 'selected' : '' %> >Difficult</option>
           </select>
+          <div class="error__message" data-for="difficulty"></div>
         </div>
         <div class="row cookTime">
           <div>
             <label for="cookTimeHours">Cook Time Hours</label>
-            <input type="number" name="cookTimeHours" id="cookTimeHours" value="<%=recipe.cookTimeHours%>">
+            <input type="number" name="cookTimeHours" id="cookTimeHours" value="<%=recipe.cookTimeHours%>"
+              data-error="Please add the cook time hours">
+            <div class="error__message" data-for="cookTimeHours"></div>
           </div>
           <div>
             <label for="cookTimeMinutes">Cook Time Mins</label>
             <input type="number" name="cookTimeMinutes" id="cookTimeMinutes" value="<%=recipe.cookTimeMinutes%>"
-            >
+              data-error="Please add the cook time minutes">
+            <div class="error__message" data-for="cookTimeMinutes"></div>
           </div>
         </div>
         <div class="row prepTime">
           <div>
             <label for="prepTimeHours">Prep Time Hours</label>
-            <input type="number" name="prepTimeHours" id="prepTimeHours" value="<%=recipe.prepTimeHours%>">
+            <input type="number" name="prepTimeHours" id="prepTimeHours" value="<%=recipe.prepTimeHours%>"
+              data-error="Please add the prep time hours">
+            <div class="error__message" data-for="prepTimeHours"></div>
           </div>
           <div>
             <label for="prepTimeMinutes">Prep Time Mins</label>
             <input type="number" name="prepTimeMinutes" id="prepTimeMinutes" value="<%=recipe.prepTimeMinutes%>"
-            >
+              data-error="Please add the prep time minutes">
+            <div class="error__message" data-for="prepTimeMinutes"></div>
           </div>
         </div>
         <div class="row categories">
@@ -77,8 +87,10 @@
                 d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
             </svg></label>
           <% recipe.ingredients.forEach(ingredient=> { %>
-            <input type="text" id="ingredients" name="ingredients" value="<%=ingredient%>">
+            <input type="text" id="ingredients" name="ingredients" value="<%=ingredient%>"
+              data-error="Please add the recipe ingredients">
             <% }) %>
+              <div class="error__message" data-for="ingredients"></div>
         </div>
         <div class="row instructions">
           <label for="instructions">Instructions</label>
@@ -88,10 +100,11 @@
         </div>
         <div class="row public">
           <label for="public">Make Public?</label>
-          <select name="public" id="public">
+          <select name="public" id="public" data-error="Please choose if you want the recipe to be public">
             <option value="true" <%=recipe.public ? 'selected' : '' %> >Yes</option>
             <option value="false" <%=recipe.public ? '' : 'selected' %> >No</option>
           </select>
+          <div class="error__message" data-for="public"></div>
         </div>
         <input type="hidden" name="userId" value="<%=recipe.userId%>">
         <div class="row submit">
@@ -113,31 +126,87 @@
       </script>
 
       <script>
-        const categoryRow = document.querySelector('.row.categories')
-        const addCategory = document.querySelector('.row.categories .add')
+        const select = (selector) => document.querySelector(selector);
+
+        const categoryRow = select('.row.categories');
+        const addCategory = select('.row.categories .add');
 
         addCategory.addEventListener('click', (e) => {
           const newInput = document.createElement('input');
           newInput.type = 'text';
           newInput.name = `categories`;
           newInput.id = `categories`;
-          newInput.classList.add('categories')
+          newInput.classList.add('categories');
 
-          categoryRow.appendChild(newInput)
+          categoryRow.appendChild(newInput);
         });
 
-        const ingredientRow = document.querySelector('.row.ingredients')
-        const addIngredient = document.querySelector('.row.ingredients .add')
+        const ingredientRow = select('.row.ingredients');
+        const addIngredient = select('.row.ingredients .add');
 
         addIngredient.addEventListener('click', (e) => {
           const newInput = document.createElement('input');
           newInput.type = 'text';
           newInput.name = `ingredients`;
           newInput.id = `ingredients`;
-          newInput.classList.add('ingredients')
+          newInput.classList.add('ingredients');
 
-          ingredientRow.appendChild(newInput)
+          ingredientRow.appendChild(newInput);
         });
+
+        // validation
+        const form = select('.recipe__form');
+
+        const fields = [
+          select('#name'),
+          select('#serves'),
+          select('#difficulty'),
+          select('#cookTimeMinutes'),
+          select('#cookTimeHours'),
+          select('#prepTimeMinutes'),
+          select('#prepTimeHours'),
+          select('#ingredients'),
+        ];
+
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const { complete } = checkForm();
+
+          if (complete) {
+            form.submit();
+          } else {
+            window.scrollTo(0, 0)
+          }
+        });
+
+        const checkElement = (el) => {
+          if (el.value.trim() === '') {
+            return false;
+          } else {
+            return true;
+          }
+        }
+
+        const checkForm = () => {
+          let complete = true;
+
+          fields.forEach(field => {
+            const el = checkElement(field);
+            const err = select(`[data-for="${field.name}"]`);
+            err.style.display = 'none';
+            err.textContent = '';
+
+            if (!el) {
+              complete = false;
+
+              err.style.display = 'block'
+              err.textContent = field.dataset.error;
+            }
+          })
+
+          return { complete };
+        }
 
       </script>
 

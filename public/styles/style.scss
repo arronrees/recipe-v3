@@ -213,6 +213,12 @@ img {
   &.success {
     background-color: #6ce96c;
   }
+
+  &.validation {
+    background-color: var(--red);
+    color: #fff;
+    display: none;
+  }
 }
 
 .header {
@@ -484,10 +490,21 @@ img {
       &::placeholder {
         opacity: 0.75;
       }
+
+      &.error {
+        border-color: var(--red);
+      }
     }
 
     .btn {
       width: 100%;
+    }
+
+    .error__message {
+      color: var(--red);
+      font-size: 1rem;
+      padding: 0.5rem 0 0 0.5rem;
+      display: none;
     }
   }
 }

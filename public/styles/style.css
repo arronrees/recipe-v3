@@ -245,6 +245,12 @@ img {
   background-color: #6ce96c;
 }
 
+.flash.validation {
+  background-color: var(--red);
+  color: #fff;
+  display: none;
+}
+
 .header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -625,8 +631,21 @@ img {
   opacity: 0.75;
 }
 
+.recipe__form .row input.error,
+.recipe__form .row select.error,
+.recipe__form .row textarea.error {
+  border-color: var(--red);
+}
+
 .recipe__form .row .btn {
   width: 100%;
+}
+
+.recipe__form .row .error__message {
+  color: var(--red);
+  font-size: 1rem;
+  padding: 0.5rem 0 0 0.5rem;
+  display: none;
 }
 
 .recipe__card__grid {
