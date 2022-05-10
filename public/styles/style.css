@@ -298,7 +298,7 @@ img {
 }
 
 .header .navbar .nav__menu .create__btn {
-  margin-right: 1rem;
+  margin-left: 1rem;
 }
 
 .header .navbar .nav__menu > li {
@@ -434,7 +434,7 @@ img {
     height: 100%;
   }
   .header .navbar .nav__menu .create__btn {
-    margin-right: 0;
+    margin-left: 0;
     margin-bottom: 1rem;
   }
   .header .navbar .nav__menu > li.profile {
