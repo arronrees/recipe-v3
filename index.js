@@ -7,6 +7,8 @@ const methodOverride = require('method-override');
 const ExpressError = require('./utils/ExpressError');
 const flash = require('connect-flash');
 const passport = require('passport');
+const pgSession = require('connect-pg-simple')(session);
+const pg = require('pg');
 
 const { db } = require('./lib/db');
 
@@ -32,6 +34,13 @@ app.use(morgan('tiny'));
 app.use(methodOverride('_method'));
 
 // session
+const pgPool = new pg.Pool({
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  host: process.env.DB_HOST,
+});
+
 const sessionConfig = {
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -41,6 +50,10 @@ const sessionConfig = {
     maxAge: 1000 * 60 * 60 * 24,
     httpOnly: true,
   },
+  store: new pgSession({
+    pool: pgPool,
+    createTableIfMissing: true,
+  }),
 };
 app.use(session(sessionConfig));
 

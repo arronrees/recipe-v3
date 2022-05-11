@@ -423,6 +423,15 @@ img {
 .header .navbar .nav__menu > li.search button {
   width: 100%;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .header .navbar .nav__menu > li.search button svg {
@@ -446,6 +455,13 @@ img {
     z-index: 110;
     overflow: unset;
     padding: 1rem;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
   .header .mobile__search svg {
     width: 1.25rem;
