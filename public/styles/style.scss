@@ -221,6 +221,67 @@ img {
   }
 }
 
+.search__popup {
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: var(--fast-speed);
+  z-index: 200;
+
+  &.popup--open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+  }
+
+  .close__search {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 1rem;
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+
+      path {
+        fill: #fff;
+      }
+    }
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  form {
+    input {
+      border-bottom: 1px solid var(--light-green);
+      padding: 0.25rem;
+      font-family: var(--title-font);
+      color: #fff;
+      transition: var(--fast-speed);
+      font-size: 1.5rem;
+
+      &::placeholder {
+        color: #fff;
+        font-size: 1.5rem;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: var(--light-green);
+      }
+    }
+  }
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -228,6 +289,10 @@ img {
   padding: 1rem;
 
   .burger {
+    display: none;
+  }
+
+  .mobile__search {
     display: none;
   }
 
@@ -282,24 +347,13 @@ img {
         }
 
         &.search {
-          display: none;
+          button {
+            width: 100%;
+            height: 100%;
 
-          form {
-            input {
-              border-bottom: 1px solid rgba(16, 43, 19, 0.15);
-              padding: 0.25rem;
-              font-family: var(--title-font);
-              color: var(--mid-dark-green);
-              transition: var(--fast-speed);
-
-              &::placeholder {
-                color: var(--mid-dark-green);
-              }
-
-              &:focus {
-                outline: none;
-                border-color: var(--mid-dark-green);
-              }
+            svg {
+              width: 1.25rem;
+              height: 1.25rem;
             }
           }
         }
@@ -310,6 +364,23 @@ img {
 
 @media only screen and (max-width: 600px) {
   .header {
+    .mobile__search {
+      display: block;
+      position: absolute;
+      top: 1.15rem;
+      right: 4.5rem;
+      display: flex;
+      flex-direction: column;
+      z-index: 110;
+      overflow: unset;
+      padding: 1rem;
+
+      svg {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+    }
+
     .burger {
       display: block;
       position: absolute;
@@ -367,6 +438,10 @@ img {
         height: 100%;
 
         > li {
+          &.search {
+            display: none;
+          }
+
           &.profile {
             margin-right: 0;
             margin-bottom: 1rem;
