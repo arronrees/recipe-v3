@@ -111,14 +111,51 @@
 
         <% if (user && recipe.userId !==user.id) { %>
           <% if (currentUserSavedRecipes && currentUserSavedRecipes.length < 3) { %>
-            <div class="add__user__photos">
-              <h5>Add your photos!</h5>
+            <button type="button" class="btn btn--teal add__user__photos">
+              Add your photos
+            </button>
+
+            <section class="add__photo__popup">
               <form action="/recipe/user-photos/<%=recipe.id%>/<%=user.id%>" method="POST"
                 enctype="multipart/form-data">
                 <input type="file" name="image" id="image" required>
                 <button type="submit" class="btn btn--teal">Add</button>
               </form>
-            </div>
+            
+              <button type="button" class="close__add__photo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" />
+                  <path fill-rule="evenodd"
+                    d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" />
+                </svg>
+              </button>
+            </section>
+
+            <script>
+              const showAddPhoto = () => {
+              const btn = document.querySelector('.add__user__photos');
+              const mobBtn = document.querySelector('.add__user__photos');
+              const pop = document.querySelector('.add__photo__popup');
+              const close = document.querySelector('.add__photo__popup .close__add__photo');
+
+              btn.addEventListener('click', () => {
+                pop.classList.add('popup--open');
+              });
+
+              mobBtn.addEventListener('click', () => {
+                pop.classList.add('popup--open');
+              });
+
+              close.addEventListener('click', () => {
+                pop.classList.remove('popup--open');
+              });
+            };
+
+            if (!!document.querySelector('.search')) {
+              showAddPhoto();
+            }
+            </script>
             <% } %>
               <% } %>
 

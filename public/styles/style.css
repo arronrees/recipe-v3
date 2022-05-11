@@ -251,7 +251,8 @@ img {
   display: none;
 }
 
-.search__popup {
+.search__popup,
+.add__photo__popup {
   background-color: rgba(0, 0, 0, 0.9);
   position: fixed;
   top: 0;
@@ -275,29 +276,62 @@ img {
           justify-content: center;
 }
 
-.search__popup.popup--open {
+.search__popup.popup--open,
+.add__photo__popup.popup--open {
   opacity: 1;
   visibility: visible;
   pointer-events: all;
 }
 
-.search__popup .close__search {
+.search__popup .close__search,
+.search__popup .close__add__photo,
+.add__photo__popup .close__search,
+.add__photo__popup .close__add__photo {
   position: absolute;
   top: 1rem;
   right: 1rem;
   padding: 1rem;
 }
 
-.search__popup .close__search svg {
+.search__popup .close__search svg,
+.search__popup .close__add__photo svg,
+.add__photo__popup .close__search svg,
+.add__photo__popup .close__add__photo svg {
   width: 1.5rem;
   height: 1.5rem;
 }
 
-.search__popup .close__search svg path {
+.search__popup .close__search svg path,
+.search__popup .close__add__photo svg path,
+.add__photo__popup .close__search svg path,
+.add__photo__popup .close__add__photo svg path {
   fill: #fff;
 }
 
-.search__popup form input {
+.search__popup form,
+.add__photo__popup form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.search__popup form .btn,
+.add__photo__popup form .btn {
+  margin-top: 1rem;
+}
+
+.search__popup form input,
+.add__photo__popup form input {
   border-bottom: 1px solid var(--light-green);
   padding: 0.25rem;
   font-family: var(--title-font);
@@ -307,29 +341,40 @@ img {
   font-size: 1.5rem;
 }
 
-.search__popup form input::-webkit-input-placeholder {
+.search__popup form input::-webkit-input-placeholder,
+.add__photo__popup form input::-webkit-input-placeholder {
   color: #fff;
   font-size: 1.5rem;
 }
 
-.search__popup form input:-ms-input-placeholder {
+.search__popup form input:-ms-input-placeholder,
+.add__photo__popup form input:-ms-input-placeholder {
   color: #fff;
   font-size: 1.5rem;
 }
 
-.search__popup form input::-ms-input-placeholder {
+.search__popup form input::-ms-input-placeholder,
+.add__photo__popup form input::-ms-input-placeholder {
   color: #fff;
   font-size: 1.5rem;
 }
 
-.search__popup form input::placeholder {
+.search__popup form input::placeholder,
+.add__photo__popup form input::placeholder {
   color: #fff;
   font-size: 1.5rem;
 }
 
-.search__popup form input:focus {
+.search__popup form input:focus,
+.add__photo__popup form input:focus {
   outline: none;
   border-color: var(--light-green);
+}
+
+.search__popup form input[type='file'],
+.add__photo__popup form input[type='file'] {
+  font-size: 1rem;
+  max-width: 80vw;
 }
 
 .header {
