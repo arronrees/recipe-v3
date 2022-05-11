@@ -250,15 +250,19 @@ img {
       align-items: center;
       justify-content: flex-end;
 
-      .create__btn {
-        margin-left: 1rem;
-      }
-
       > li {
         margin-right: 1rem;
 
         &:last-of-type {
           margin-right: 0;
+        }
+
+        &.sign__in {
+          margin-right: 1rem;
+        }
+
+        &.sign__out {
+          margin-left: 1rem;
         }
 
         &.profile {
@@ -362,15 +366,20 @@ img {
         flex-direction: column;
         height: 100%;
 
-        .create__btn {
-          margin-left: 0;
-          margin-bottom: 1rem;
-        }
-
         > li {
           &.profile {
             margin-right: 0;
             margin-bottom: 1rem;
+          }
+
+          &.sign__in {
+            margin-right: 0;
+            margin-bottom: 1rem;
+          }
+
+          &.sign__out {
+            margin-left: 0;
+            margin-top: 1rem;
           }
         }
       }
@@ -417,7 +426,7 @@ img {
 
     .row {
       margin-bottom: 1rem;
-      width: 20rem;
+      max-width: 20rem;
       padding: 0 1rem;
 
       &:last-of-type {
@@ -466,6 +475,40 @@ img {
 }
 
 // user profile
+.profile__list {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  li {
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: var(--font-bold);
+    border-bottom: 1px solid rgba(108, 133, 111, 0.5);
+
+    a {
+      padding: 0 1rem 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      svg {
+        transition: var(--fast-speed);
+      }
+
+      &:hover {
+        svg {
+          transform: translateX(1rem);
+        }
+      }
+    }
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+}
+
 .update__user__form {
   display: flex;
   align-items: center;
@@ -473,11 +516,11 @@ img {
   flex-direction: column;
   font-size: 1.5rem;
   color: var(--mid-green);
+  padding: 2rem 1rem;
 
   .row {
     margin-bottom: 1rem;
     max-width: 20rem;
-    padding: 0 1rem;
 
     &:last-of-type {
       margin-bottom: 0;
@@ -510,6 +553,16 @@ img {
 
       &:focus {
         transition: none;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .update__user__form {
+    .row {
+      input {
+        padding: 1rem;
       }
     }
   }
@@ -558,6 +611,7 @@ img {
   max-width: 800px;
   margin: 0 auto;
   margin-bottom: 4rem;
+  padding: 0 2rem;
 
   .row {
     margin: 0 0.5rem 0.75rem 0.5rem;
@@ -640,10 +694,18 @@ img {
   .recipe__form {
     max-width: 500px;
     padding: 0 1rem;
-    // display: block;
-    grid-template-columns: 1fr;
+    display: block;
+    padding: 0 1rem;
 
     .row {
+      margin-bottom: 1.25rem;
+
+      input,
+      textarea,
+      select {
+        padding: 1rem;
+      }
+
       &.instructions,
       &.public,
       &.submit {

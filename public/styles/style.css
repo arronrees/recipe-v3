@@ -297,16 +297,20 @@ img {
           justify-content: flex-end;
 }
 
-.header .navbar .nav__menu .create__btn {
-  margin-left: 1rem;
-}
-
 .header .navbar .nav__menu > li {
   margin-right: 1rem;
 }
 
 .header .navbar .nav__menu > li:last-of-type {
   margin-right: 0;
+}
+
+.header .navbar .nav__menu > li.sign__in {
+  margin-right: 1rem;
+}
+
+.header .navbar .nav__menu > li.sign__out {
+  margin-left: 1rem;
 }
 
 .header .navbar .nav__menu > li.profile {
@@ -433,13 +437,17 @@ img {
             flex-direction: column;
     height: 100%;
   }
-  .header .navbar .nav__menu .create__btn {
-    margin-left: 0;
-    margin-bottom: 1rem;
-  }
   .header .navbar .nav__menu > li.profile {
     margin-right: 0;
     margin-bottom: 1rem;
+  }
+  .header .navbar .nav__menu > li.sign__in {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+  .header .navbar .nav__menu > li.sign__out {
+    margin-left: 0;
+    margin-top: 1rem;
   }
 }
 
@@ -504,7 +512,7 @@ img {
 
 .auth__section .auth__form .row {
   margin-bottom: 1rem;
-  width: 20rem;
+  max-width: 20rem;
   padding: 0 1rem;
 }
 
@@ -550,6 +558,46 @@ img {
   }
 }
 
+.profile__list {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.profile__list li {
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: var(--font-bold);
+  border-bottom: 1px solid rgba(108, 133, 111, 0.5);
+}
+
+.profile__list li a {
+  padding: 0 1rem 0.5rem 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.profile__list li a svg {
+  -webkit-transition: var(--fast-speed);
+  transition: var(--fast-speed);
+}
+
+.profile__list li a:hover svg {
+  -webkit-transform: translateX(1rem);
+          transform: translateX(1rem);
+}
+
+.profile__list li:last-of-type {
+  border-bottom: none;
+}
+
 .update__user__form {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -566,12 +614,12 @@ img {
           flex-direction: column;
   font-size: 1.5rem;
   color: var(--mid-green);
+  padding: 2rem 1rem;
 }
 
 .update__user__form .row {
   margin-bottom: 1rem;
   max-width: 20rem;
-  padding: 0 1rem;
 }
 
 .update__user__form .row:last-of-type {
@@ -620,6 +668,12 @@ img {
 .update__user__form .row .btn:focus {
   -webkit-transition: none;
   transition: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .update__user__form .row input {
+    padding: 1rem;
+  }
 }
 
 .page__title {
@@ -677,6 +731,7 @@ img {
   max-width: 800px;
   margin: 0 auto;
   margin-bottom: 4rem;
+  padding: 0 2rem;
 }
 
 .recipe__form .row {
@@ -786,8 +841,16 @@ img {
   .recipe__form {
     max-width: 500px;
     padding: 0 1rem;
-    -ms-grid-columns: 1fr;
-        grid-template-columns: 1fr;
+    display: block;
+    padding: 0 1rem;
+  }
+  .recipe__form .row {
+    margin-bottom: 1.25rem;
+  }
+  .recipe__form .row input,
+  .recipe__form .row textarea,
+  .recipe__form .row select {
+    padding: 1rem;
   }
   .recipe__form .row.instructions, .recipe__form .row.public, .recipe__form .row.submit {
     grid-column: span 1 / auto;

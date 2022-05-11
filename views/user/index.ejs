@@ -4,16 +4,54 @@
 
     <%- include('../partials/header') %>
 
-      <h2>Profile</h2>
+      <h2 class="page__title">
+        <%=user.firstName%>
+          <%=user.lastName%>
+      </h2>
 
-      <a href="/user/update-details">Update details</a>
-      <a href="/user/update-password">Update password</a>
-      <a href="/user/saved-recipes">Saved Recipes</a>
-      <a href="/user/my-recipes">My Recipes</a>
-
-      <form action="/user/delete?_method=DELETE" method="POST">
-        <input type="hidden" id="id" name="id" value="<%=user.id%>">
-        <button type="submit" class="btn btn--red">Delete Account</button>
-      </form>
+      <ul class="profile__list">
+        <li>
+          <a href="/user/update-details">
+            Update details
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="/user/update-password">
+            Update password
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="/user/saved-recipes">
+            Saved Recipes
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="/user/my-recipes">
+            My Recipes
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <form action="/user/delete?_method=DELETE" method="POST">
+            <input type="hidden" id="id" name="id" value="<%=user.id%>">
+            <button type="submit" class="btn btn--red">Delete Account</button>
+          </form>
+        </li>
+      </ul>
 
       <%- include('../partials/footer') %>

@@ -13,7 +13,7 @@
         </form>
       </li>
       <% if (!user) { %>
-        <li>
+        <li class="sign__in">
           <a href="/auth/sign-in" class="btn btn--green"> Sign In </a>
         </li>
         <a href="/recipe/create" class="btn btn--teal create__btn">Create recipe</a>
@@ -29,7 +29,7 @@
             </a>
           </li>
           <a href="/recipe/create" class="btn btn--teal create__btn">Create recipe</a>
-          <li>
+          <li class="sign__out">
             <form action="/auth/sign-out" method="post">
               <button class="btn btn--red">Sign Out</button>
             </form>
