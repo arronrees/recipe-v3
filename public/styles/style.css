@@ -319,20 +319,16 @@ img {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
 }
 
 .search__popup form .btn,
 .add__photo__popup form .btn {
-  margin-top: 1rem;
+  margin-left: 1rem;
 }
 
 .search__popup form input,
 .add__photo__popup form input {
-  border-bottom: 1px solid var(--light-green);
+  border-bottom: 1px solid var(--dark-green);
   padding: 0.25rem;
   font-family: var(--title-font);
   color: #fff;
@@ -344,24 +340,28 @@ img {
 .search__popup form input::-webkit-input-placeholder,
 .add__photo__popup form input::-webkit-input-placeholder {
   color: #fff;
+  opacity: 0.3;
   font-size: 1.5rem;
 }
 
 .search__popup form input:-ms-input-placeholder,
 .add__photo__popup form input:-ms-input-placeholder {
   color: #fff;
+  opacity: 0.3;
   font-size: 1.5rem;
 }
 
 .search__popup form input::-ms-input-placeholder,
 .add__photo__popup form input::-ms-input-placeholder {
   color: #fff;
+  opacity: 0.3;
   font-size: 1.5rem;
 }
 
 .search__popup form input::placeholder,
 .add__photo__popup form input::placeholder {
   color: #fff;
+  opacity: 0.3;
   font-size: 1.5rem;
 }
 

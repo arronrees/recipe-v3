@@ -266,14 +266,13 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
 
     .btn {
-      margin-top: 1rem;
+      margin-left: 1rem;
     }
 
     input {
-      border-bottom: 1px solid var(--light-green);
+      border-bottom: 1px solid var(--dark-green);
       padding: 0.25rem;
       font-family: var(--title-font);
       color: #fff;
@@ -282,6 +281,7 @@ img {
 
       &::placeholder {
         color: #fff;
+        opacity: 0.3;
         font-size: 1.5rem;
       }
 

@@ -18,12 +18,16 @@ const showSearch = () => {
   const pop = document.querySelector('.search__popup');
   const close = document.querySelector('.search__popup .close__search');
 
+  const search = document.querySelector('#searchText');
+
   btn.addEventListener('click', () => {
     pop.classList.add('popup--open');
+    search.focus();
   });
 
   mobBtn.addEventListener('click', () => {
     pop.classList.add('popup--open');
+    search.focus();
   });
 
   close.addEventListener('click', () => {
