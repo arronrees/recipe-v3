@@ -44,7 +44,7 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({
   fileFilter,
   storage,
-  limits: { fieldSize: 5000 },
+  limits: { fileSize: 1048576 },
 });
 
 const router = require('express').Router();

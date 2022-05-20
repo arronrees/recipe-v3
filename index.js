@@ -17,6 +17,7 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const recipeRoutes = require('./routes/recipeRoutes');
 const Recipe = require('./models/Recipe');
+const { MulterError } = require('multer');
 
 const app = express();
 
@@ -113,6 +114,17 @@ app.all('*', (req, res, next) => {
 // error handler
 app.use((err, req, res, next) => {
   console.log(err);
+
+  if (err instanceof MulterError) {
+    if (err.code === 'LIMIT_FILE_SIZE') {
+      req.flash(
+        'errorMessage',
+        'File size to large, please upload a smaller image'
+      );
+
+      return res.redirect(req.get('referrer'));
+    }
+  }
 
   if (!err.message) err.message = 'Something went wrong...';
 
