@@ -28,6 +28,12 @@ module.exports.postCreateRecipe = async (req, res) => {
     ingredients,
     instructions,
   } = req.body;
+
+  if (!req.file) {
+    req.flash('errorMessage', 'Image type not supported, please try again');
+    return res.redirect('/recipe/create');
+  }
+
   const { filename } = req.file;
 
   if (req.user.id !== userId) {

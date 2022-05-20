@@ -27,7 +27,25 @@ const storage = multer.diskStorage({
     cb(null, `${uuidv4()}-${Date.now()}.${ext}`);
   },
 });
-const upload = multer({ storage, limits: { fieldSize: 5000 } });
+
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype === 'image/png' ||
+    file.mimetype === 'image/jpg' ||
+    file.mimetype === 'image/jpeg' ||
+    file.mimetype === 'image/webp'
+  ) {
+    return cb(null, true);
+  } else {
+    return cb(null, false);
+  }
+};
+
+const upload = multer({
+  fileFilter,
+  storage,
+  limits: { fieldSize: 5000 },
+});
 
 const router = require('express').Router();
 
