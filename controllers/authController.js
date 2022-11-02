@@ -51,7 +51,9 @@ module.exports.postSignUp = async (req, res) => {
 };
 
 module.exports.postSignOut = async (req, res) => {
-  req.logout();
+  req.logout(() => {
+    console.log('User signed out');
+  });
   req.flash('successMessage', 'Signed out successfully');
 
   res.redirect('/');
