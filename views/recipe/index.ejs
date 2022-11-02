@@ -121,7 +121,7 @@
                 <input type="file" name="image" id="image" required>
                 <button type="submit" class="btn btn--teal">Add</button>
               </form>
-            
+
               <button type="button" class="close__add__photo">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                   <path fill-rule="evenodd"
@@ -134,27 +134,27 @@
 
             <script>
               const showAddPhoto = () => {
-              const btn = document.querySelector('.add__user__photos');
-              const mobBtn = document.querySelector('.add__user__photos');
-              const pop = document.querySelector('.add__photo__popup');
-              const close = document.querySelector('.add__photo__popup .close__add__photo');
+                const btn = document.querySelector('.add__user__photos');
+                const mobBtn = document.querySelector('.add__user__photos');
+                const pop = document.querySelector('.add__photo__popup');
+                const close = document.querySelector('.add__photo__popup .close__add__photo');
 
-              btn.addEventListener('click', () => {
-                pop.classList.add('popup--open');
-              });
+                btn.addEventListener('click', () => {
+                  pop.classList.add('popup--open');
+                });
 
-              mobBtn.addEventListener('click', () => {
-                pop.classList.add('popup--open');
-              });
+                mobBtn.addEventListener('click', () => {
+                  pop.classList.add('popup--open');
+                });
 
-              close.addEventListener('click', () => {
-                pop.classList.remove('popup--open');
-              });
-            };
+                close.addEventListener('click', () => {
+                  pop.classList.remove('popup--open');
+                });
+              };
 
-            if (!!document.querySelector('.search')) {
-              showAddPhoto();
-            }
+              if (!!document.querySelector('.search')) {
+                showAddPhoto();
+              }
             </script>
             <% } %>
               <% } %>
@@ -201,7 +201,7 @@
                         speed: 1000,
                         autoplay: true,
                         interval: 5000,
-                        gap: '1rem',
+                        gap: '2rem',
                         pagination: false,
                         drag: true,
                         arrows: false,
@@ -217,7 +217,7 @@
                           speed: 1000,
                           autoplay: true,
                           interval: 5000,
-                          gap: '1rem',
+                          gap: '2rem',
                           pagination: false,
                           drag: true,
                           arrows: false,
@@ -238,7 +238,7 @@
                             speed: 1000,
                             autoplay: true,
                             interval: 5000,
-                            gap: '1rem',
+                            gap: '2rem',
                             pagination: false,
                             drag: true,
                             arrows: false,

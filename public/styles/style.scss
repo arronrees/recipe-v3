@@ -1,11 +1,14 @@
 :root {
   // colours
-  --light-green: #d9e0d9;
-  --mid-green: #6c856f;
+  --light-grey: #e2e2e2;
+  --mid-green: #37503b;
   --mid-dark-green: #102b13;
   --dark-green: #0d181a;
   --teal: #406267;
   --red: #bb3232;
+
+  --dark-teal: #16333c;
+  --gold: #cda43c;
 
   // fonts
   --title-font: 'Playfair Display', serif;
@@ -68,8 +71,16 @@ body {
   letter-spacing: 0.5px;
   line-height: 1.5;
   overflow-x: hidden;
-  background-color: var(--light-green);
-  color: var(--dark-green);
+  background-color: var(--dark-teal);
+  color: var(--light-grey);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1.25;
 }
 
 .btn {
@@ -211,7 +222,7 @@ img {
   }
 
   &.success {
-    background-color: #61c661;
+    background-color: #539453;
   }
 
   &.validation {
@@ -288,7 +299,7 @@ img {
 
       &:focus {
         outline: none;
-        border-color: var(--light-green);
+        border-color: var(--dark-teal);
       }
     }
 
@@ -338,6 +349,7 @@ img {
     align-items: center;
     position: relative;
     z-index: 150;
+    color: var(--gold);
 
     h1 {
       font-size: 2rem;
@@ -398,7 +410,7 @@ img {
             svg {
               width: 1.25rem;
               height: 1.25rem;
-              fill: var(--teal);
+              fill: var(--light-grey);
             }
           }
         }
@@ -561,7 +573,7 @@ img {
   }
 
   .auth__form {
-    background-color: var(--light-green);
+    background-color: var(--dark-teal);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -727,10 +739,14 @@ img {
     width: 15%;
     height: 1px;
     position: absolute;
-    background-color: var(--mid-green);
+    background-color: var(--gold);
     bottom: 0rem;
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  .hash {
+    color: var(--gold);
   }
 }
 
@@ -747,7 +763,7 @@ img {
   justify-content: center;
   flex-direction: column;
   font-size: 1.5rem;
-  color: var(--dark-green);
+  color: var(--light-grey);
 
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -801,16 +817,15 @@ img {
     textarea {
       padding: 1rem 2rem;
       border-radius: 5px;
-      background-color: #fff;
+      background-color: var(--teal);
       width: 100%;
       font-family: var(--title-font);
-      color: var(--mid-green);
-      box-shadow: 0px 5px 50px rgba(108, 133, 111, 0.1);
-      border: 1px solid rgba(64, 98, 103, 0.2);
+      color: var(--light-grey);
+      margin-bottom: 0.25rem;
 
       &:focus {
-        border-color: var(--teal);
-        outline: 1px solid var(--teal);
+        border-color: var(--light-grey);
+        outline: 1px solid var(--light-grey);
       }
 
       &::placeholder {
@@ -877,11 +892,13 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
-  max-width: 1440px;
+  max-width: 1366px;
   margin: 0 auto;
 
   .recipe__card {
     position: relative;
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
 
     &:hover {
       .img {
@@ -892,11 +909,14 @@ img {
     }
 
     .img {
-      height: 20rem;
+      height: 12rem;
       position: relative;
+      border-radius: 5px;
+      overflow: hidden;
 
       img {
         transition: var(--fast-speed);
+        border-radius: 5px;
       }
 
       .overlay {
@@ -906,36 +926,44 @@ img {
         width: 100%;
         height: 100%;
         background: linear-gradient(
-          45deg,
+          to top,
           #000,
-          rgba(0, 0, 0, 0.75),
+          rgba(0, 0, 0, 0.25),
           rgba(0, 0, 0, 0)
         );
         z-index: 1;
+        border-radius: 5px;
       }
     }
 
     .text {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      color: #fff;
-      padding: 1.5rem;
+      color: var(--dark-teal);
+      padding: 1rem 1.5rem;
       z-index: 2;
+      background-color: var(--light-grey);
+      width: 100%;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
 
       h3 {
         font-size: 1.75rem;
         font-family: var(--title-font);
         text-transform: capitalize;
+        margin-bottom: 1rem;
+      }
+
+      .user {
+        margin-bottom: 0.25rem;
+        font-size: 0.9rem;
       }
 
       ul {
         display: flex;
         flex-wrap: wrap;
         color: var(--mid-green);
+        gap: 1rem;
 
         li {
-          margin-right: 1rem;
           text-transform: capitalize;
           position: relative;
 
@@ -948,8 +976,6 @@ img {
           }
 
           &:last-of-type {
-            margin-right: 0;
-
             &::after {
               display: none;
             }
@@ -994,8 +1020,13 @@ img {
     }
 
     .img {
-      height: 32rem;
+      height: 30rem;
       position: relative;
+      border-radius: 5px;
+
+      img {
+        border-radius: 5px;
+      }
 
       .overlay {
         position: absolute;
@@ -1005,15 +1036,16 @@ img {
         height: 100%;
         background: linear-gradient(
           to top,
-          rgba(0, 0, 0, 0.95),
+          rgba(0, 0, 0, 0.85),
           rgba(0, 0, 0, 0)
         );
+        border-radius: 5px;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
       }
     }
   }
 
   .title {
-    color: var(--dark-green);
     padding-top: 2rem;
 
     .heading {
@@ -1045,13 +1077,14 @@ img {
         font-weight: var(--font-xbold);
         font-family: var(--title-font);
         position: relative;
+        color: var(--gold);
 
         &::after {
           content: '';
           width: 50%;
           height: 1px;
           position: absolute;
-          background-color: var(--mid-green);
+          background-color: var(--light-grey);
           bottom: -0.5rem;
           left: 1rem;
         }
@@ -1063,15 +1096,15 @@ img {
         padding-top: 1rem;
 
         a {
-          color: var(--teal);
+          color: var(--light-grey);
           transition: var(--fast-speed);
-          border-bottom: 1px solid var(--teal);
+          border-bottom: 1px solid var(--light-grey);
           display: inline-block;
           font-weight: var(--font-xbold);
 
           &:hover {
-            color: var(--red);
-            border-color: var(--red);
+            color: var(--gold);
+            border-color: var(--gold);
           }
         }
       }
@@ -1092,10 +1125,11 @@ img {
           a {
             transition: var(--fast-speed);
             border-bottom: 1px solid transparent;
+            color: var(--gold);
 
             &:hover {
-              border-color: var(--red);
-              color: var(--red);
+              border-color: var(--light-grey);
+              color: var(--light-grey);
             }
           }
         }
@@ -1110,8 +1144,9 @@ img {
     padding: 2rem 0;
 
     .content {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: var(--font-xlight);
+      letter-spacing: 1px;
 
       .instructions__title {
         font-size: 2rem;
@@ -1126,10 +1161,15 @@ img {
           width: 50%;
           height: 1px;
           position: absolute;
-          background-color: var(--mid-green);
+          background-color: var(--gold);
           bottom: 0.25rem;
           left: 1rem;
         }
+      }
+
+      a {
+        display: inline-block;
+        font-weight: var(--font-bold);
       }
 
       strong {
@@ -1142,7 +1182,8 @@ img {
 
       p,
       ul {
-        padding-bottom: 1rem;
+        padding-bottom: 1.5rem;
+        line-height: 1.7;
       }
 
       li {
@@ -1157,7 +1198,7 @@ img {
       h4,
       h5,
       h6 {
-        padding-bottom: 1rem;
+        padding-bottom: 1.25rem;
       }
 
       h1,
@@ -1221,7 +1262,7 @@ img {
             width: 50%;
             height: 1px;
             position: absolute;
-            background-color: var(--mid-green);
+            background-color: var(--gold);
             bottom: 0.25rem;
             left: 1rem;
           }
@@ -1283,6 +1324,12 @@ img {
         .user__photo {
           height: 20rem;
           position: relative;
+          border-radius: 5px;
+          box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+
+          img {
+            border-radius: 5px;
+          }
 
           .overlay {
             position: absolute;
@@ -1296,6 +1343,7 @@ img {
               rgba(0, 0, 0, 0)
             );
             z-index: 0;
+            border-radius: 5px;
           }
 
           form {
@@ -1324,7 +1372,7 @@ img {
 
       .content {
         order: 1;
-        font-size: 1.3rem;
+        font-size: 1.15rem;
 
         h1 {
           font-size: 1.8rem;
@@ -1412,7 +1460,7 @@ img {
       }
 
       .content {
-        font-size: 1.15rem;
+        font-size: 1.05rem;
 
         h1 {
           font-size: 1.65rem;
