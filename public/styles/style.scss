@@ -1,12 +1,10 @@
 :root {
   // colours
   --light-grey: #e2e2e2;
-  --mid-green: #37503b;
-  --mid-dark-green: #102b13;
-  --dark-green: #0d181a;
-  --teal: #406267;
+  --mid-teal: #335d69;
+  --dark-green: #103e58;
+  --xdark-teal: #1c2931;
   --red: #bb3232;
-
   --dark-teal: #16333c;
   --gold: #cda43c;
 
@@ -95,25 +93,25 @@ h5 {
   display: inline-block;
 
   &.btn--green {
-    background-color: var(--mid-green);
+    background-color: var(--mid-teal);
     box-shadow: 0px 5px 50px rgba(108, 133, 111, 0.15);
 
     &:hover {
-      background-color: #556857;
+      background-color: var(--xdark-teal);
     }
 
     &:focus {
       transition: none;
-      outline: 2px solid var(--teal);
+      outline: 2px solid var(--xdark-teal);
     }
 
     &:active {
-      background-color: #3f4f41;
+      background-color: var(--xdark-teal);
     }
   }
 
   &.btn--teal {
-    background-color: var(--teal);
+    background-color: var(--xdark-teal);
     box-shadow: 0px 5px 50px rgba(108, 133, 111, 0.15);
 
     &:hover {
@@ -121,7 +119,7 @@ h5 {
     }
 
     &:focus {
-      outline: 2px solid var(--mid-green);
+      outline: 2px solid var(--mid-teal);
     }
 
     &:active {
@@ -217,7 +215,7 @@ img {
   }
 
   &.info {
-    background-color: var(--teal);
+    background-color: var(--xdark-teal);
     color: #fff;
   }
 
@@ -394,7 +392,7 @@ img {
             svg {
               width: 1.5rem;
               height: 1.5rem;
-              fill: var(--teal);
+              fill: var(--light-grey);
             }
           }
         }
@@ -438,7 +436,7 @@ img {
       svg {
         width: 1.25rem;
         height: 1.25rem;
-        fill: var(--teal);
+        fill: var(--xdark-teal);
       }
     }
 
@@ -461,7 +459,7 @@ img {
         svg {
           width: 1.5rem;
           height: 1.5rem;
-          fill: var(--teal);
+          fill: var(--xdark-teal);
         }
       }
     }
@@ -562,11 +560,11 @@ img {
       a {
         display: inline;
         font-weight: var(--font-bold);
-        color: var(--teal);
+        color: var(--mid-teal);
         transition: var(--fast-speed);
 
         &:hover {
-          color: var(--mid-dark-green);
+          color: var(--gold);
         }
       }
     }
@@ -579,7 +577,7 @@ img {
     justify-content: center;
     flex-direction: column;
     font-size: 1.5rem;
-    color: var(--mid-green);
+    color: var(--mid-teal);
 
     .row {
       margin-bottom: 1rem;
@@ -599,7 +597,7 @@ img {
         color: var(--dark-green);
 
         &:focus {
-          outline: 2px solid var(--teal);
+          outline: 2px solid var(--xdark-teal);
         }
       }
 
@@ -672,7 +670,7 @@ img {
   justify-content: center;
   flex-direction: column;
   font-size: 1.5rem;
-  color: var(--mid-green);
+  color: var(--mid-teal);
   padding: 2rem 1rem;
 
   .row {
@@ -689,11 +687,11 @@ img {
       background-color: #fff;
       width: 100%;
       font-family: var(--title-font);
-      color: var(--mid-green);
+      color: var(--mid-teal);
       box-shadow: 0px 5px 50px rgba(108, 133, 111, 0.1);
 
       &:focus {
-        outline: 2px solid var(--teal);
+        outline: 2px solid var(--xdark-teal);
       }
 
       &::placeholder {
@@ -817,7 +815,7 @@ img {
     textarea {
       padding: 1rem 2rem;
       border-radius: 5px;
-      background-color: var(--teal);
+      background-color: var(--xdark-teal);
       width: 100%;
       font-family: var(--title-font);
       color: var(--light-grey);
@@ -960,7 +958,7 @@ img {
       ul {
         display: flex;
         flex-wrap: wrap;
-        color: var(--mid-green);
+        color: var(--mid-teal);
         gap: 1rem;
 
         li {
@@ -1066,7 +1064,7 @@ img {
           svg {
             width: 100%;
             height: 100%;
-            fill: var(--teal);
+            fill: var(--xdark-teal);
           }
         }
       }
