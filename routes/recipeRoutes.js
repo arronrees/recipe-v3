@@ -19,6 +19,7 @@ const {
   validateParamsUUID,
   validateRecipeObject,
 } = require('../middleware/validation');
+const { asyncHandler } = require('../utils/asyncHandler');
 
 const storage = multer.diskStorage({
   destination: 'files/img/recipes',
@@ -49,20 +50,24 @@ const upload = multer({
 
 const router = require('express').Router();
 
-router.get('/recipe/category/:category', getCategoryRecipes);
+router.get('/recipe/category/:category', asyncHandler(getCategoryRecipes));
 
-router.get('/recipe/user/:id', getUserRecipes);
+router.get('/recipe/user/:id', asyncHandler(getUserRecipes));
 
-router.get('/recipe/search', getSearchRecipes);
+router.get('/recipe/search', asyncHandler(getSearchRecipes));
 
-router.get('/recipe/create', isLoggedInRedirectTo, getCreateRecipe);
+router.get(
+  '/recipe/create',
+  isLoggedInRedirectTo,
+  asyncHandler(getCreateRecipe)
+);
 
 router.post(
   '/recipe/create',
   isLoggedInRedirectTo,
   upload.single('image'),
   validateRecipeObject,
-  postCreateRecipe
+  asyncHandler(postCreateRecipe)
 );
 
 router.get(
@@ -70,7 +75,7 @@ router.get(
   isLoggedInRedirectTo,
   validateParamsUUID,
   isRecipeAuthor,
-  getEditRecipe
+  asyncHandler(getEditRecipe)
 );
 
 router.get('/recipe/:id', validateParamsUUID, getSingleRecipe);
@@ -82,7 +87,7 @@ router.put(
   isRecipeAuthor,
   upload.single('image'),
   validateRecipeObject,
-  putEditRecipe
+  asyncHandler(putEditRecipe)
 );
 
 router.post(
@@ -90,24 +95,24 @@ router.post(
   isLoggedInRedirectTo,
   validateParamsUUID,
   upload.single('image'),
-  postAddUserPhoto
+  asyncHandler(postAddUserPhoto)
 );
 
-router.delete('/recipe/user-photos/:id', deleteUserPhoto);
+router.delete('/recipe/user-photos/:id', asyncHandler(deleteUserPhoto));
 
 router.delete(
   '/recipe/delete/:id',
   isLoggedInRedirectTo,
   validateParamsUUID,
   isRecipeAuthor,
-  deleteSingleRecipe
+  asyncHandler(deleteSingleRecipe)
 );
 
 router.post(
   '/recipe/save/:id',
   isLoggedInRedirectTo,
   validateParamsUUID,
-  postSaveRecipe
+  asyncHandler(postSaveRecipe)
 );
 
 module.exports = router;

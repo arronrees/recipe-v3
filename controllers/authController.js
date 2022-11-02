@@ -1,7 +1,7 @@
 const { createUser } = require('../lib/auth/createUser');
 const User = require('../models/User');
 
-module.exports.getSignUpPage = (req, res) => {
+module.exports.getSignUpPage = async (req, res) => {
   res.render('auth/sign-up');
 };
 
@@ -57,7 +57,7 @@ module.exports.postSignOut = async (req, res) => {
   res.redirect('/');
 };
 
-module.exports.getSignInPage = (req, res) => {
+module.exports.getSignInPage = async (req, res) => {
   res.render('auth/sign-in');
 };
 

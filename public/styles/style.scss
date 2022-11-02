@@ -220,7 +220,7 @@ img {
   }
 
   &.success {
-    background-color: #539453;
+    background-color: var(--gold);
   }
 
   &.validation {
@@ -228,6 +228,12 @@ img {
     color: #fff;
     display: none;
   }
+}
+
+.error__page__title {
+  text-align: center;
+  font-size: 2rem;
+  margin: 4rem 1rem;
 }
 
 .search__popup,

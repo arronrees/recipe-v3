@@ -6,11 +6,11 @@ const UserPhoto = require('../models/UserPhoto');
 const fs = require('fs');
 const path = require('path');
 
-module.exports.getUserPage = (req, res) => {
+module.exports.getUserPage = async (req, res) => {
   res.render('user/index');
 };
 
-module.exports.getUpdateUserDetails = (req, res) => {
+module.exports.getUpdateUserDetails = async (req, res) => {
   res.render('user/update-details');
 };
 
@@ -58,7 +58,7 @@ module.exports.putUpdateUserDetails = async (req, res, next) => {
   });
 };
 
-module.exports.getUpdateUserPassword = (req, res) => {
+module.exports.getUpdateUserPassword = async (req, res) => {
   res.render('user/update-password');
 };
 

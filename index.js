@@ -128,7 +128,8 @@ app.use((err, req, res, next) => {
 
   if (!err.message) err.message = 'Something went wrong...';
 
-  res.status(err.status || 500).json({ error: true, message: err.message });
+  // res.status(err.status || 500).json({ error: true, message: err.message });
+  res.status(err.status || 500).render('500');
 });
 
 // run server

@@ -9,7 +9,7 @@ const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 
-module.exports.getCreateRecipe = (req, res) => {
+module.exports.getCreateRecipe = async (req, res) => {
   res.render('recipe/create');
 };
 
